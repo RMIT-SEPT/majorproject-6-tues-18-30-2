@@ -1,13 +1,13 @@
 # RMIT SEPT 2020 Major Project
 
-# Group 00
+# Group 6.TUES-18.30-2
 
 ## Members
-* SURNAME, GivenName (sXXXX)
-* SURNAME, GivenName (sXXXX)
-* SURNAME, GivenName (sXXXX)
-* SURNAME, GivenName (sXXXX)
-* SURNAME, GivenName (sXXXX)
+* Mladenov, Nicholas (s3539747)
+* Ilias, Fady (s3787497)
+* Madrid, Jefferson (s3707189)
+* Giorady, Muhammad Fathur (s3737757)
+* Duong, Thanh (sXXXX)
 
 ## Records
 
