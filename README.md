@@ -7,7 +7,7 @@
 * Ilias, Fady (s3787497)
 * Madrid, Jefferson (s3707189)
 * Giorady, Muhammad Fathur (s3737757)
-* Duong, Thanh (sXXXX)
+* Duong, Thanh (s3601172)
 
 ## Records
 
