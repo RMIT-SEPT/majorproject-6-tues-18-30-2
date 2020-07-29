@@ -5,7 +5,6 @@
 ## Members
 * Mladenov, Nicholas (s3539747)
 * Ilias, Fady (s3787497)
-* Madrid, Jefferson (s3707189)
 * Giorady, Muhammad Fathur (s3737757)
 * Duong, Thanh (s3601172)
 
