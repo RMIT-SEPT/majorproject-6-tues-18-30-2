@@ -1,0 +1,11 @@
+{
+  "name": "sept-assignment",
+  "version": "1.0.0",
+  "description": "The assignment website.",
+  "main": "index.js",
+  "repository": "https://github.com/RMIT-SEPT/majorproject-6-tues-18-30-2",
+  "keywords": [],
+  "author": "Nicholas Mladenov",
+  "license": "ISC",
+  "private": true
+}
