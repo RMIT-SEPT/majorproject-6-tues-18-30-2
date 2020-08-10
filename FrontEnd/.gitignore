@@ -1,6 +1,39 @@
+# Initial
 creds.sh
 creds2.sh
 .terraform*
 terraform.tfstate
 terraform.tfstate.backup
 tmp/
+
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# NPM Cache
+.npm
+
+# Testing
+coverage
+.nyc_output
+coverage.*
+
+# Production
+dist
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime Data
+pids
+*.pid
+*.seed
+
+# Miscellaneous
+.DS_Store
+.env*.local
+*debug.log*
+**/package-lock*.json
