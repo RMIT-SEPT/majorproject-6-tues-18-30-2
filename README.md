@@ -10,7 +10,7 @@
 
 ## Records
 
-* Github repository : https://github.com/RMIT-SEPT/MajorProject/Groupx
+* Github repository : https://github.com/RMIT-SEPT/majorproject-6-tues-18-30-2
 * Jira Workspace : https://s3737757.atlassian.net/jira/software/projects/G6T132/boards/1
 
 
