@@ -1,4 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-ReactDOM.render(<></>, document.getElementById('root'));
+import Dashboard from "./dashboard/Dashboard";
+
+ReactDOM.render(<Dashboard />, document.getElementById('root'));
