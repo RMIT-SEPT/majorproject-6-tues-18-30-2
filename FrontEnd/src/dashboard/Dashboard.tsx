@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import User from '../interfaces/user.interface';
+import viewStatus from '../interfaces/viewStatus.interface';
 
-export interface DashboardStatus {
-  defaultView: boolean;
-}
-
-class Dashboard extends Component<{ userId; userType }, User & DashboardStatus> {
+class Dashboard extends Component<{ userId; userType }, User & viewStatus> {
   constructor(props) {
     super(props);
     this.state = {
