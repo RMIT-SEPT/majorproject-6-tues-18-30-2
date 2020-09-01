@@ -6,7 +6,12 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
-    "lint": "rm -rf dist && tsc --noEmit && eslint '**/*.{js,ts,tsx}' --quiet --fix"
+    "lint": "rm -rf dist && tsc --noEmit && eslint '**/*.{js,ts,tsx}' --quiet --fix",
+    "test": "jest",
+		"test:ci": "jest --ci --reporters=jest-junit",
+		"test:watch": "jest --watchAll",
+		"test:debug": "node --inspect node_modules/.bin/jest -i",
+		"coverage": "jest --coverage"
   },
   "repository": "https://github.com/RMIT-SEPT/majorproject-6-tues-18-30-2",
   "keywords": [],
@@ -26,6 +31,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-security": "^1.4.0",
     "html-webpack-plugin": "^4.2.0",
+    "jest": "^26.4.2",
     "prettier": "^2.0.4",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
