@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import User from '../interfaces/userinfo.interface';
+import User from '../interfaces/user.interface';
 
-interface DashboardStatus {
+export interface DashboardStatus {
   defaultView: boolean;
 }
 
