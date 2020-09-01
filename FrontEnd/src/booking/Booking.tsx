@@ -34,11 +34,24 @@ class Booking extends Component<{ userId; userType }, User & viewStatus> {
     }
   }
 
+  getUnavailableDates(){
+    //return JSON of all employee slots from backend
+    var rawDates: string[];
+    var unavailableDates: Date[];
+
+    for(const dates in rawDates){
+      unavailableDates.push(new Date(dates));
+    }
+
+    return unavailableDates;
+
+  }
+
   getView() {
     if (this.state.defaultView == true) {
       return (
         <div className="centre bm-4">
-          <DayPicker />
+          <DayPicker fromMonth={new Date()}/>
         </div>
       );
     } else if (this.state.defaultView == false) {
