@@ -8,7 +8,10 @@
     "build": "webpack --mode production",
     "lint": "rm -rf dist && tsc --noEmit && eslint '**/*.{js,ts,tsx}' --quiet --fix",
     "test": "jest",
-    "test:watch": "jest --watch"
+		"test:ci": "jest --ci --reporters=jest-junit",
+		"test:watch": "jest --watchAll",
+		"test:debug": "node --inspect node_modules/.bin/jest -i",
+		"coverage": "jest --coverage"
   },
   "repository": "https://github.com/RMIT-SEPT/majorproject-6-tues-18-30-2",
   "keywords": [],
