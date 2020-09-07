@@ -1,122 +1,121 @@
-create table if not exists m_booking_status
+create table booking_status
 (
-	id bigint unsigned auto_increment
-		primary key,
+	id bigint unsigned not null,
 	name varchar(10) not null,
-	created_at timestamp not null,
-	updated_at timestamp not null
+	constraint booking_status_id_uindex
+		unique (id)
 );
 
-create table if not exists m_role
+alter table booking_status
+	add primary key (id);
+
+create table role
 (
-	id bigint unsigned auto_increment
-		primary key,
-	name varchar(20) not null,
-	updated_at timestamp not null
+	id bigint unsigned not null,
+	name varchar(10) not null,
+	constraint role_id_uindex
+		unique (id)
 );
 
-create table if not exists m_service
+alter table role
+	add primary key (id);
+
+create table service
 (
-	id bigint unsigned auto_increment
-		primary key,
+	id bigint unsigned not null,
 	name varchar(20) not null,
-	duration int not null,
 	price int not null,
-	description varchar(100) not null,
-	available tinyint(1) not null,
-	created_at timestamp not null,
-	updated_at timestamp not null,
-	constraint m_service_name_uindex
-		unique (name)
+	description varchar(50) not null,
+	constraint service_id_uindex
+		unique (id)
 );
 
-create table if not exists m_user
+alter table service
+	add primary key (id);
+
+create table time_slot
 (
-	id bigint unsigned auto_increment
-		primary key,
-	username varchar(30) not null,
+	id bigint unsigned not null,
+	time time not null,
+	constraint time_slot_id_uindex
+		unique (id)
+);
+
+alter table time_slot
+	add primary key (id);
+
+create table user
+(
+	username varchar(40) not null,
+	first_name varchar(20) not null,
+	last_name varchar(20) not null,
 	password varchar(30) not null,
 	role_id bigint unsigned not null,
-	available tinyint(1) null,
-	created_at timestamp null,
-	updated_at timestamp null,
-	constraint m_user_m_role_id_fk
-		foreign key (role_id) references m_role (id)
+	street_no varchar(20) not null,
+	street_name varchar(30) not null,
+	postcode int not null,
+	phone int not null,
+	constraint user_phone_uindex
+		unique (phone),
+	constraint user_username_uindex
+		unique (username),
+	constraint user_role_id_fk
+		foreign key (role_id) references role (id)
 );
 
-create table if not exists m_customer
-(
-	id bigint unsigned auto_increment
-		primary key,
-	username varchar(30) not null,
-	address varchar(200) not null,
-	phone varchar(30) not null,
-	user_id bigint null,
-	created_at timestamp null,
-	updated_at timestamp null,
-	constraint m_customer_m_user_id_fk
-		foreign key (id) references m_user (id)
-);
+alter table user
+	add primary key (username);
 
-create table if not exists m_employee
+create table employee_service
 (
-	id bigint unsigned auto_increment
-		primary key,
-	user_id bigint unsigned null,
-	created_at timestamp null,
-	updated_at timestamp null,
-	constraint m_employee_m_user_id_fk
-		foreign key (user_id) references m_user (id)
-);
-
-create table if not exists m_booking
-(
-	id bigint unsigned auto_increment
-		primary key,
-	booking_no varchar(20) not null,
-	customer_id bigint unsigned not null,
-	booking_date date not null,
-	start_time time not null,
-	end_time time not null,
-	service_id bigint unsigned not null,
-	employee_id bigint unsigned not null,
-	booking_status_id bigint unsigned not null,
-	created_at timestamp not null,
-	updated_at timestamp not null,
-	constraint m_booking_booking_no_uindex
-		unique (booking_no),
-	constraint m_booking_m_booking_status_id_fk
-		foreign key (booking_status_id) references m_booking_status (id),
-	constraint m_booking_m_customer_id_fk
-		foreign key (customer_id) references m_customer (id),
-	constraint m_booking_m_employee_id_fk
-		foreign key (employee_id) references m_employee (id),
-	constraint m_booking_m_service_id_fk
-		foreign key (service_id) references m_service (id)
-);
-
-create table if not exists m_employee_service
-(
-	employee_id bigint unsigned not null,
+	employee_id varchar(30) not null,
 	service_id bigint unsigned not null,
 	primary key (employee_id, service_id),
-	constraint m_employeeService_m_employee_id_fk
-		foreign key (employee_id) references m_employee (id),
-	constraint m_employeeService_m_service_id_fk
-		foreign key (service_id) references m_service (id)
+	constraint employee_service_service_id_uindex
+		unique (service_id),
+	constraint employee_service_service_id_fk
+		foreign key (service_id) references service (id),
+	constraint employee_service_user_username_fk
+		foreign key (employee_id) references user (username)
 );
 
-create table if not exists m_working_date
+create table working_date
 (
-	id bigint unsigned auto_increment
-		primary key,
-	employee_id bigint unsigned not null,
-	working_date date not null,
-	start_time time not null,
-	end_time time not null,
-	created_at timestamp not null,
-	updated_at datetime not null,
-	constraint m_working_date_m_employee_id_fk
-		foreign key (employee_id) references m_employee (id)
+	id bigint unsigned not null,
+	employee_id varchar(30) not null,
+	day_name varchar(10) not null,
+	timeslot bigint unsigned not null,
+	constraint working_date_id_uindex
+		unique (id),
+	constraint working_date_time_slot_id_fk
+		foreign key (timeslot) references time_slot (id),
+	constraint working_date_user_username_fk
+		foreign key (employee_id) references user (username)
 );
+
+alter table working_date
+	add primary key (id);
+
+create table booking
+(
+	id bigint unsigned not null,
+	customer_id varchar(30) not null,
+	booking_date date not null,
+	working_date_id bigint unsigned not null,
+	service_id bigint unsigned not null,
+	booking_status_id bigint unsigned not null,
+	constraint booking_id_uindex
+		unique (id),
+	constraint booking_booking_status_id_fk
+		foreign key (booking_status_id) references booking_status (id),
+	constraint booking_service_id_fk
+		foreign key (service_id) references service (id),
+	constraint booking_user_username_fk
+		foreign key (customer_id) references user (username),
+	constraint booking_working_date_id_fk
+		foreign key (working_date_id) references working_date (id)
+);
+
+alter table booking
+	add primary key (id);
 
