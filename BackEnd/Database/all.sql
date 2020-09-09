@@ -1,6 +1,6 @@
 create table booking_status
 (
-	id bigint unsigned not null,
+	id bigint unsigned auto_increment,
 	name varchar(10) not null,
 	constraint booking_status_id_uindex
 		unique (id)
@@ -11,7 +11,7 @@ alter table booking_status
 
 create table role
 (
-	id bigint unsigned not null,
+	id bigint unsigned auto_increment,
 	name varchar(10) not null,
 	constraint role_id_uindex
 		unique (id)
@@ -22,7 +22,7 @@ alter table role
 
 create table service
 (
-	id bigint unsigned not null,
+	id bigint unsigned auto_increment,
 	name varchar(20) not null,
 	price int not null,
 	description varchar(50) not null,
@@ -35,7 +35,7 @@ alter table service
 
 create table time_slot
 (
-	id bigint unsigned not null,
+	id bigint unsigned auto_increment,
 	time time not null,
 	constraint time_slot_id_uindex
 		unique (id)
@@ -71,8 +71,6 @@ create table employee_service
 	employee_id varchar(30) not null,
 	service_id bigint unsigned not null,
 	primary key (employee_id, service_id),
-	constraint employee_service_service_id_uindex
-		unique (service_id),
 	constraint employee_service_service_id_fk
 		foreign key (service_id) references service (id),
 	constraint employee_service_user_username_fk
@@ -81,7 +79,7 @@ create table employee_service
 
 create table working_date
 (
-	id bigint unsigned not null,
+	id bigint unsigned auto_increment,
 	employee_id varchar(30) not null,
 	day_name varchar(10) not null,
 	timeslot bigint unsigned not null,
