@@ -5,7 +5,7 @@ import ViewStatus from '../../interfaces/viewStatus.interface';
 /**
  * Dashboard Properties
  */
-export interface ComponentProps extends User, ViewStatus {};
+export interface ComponentProps extends User, ViewStatus {}
 
 /**
  * Dashboard Component
@@ -14,18 +14,18 @@ export const Dashboard: React.FC<ComponentProps> = ({ userId, userType }) => {
   const [defaultView, setDefaultView] = useState(true);
 
   return userType === 3 ? (
-    <div className="container">
-      <table className="table">
+    <div className='container'>
+      <table className='table'>
         <thead>
           <tr>
             <th>
-              <button type="button" className="btn btn-primary active" onClick={() => setDefaultView(true)}>
+              <button type='button' className='btn btn-primary active' onClick={() => setDefaultView(true)}>
                 Upcoming Bookings
               </button>
             </th>
 
             <th>
-              <button type="button" className="btn btn-primary" onClick={() => setDefaultView(false)}>
+              <button type='button' className='btn btn-primary' onClick={() => setDefaultView(false)}>
                 Completed Bookings
               </button>
             </th>
@@ -35,11 +35,9 @@ export const Dashboard: React.FC<ComponentProps> = ({ userId, userType }) => {
       </table>
     </div>
   ) : (
-    <div className="container">
-      An unexpeced error has occured please refresh the page.
-    </div>
+    <div className='container'>An unexpeced error has occured please refresh the page.</div>
   );
-}
+};
 
 /**
  * Render the appropriate booking rows based on the user interaction.
@@ -53,7 +51,7 @@ const renderBookingRows = (defaultView: boolean, id: string) => {
         <tr>
           <td>Example Upcoming Booking</td>
           <td>
-            <button type="button" className="btn btn-info">
+            <button type='button' className='btn btn-info'>
               Manage Booking
             </button>
           </td>
@@ -66,7 +64,7 @@ const renderBookingRows = (defaultView: boolean, id: string) => {
         <tr>
           <td>Example Completed Booking</td>
           <td>
-            <button type="button" className="btn btn-info">
+            <button type='button' className='btn btn-info'>
               View Booking Details
             </button>
           </td>
@@ -74,4 +72,4 @@ const renderBookingRows = (defaultView: boolean, id: string) => {
       </tbody>
     );
   }
-}
+};
