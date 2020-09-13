@@ -14,8 +14,8 @@ export interface ComponentProps {}
 export const App: React.FC<ComponentProps> = () => {
   return (
     <Router>
-      <Route page={<Home />} path="/" />
-      <Route page={<Dashboard />} path="/dashboard" />
+      <Route page={<Home />} path='/' />
+      <Route page={<Dashboard />} path='/dashboard' />
     </Router>
   );
 };

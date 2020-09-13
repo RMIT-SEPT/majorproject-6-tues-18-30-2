@@ -1,1 +1,1 @@
-export { App, ComponentProps as AppProps } from "./App"
+export { App, ComponentProps as AppProps } from './App';
