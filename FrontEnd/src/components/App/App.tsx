@@ -1,4 +1,7 @@
 import React from 'react';
+import { Router } from '@reach/router';
+import { Route } from '../';
+import { Home, Dashboard } from '../../pages';
 
 /**
  * App Properties
@@ -9,5 +12,10 @@ export interface ComponentProps {}
  * App Component
  */
 export const App: React.FC<ComponentProps> = () => {
-  return <h1>SEPT 2020 Frontend: Group 6.TUES-18.30-2</h1>;
+  return (
+    <Router>
+      <Route page={<Home />} path="/" />
+      <Route page={<Dashboard />} path="/dashboard" />
+    </Router>
+  );
 };
