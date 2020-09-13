@@ -1,5 +1,5 @@
-interface viewStatus {
-    defaultView: boolean;
-  }
+interface ViewStatus {
+  defaultView?: boolean;
+}
 
-export default viewStatus
+export default ViewStatus;
