@@ -11,6 +11,6 @@ export interface ComponentProps extends RouteComponentProps {
 /**
  * Route Component
  */
-export const Route: React.FC<ComponentProps & RouteComponentProps> = ({
+export const Route: React.FC<ComponentProps> = ({
   page
 }) => page;
