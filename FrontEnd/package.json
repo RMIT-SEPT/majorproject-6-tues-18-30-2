@@ -8,10 +8,10 @@
     "build": "webpack --mode production",
     "lint": "rm -rf dist && tsc --noEmit && eslint '**/*.{js,ts,tsx}' --quiet --fix",
     "test": "jest",
-		"test:ci": "jest --ci --reporters=jest-junit",
-		"test:watch": "jest --watchAll",
-		"test:debug": "node --inspect node_modules/.bin/jest -i",
-		"coverage": "jest --coverage"
+    "test:ci": "jest --ci --reporters=jest-junit",
+    "test:watch": "jest --watchAll",
+    "test:debug": "node --inspect node_modules/.bin/jest -i",
+    "coverage": "jest --coverage"
   },
   "repository": "https://github.com/RMIT-SEPT/majorproject-6-tues-18-30-2",
   "keywords": [],
@@ -53,6 +53,7 @@
   "dependencies": {
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
+    "antd": "^4.6.4",
     "bootstrap": "^4.5.2",
     "clsx": "^1.1.0",
     "history": "^4.10.1",
