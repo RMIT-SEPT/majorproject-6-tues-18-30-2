@@ -24,6 +24,10 @@
       "components/*": [
         "src/components/*"
       ],
-    }
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ]
   }
 }
