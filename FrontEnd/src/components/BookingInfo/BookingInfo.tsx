@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import User from "../../interfaces/user.interface";
-import Booking from "../../interfaces/booking.interface";
+import Booking from '../../interfaces/booking.interface';
 import "../index.css";
 
 /**
@@ -27,7 +27,7 @@ export const BookingInfo: React.FC<ComponentProps> = ({ userId, userType, bkId }
         </tr>
         <tr>
           <th>Employee: </th>
-          <td>{bookingInfo.employeeFirstName + ' '+ bookingInfo.employee.LastName}</td>
+          <td>{bookingInfo.employeeFirstName + ' '+ bookingInfo.employeeLastName}</td>
         </tr>
         <tr>
           <th>Contact Phone Number</th>
@@ -46,6 +46,13 @@ export const BookingInfo: React.FC<ComponentProps> = ({ userId, userType, bkId }
  * Retrieve JSON of all booking info from backend and store.
  */
 const getBookingInfo = () => {
-  var bookingList = {};
+  var bookingList = {
+    bookingDate: "",
+    bookingTime: "",
+    employeeFirstName: "",
+    employeeLastName: "",
+    phone: "",
+    notes: ""
+  };
   return bookingList;
 }
