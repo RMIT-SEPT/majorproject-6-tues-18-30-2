@@ -1,0 +1,1 @@
+export { BookingInfo, ComponentProps as BookingInfoProps } from './BookingInfo';

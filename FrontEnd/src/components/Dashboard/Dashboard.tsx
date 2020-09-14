@@ -45,31 +45,27 @@ export const Dashboard: React.FC<ComponentProps> = ({ userId, userType }) => {
  * @param id The users unique identifier.
  */
 const renderBookingRows = (defaultView: boolean, id: string) => {
-  if (defaultView) {
-    return (
-      <tbody>
-        <tr>
-          <td>Example Upcoming Booking</td>
-          <td>
-            <button type='button' className='btn btn-info'>
-              Manage Booking
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    );
-  } else {
-    return (
-      <tbody>
-        <tr>
-          <td>Example Completed Booking</td>
-          <td>
-            <button type='button' className='btn btn-info'>
-              View Booking Details
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    );
-  }
+  return defaultView ? (
+    <tbody>
+      <tr>
+        <td>Example Upcoming Booking</td>
+        <td>
+          <button type='button' className='btn btn-info'>
+            Manage Booking
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  ) : (
+    <tbody>
+      <tr>
+        <td>Example Completed Booking</td>
+        <td>
+          <button type='button' className='btn btn-info'>
+            View Booking Details
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  );
 };
