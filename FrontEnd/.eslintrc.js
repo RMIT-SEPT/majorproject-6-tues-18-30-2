@@ -28,7 +28,7 @@ module.exports = {
   rules: {
     // Typescript
     "@typescript-eslint/consistent-type-definitions": [ "error", "interface" ],
-    "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/explicit-function-return-type": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/naming-convention": "off",
     "@typescript-eslint/no-empty-function": [
