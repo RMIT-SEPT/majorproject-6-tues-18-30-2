@@ -1,4 +1,5 @@
 import React from 'react';
+import { SideBarLayout } from '../../layouts';
 import { Row, Col, Table } from 'antd';
 
 /**
@@ -6,7 +7,7 @@ import { Row, Col, Table } from 'antd';
  */
 export const Dashboard: React.FC = () => {
   return (
-    <>
+    <SideBarLayout>
       <h1>
         This is the dashboard.
       </h1>
@@ -20,6 +21,6 @@ export const Dashboard: React.FC = () => {
           <Table />
         </Col>
       </Row>
-    </>
+    </SideBarLayout>
   );
 };
