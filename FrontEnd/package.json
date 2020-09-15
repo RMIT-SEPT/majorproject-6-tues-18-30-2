@@ -64,6 +64,7 @@
     "react-day-picker": "^7.4.8",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
+    "typestyle": "^2.1.0",
     "webpack-dev-server": "^3.10.3"
   },
   "private": true,
