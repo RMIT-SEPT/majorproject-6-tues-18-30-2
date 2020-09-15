@@ -1,0 +1,1 @@
+export { Padded as PaddedLayout } from './Padded';
