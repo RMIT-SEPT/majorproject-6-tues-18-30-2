@@ -1,7 +1,11 @@
 import React from 'react';
 import { Router } from '@reach/router';
 import { Route } from '../';
-import { Home, Dashboard } from '../../pages';
+import {
+  NotFound,
+  Home,
+  Dashboard
+} from '../../pages';
 import './App.style.css';
 
 /**
@@ -15,6 +19,7 @@ export interface ComponentProps {}
 export const App: React.FC<ComponentProps> = () => {
   return (
     <Router>
+      <Route page={<NotFound />} default />
       <Route page={<Home />} path='/' />
       <Route page={<Dashboard />} path='/dashboard' />
     </Router>
