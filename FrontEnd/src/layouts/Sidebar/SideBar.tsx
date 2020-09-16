@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { Layout, Breadcrumb, Menu } from 'antd';
 import {
   UserOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
   LeftOutlined,
   RightOutlined
 } from '@ant-design/icons';
+import { Header, Footer } from '../../components';
 import * as styles from './SideBar.style';
 
 /**
@@ -39,6 +42,12 @@ export const SideBar: React.FC<LayoutProps> = ({ hamburgerMenu, children }) => {
         </Menu>
       </Sider>
       <Layout className="site-layout">
+        <Header logoHidden>
+          { !hamburgerMenu ? null : collapsed
+            ? <MenuUnfoldOutlined className={styles.trigger} onClick={() => setCollapsed(!collapsed)} />
+            : <MenuFoldOutlined className={styles.trigger} onClick={() => setCollapsed(!collapsed)} />
+          }
+        </Header>
         <Content style={{ padding: '0 50px', minHeight: 280, }}>
           <Breadcrumb style={{ margin: '16px 0'}}>
             <Breadcrumb.Item>TODO</Breadcrumb.Item>
@@ -47,6 +56,7 @@ export const SideBar: React.FC<LayoutProps> = ({ hamburgerMenu, children }) => {
             { children }
           </div>
         </Content>
+        <Footer />
       </Layout>
     </Layout>
   );
