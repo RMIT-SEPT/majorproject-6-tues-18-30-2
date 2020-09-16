@@ -21,6 +21,13 @@ describe('<App />', () => {
     });
     expect(container.innerHTML).toContain('<h1>This is the dashboard.</h1>');
   });
+
+  test('Invalid Page', () => {
+    const { container } = renderWithRouter(<App />, {
+      route: "/an-invalid-page"
+    });
+    expect(container.innerHTML).toContain('<h1>404 - Page does not exist.</h1>');
+  });
 });
 
 /**
