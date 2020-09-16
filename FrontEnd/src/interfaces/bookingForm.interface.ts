@@ -4,6 +4,7 @@ interface BookingForm {
     DOB: Date;
     contactNo: number;
     email: string;
+    employeeName: string;
     bkDate: Date;
     timeSlot: number;
     notes: string;
