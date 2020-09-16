@@ -1,14 +1,23 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import { Layout, Row, Col, DatePicker } from 'antd';
+import { Layout, Row, DatePicker } from 'antd';
 import moment from 'moment';
 import BookingForm from '../../interfaces/bookingForm.interface';
 import 'antd/dist/antd.css';
 
+/*
+Form Properties
+*/
 export interface FormProps extends BookingForm {}
 
+/*
+Destructuring Layout from antd
+*/
 const { Content } = Layout;
 
+/*
+Booking Form Component
+*/
 export const BookingForm: React.FC = () => {
   const initialValues: FormProps = {
     firstName: '',
