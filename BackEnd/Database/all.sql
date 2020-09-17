@@ -24,7 +24,7 @@ create table service
 (
 	id bigint unsigned auto_increment,
 	name varchar(20) not null,
-	price int not null,
+	price decimal not null,
 	description varchar(50) not null,
 	constraint service_id_uindex
 		unique (id)
@@ -53,8 +53,8 @@ create table user
 	role_id bigint unsigned not null,
 	street_no varchar(20) not null,
 	street_name varchar(30) not null,
-	postcode int not null,
-	phone int not null,
+	postcode varchar(10) not null,
+	phone varchar(15) not null,
 	constraint user_phone_uindex
 		unique (phone),
 	constraint user_username_uindex
