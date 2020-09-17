@@ -1,8 +1,7 @@
 import React from 'react';
 import { Router } from '@reach/router';
 import { Route } from '../';
-import { Home, Dashboard } from '../../pages';
-import { BookingForm } from '../BookingForm/BookingForm';
+import { Home, Dashboard, BookingForm} from '../../pages';
 /**
  * App Properties
  */
