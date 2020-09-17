@@ -4,7 +4,8 @@ import { Route } from '../';
 import {
   NotFound,
   Home,
-  Dashboard
+  Dashboard,
+  BookingForm
 } from '../../pages';
 import './App.style.css';
 
@@ -22,6 +23,7 @@ export const App: React.FC<ComponentProps> = () => {
       <Route page={<NotFound />} default />
       <Route page={<Home />} path='/' />
       <Route page={<Dashboard />} path='/dashboard' />
+      <Route page={<BookingForm />} path='/booking-form'/>
     </Router>
   );
 };
