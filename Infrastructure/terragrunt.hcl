@@ -1,4 +1,5 @@
 locals {
+  binary_path = "${get_terraform_parent_dir()}/binaries/${get_platform()}"
   config_path = "${get_terragrunt_parent_dir()}/configuration/${get_env("TF_VAR_ENVIRONMENT")}"
   config_env  = read_terragrunt_config("${local.config_path}/environment.hcl").inputs
   config_file = "${local.config_path}/${trimsuffix(path_relative_to_include(), "/")}.tfvars"
