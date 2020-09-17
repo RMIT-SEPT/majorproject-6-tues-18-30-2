@@ -29,3 +29,6 @@ terraform {
     ] : []
   }
 }
+
+terraform_version_constraint  = "0.13.3"
+terragrunt_version_constraint = ">= 0.24.4"
