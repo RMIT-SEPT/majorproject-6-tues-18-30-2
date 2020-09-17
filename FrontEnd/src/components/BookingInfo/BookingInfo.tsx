@@ -45,4 +45,3 @@ const getBookingInfo = () => {
     var bookingList = {};
     return bookingList;
 }
-

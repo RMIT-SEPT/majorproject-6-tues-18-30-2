@@ -1,0 +1,1 @@
+export { Header, ComponentProps as HeaderProps } from './Header';
