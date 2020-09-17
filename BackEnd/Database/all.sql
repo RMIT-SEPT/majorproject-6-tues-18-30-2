@@ -46,10 +46,10 @@ alter table time_slot
 
 create table user
 (
-	username varchar(40) not null,
+	username varchar(30) not null,
 	first_name varchar(20) not null,
 	last_name varchar(20) not null,
-	password varchar(30) not null,
+	password varchar(100) not null,
 	role_id bigint unsigned not null,
 	street_no varchar(20) not null,
 	street_name varchar(30) not null,
