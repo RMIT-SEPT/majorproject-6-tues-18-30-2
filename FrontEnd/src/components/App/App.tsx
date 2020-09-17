@@ -1,9 +1,8 @@
 import React from 'react';
 import { Router } from '@reach/router';
 import { Route } from '../';
-import { Home, Dashboard } from '../../pages';
+import { Home, Dashboard, BookingForm} from '../../pages';
 import './App.style.css';
-
 /**
  * App Properties
  */
@@ -17,6 +16,7 @@ export const App: React.FC<ComponentProps> = () => {
     <Router>
       <Route page={<Home />} path='/' />
       <Route page={<Dashboard />} path='/dashboard' />
+      <Route page={<BookingForm />} path='/booking-form'/>
     </Router>
   );
 };
