@@ -5,28 +5,85 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "lint": "rm -rf dist && tsc --noEmit && eslint '**/*.{js,ts,tsx}' --quiet --fix",
+    "test": "jest",
+    "test:ci": "jest --ci --reporters=jest-junit",
+    "test:watch": "jest --watchAll",
+    "test:debug": "node --inspect node_modules/.bin/jest -i",
+    "coverage": "jest --coverage"
   },
   "repository": "https://github.com/RMIT-SEPT/majorproject-6-tues-18-30-2",
   "keywords": [],
   "author": "Nicholas Mladenov",
   "license": "ISC",
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
+    "@types/jest": "^26.0.12",
+    "@types/reach__router": "^1.3.5",
+    "@typescript-eslint/eslint-plugin": "^3.9.1",
+    "@typescript-eslint/parser": "^3.9.1",
+    "autoprefixer": "^9.8.6",
     "awesome-typescript-loader": "^5.2.1",
+    "css-loader": "^4.2.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-eslint-comments": "^3.1.2",
+    "eslint-plugin-eslint-plugin": "^2.2.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-security": "^1.4.0",
     "html-webpack-plugin": "^4.2.0",
+    "jest": "^26.4.2",
+    "jest-transform-stub": "^2.0.0",
+    "node-sass": "^4.14.1",
+    "postcss": "^7.0.32",
+    "postcss-loader": "^3.0.0",
+    "prettier": "^2.0.4",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.1",
+    "style-loader": "^1.2.1",
+    "ts-jest": "^26.3.0",
     "typescript": "^3.8.3",
-    "webpack": "^4.42.1",
+    "webpack": "^4.44.1",
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "@reach/router": "^1.3.4",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
+    "antd": "^4.6.4",
+    "bootstrap": "^4.5.2",
     "clsx": "^1.1.0",
+    "formik": "^2.1.5",
     "history": "^4.10.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
+    "react-day-picker": "^7.4.8",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
+    "typestyle": "^2.1.0",
     "webpack-dev-server": "^3.10.3"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "moduleNameMapper": {
+      "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
+    }
+  }
 }
