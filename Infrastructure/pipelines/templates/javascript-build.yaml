@@ -13,17 +13,14 @@ steps:
   displayName: Install Node
   inputs:
     versionSpec: 12.x
-- script: |
-    yarn install
+- script: yarn install
   displayName: Install Packages
   workingDirectory: ${{ parameters.directory }}
-- script: |
-    yarn test
+- script: yarn test
   condition: ${{ parameters.runTests }}
   continueOnError: ${{ not(parameters.failWithTests) }}
   displayName: Test Website
   workingDirectory: ${{ parameters.directory }}
-- script: |
-    yarn build
+- script: yarn build
   displayName: Build Website
   workingDirectory: ${{ parameters.directory }}
