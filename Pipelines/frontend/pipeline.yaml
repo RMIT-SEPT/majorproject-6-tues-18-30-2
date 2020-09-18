@@ -1,0 +1,26 @@
+name: $(revision).$(date:yyyyMMdd).$(rev:r)
+
+trigger:
+  branches:
+    include:
+    - master
+    - devlopment
+  paths:
+    exclude:
+    - BackEnd
+    - docs
+
+variables:
+  revision: 1
+
+stages:
+- stage: compile
+  displayName: Build & Test
+  jobs:
+  - job: build
+    displayName: Procedure
+    steps:
+    - template: ../templates/javascript-build.yaml
+    - publish: $(Build.SourcesDirectory)/FrontEnd/dist
+      artifact: website
+      displayName: Publish Website
