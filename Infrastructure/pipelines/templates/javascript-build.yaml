@@ -6,7 +6,7 @@ parameters:
   default: true
 - name: failWithTests
   type: boolean
-  default: false
+  default: true
 
 steps:
 - task: NodeTool@0
