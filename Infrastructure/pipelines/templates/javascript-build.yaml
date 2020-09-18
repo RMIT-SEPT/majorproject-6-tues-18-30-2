@@ -16,7 +16,7 @@ steps:
 - script: yarn install
   displayName: Install Packages
   workingDirectory: ${{ parameters.directory }}
-- script: yarn test
+- script: yarn test:ci
   condition: ${{ parameters.runTests }}
   continueOnError: ${{ not(parameters.failWithTests) }}
   displayName: Test Website
