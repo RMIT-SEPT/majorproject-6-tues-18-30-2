@@ -13,7 +13,6 @@ trigger:
     - docs/**
     - Infrastructure/**
     - README.md
-    - 
 
 pool:
   vmImage: ubuntu-latest
