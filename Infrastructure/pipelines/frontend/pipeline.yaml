@@ -20,6 +20,8 @@ stages:
   - job: build
     displayName: Procedure
     steps:
+    - checkout: self
+      lfs: true
     - template: ../templates/javascript-build.yaml
     - publish: $(Build.SourcesDirectory)/FrontEnd/dist
       artifact: website
