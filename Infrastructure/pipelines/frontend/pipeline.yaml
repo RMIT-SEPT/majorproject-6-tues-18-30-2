@@ -12,6 +12,7 @@ trigger:
 
 variables:
   revision: 1
+  source: $(Build.SourcesDirectory)/FrontEnd
 
 stages:
 - stage: compile
@@ -23,6 +24,8 @@ stages:
     - checkout: self
       lfs: true
     - template: ../templates/javascript-build.yaml
-    - publish: $(Build.SourcesDirectory)/FrontEnd/dist
+      parameters:
+        directory: $(source)
+    - publish: $(source)/dist
       artifact: website
       displayName: Publish Website
