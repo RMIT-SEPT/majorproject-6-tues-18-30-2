@@ -1,0 +1,35 @@
+name: $(revision).$(date:yyyyMMdd).$(rev:r)
+
+trigger:
+  branches:
+    include:
+    - master
+    - devlopment
+  paths:
+    exclude:
+    - BackEnd
+    - docs
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  revision: 1
+  source: $(Build.SourcesDirectory)/FrontEnd
+
+stages:
+- stage: compile
+  displayName: Build & Test
+  jobs:
+  - job: build
+    displayName: Procedure
+    steps:
+    - checkout: self
+      lfs: true
+    - template: ../templates/javascript-build.yaml
+      parameters:
+        directory: $(source)
+        failWithTests: false
+    - publish: $(source)/dist
+      artifact: website
+      displayName: Publish Website
