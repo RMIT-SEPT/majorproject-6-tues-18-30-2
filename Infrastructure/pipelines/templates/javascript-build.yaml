@@ -1,3 +1,7 @@
+parameters:
+- name: directory
+  type: string
+
 steps:
 - task: NodeTool@0
   displayName: Install Node
@@ -6,3 +10,4 @@ steps:
 - script: |
     yarn build
   displayName: Build Website
+  workingDirectory: ${{ parameters.directory }}
