@@ -1,6 +1,12 @@
 parameters:
 - name: directory
   type: string
+- name: runTests
+  type: boolean
+  default: true
+- name: failWithTests
+  type: boolean
+  default: false
 
 steps:
 - task: NodeTool@0
@@ -10,6 +16,12 @@ steps:
 - script: |
     yarn install
   displayName: Install Packages
+  workingDirectory: ${{ parameters.directory }}
+- script: |
+    yarn test
+  condition: ${{ parameters.runTests }}
+  continueOnError: ${{ not(parameters.failWithTests) }}
+  displayName: Test Website
   workingDirectory: ${{ parameters.directory }}
 - script: |
     yarn build
