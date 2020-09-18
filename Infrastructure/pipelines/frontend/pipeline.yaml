@@ -4,11 +4,15 @@ trigger:
   branches:
     include:
     - master
-    - devlopment
+    - development
   paths:
+    include:
+    - Infrastructure/pipelines/**
     exclude:
-    - BackEnd
-    - docs
+    - BackEnd/**
+    - docs/**
+    - Infrastructure/**
+    - README.md
 
 pool:
   vmImage: ubuntu-latest
