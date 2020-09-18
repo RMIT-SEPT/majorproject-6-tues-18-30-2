@@ -13,27 +13,27 @@ export const BookingInfo: React.FC<ComponentProps> = ({ userId, userType, bkId }
               <table className='table'>
                   <tr>
                       <th>Booking Date: </th>
-                      <td>{bookingInfo.bookingDate}</td>
+                      {/* <td>{bookingInfo.bookingDate}</td> */}
                   </tr>
 
                   <tr>
                       <th>Booking Time: </th>
-                      <td>{bookingInfo.bookingTime}</td>
+                      {/* <td>{bookingInfo.bookingTime}</td> */}
                   </tr>
 
                   <tr>
                       <th>Employee: </th>
-                      <td>{bookingInfo.employeeFirstName + ' '+ bookingInfo.employee.LastName}</td>
+                      {/* <td>{bookingInfo.employeeFirstName + ' '+ bookingInfo.employee.LastName}</td> */}
                   </tr>
 
                   <tr>
                       <th>Contact Phone Number</th>
-                      <td>{bookingInfo.phone}</td>
+                      {/* <td>{bookingInfo.phone}</td> */}
                   </tr>
 
                   <tr>
                       <th>Notes</th>
-                      <td>{bookingInfo.notes}</td>
+                      {/* <td>{bookingInfo.notes}</td> */}
                   </tr>
               </table>
           </div>
