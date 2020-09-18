@@ -29,6 +29,7 @@ stages:
     - template: ../templates/javascript-build.yaml
       parameters:
         directory: $(source)
+        failWithTests: false
     - publish: $(source)/dist
       artifact: website
       displayName: Publish Website
