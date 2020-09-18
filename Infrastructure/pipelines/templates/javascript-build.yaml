@@ -24,3 +24,11 @@ steps:
 - script: yarn build
   displayName: Build Website
   workingDirectory: ${{ parameters.directory }}
+- task: PublishTestResults@2
+  condition: ${{ parameters.runTests }}
+  displayName: Publish Website Test Results
+  inputs:
+    testResultsFiles: ${{ format('{0}/junit.xml', parameters.directory) }}
+    mergeTestResults: true
+    testRunTitle: Jest Unit Tests
+    failTaskOnFailedTests: ${{ parameters.failWithTests }}
