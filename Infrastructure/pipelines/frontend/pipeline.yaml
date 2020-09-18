@@ -4,7 +4,7 @@ trigger:
   branches:
     include:
     - master
-    - devlopment
+    - development
   paths:
     exclude:
     - BackEnd
