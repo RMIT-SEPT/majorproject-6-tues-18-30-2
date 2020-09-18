@@ -10,6 +10,9 @@ trigger:
     - BackEnd
     - docs
 
+pool:
+  vmImage: ubuntu-latest
+
 variables:
   revision: 1
   source: $(Build.SourcesDirectory)/FrontEnd
