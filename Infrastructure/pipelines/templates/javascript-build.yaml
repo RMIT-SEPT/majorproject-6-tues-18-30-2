@@ -8,6 +8,10 @@ steps:
   inputs:
     versionSpec: 12.x
 - script: |
+    yarn install
+  displayName: Install Packages
+  workingDirectory: ${{ parameters.directory }}
+- script: |
     yarn build
   displayName: Build Website
   workingDirectory: ${{ parameters.directory }}
