@@ -29,6 +29,9 @@ terraform {
     required_var_files = fileexists(local.config_file) ? [
       local.config_file
     ] : []
+    env_vars           = {
+      TF_VAR_region_name = local.config_env.remote_state.config.region
+    }
   }
 }
 
