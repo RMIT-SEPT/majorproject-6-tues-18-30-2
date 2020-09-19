@@ -82,7 +82,6 @@ export const BookingForm: React.FC = () => {
             <Row justify='center' align='middle'>
               <label htmlFor='employeeName'> Employee Name</label>
             </Row>
-            >
             <Row justify='center' align='middle'>
               <Field as='select' name='employeeName' id='employeeName'>
                 <option value={'Employee A'}>Employee A</option>
