@@ -21,7 +21,7 @@ steps:
   continueOnError: ${{ not(parameters.failWithTests) }}
   displayName: Test Website
   workingDirectory: ${{ parameters.directory }}
-- script: yarn build
+- script: yarn build:ci
   displayName: Build Website
   workingDirectory: ${{ parameters.directory }}
 - task: PublishTestResults@2
