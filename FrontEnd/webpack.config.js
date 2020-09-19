@@ -1,14 +1,27 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-  entry: './src/index.tsx',
+module.exports = env => ({
+  mode: env === 'production' ? 'production' : 'development',
+  entry: {
+    main: './src/index.tsx',
+    vendor: [
+			'react',
+      'react-dom',
+      'react-router-dom',
+      'react-day-picker',
+      'antd',
+			'typestyle',
+      'history'
+    ]
+  },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
   },
   output: {
+    filename: env === 'production' ? '[name].[hash].js' : 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.min.js',
+    library: 'vendor',
     publicPath: '/'
   },
   module: {
@@ -20,28 +33,6 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(scss)$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [require('precss'), require('autoprefixer')];
-              }
-            }
-          },
-          {
-            loader: 'sass-loader'
-          }
-        ]
       }
     ]
   },
@@ -53,4 +44,4 @@ module.exports = {
       template: './public/index.html'
     })
   ]
-};
+});
