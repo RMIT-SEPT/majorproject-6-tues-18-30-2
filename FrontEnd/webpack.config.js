@@ -12,7 +12,8 @@ module.exports = env => ({
       'react-day-picker',
       'antd',
 			'typestyle',
-      'history'
+      'history',
+      'formik'
     ]
   },
   resolve: {

@@ -64,7 +64,8 @@
     "react-day-picker": "^7.4.8",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "typestyle": "^2.1.0"
+    "typestyle": "^2.1.0",
+    "formik": "^2.1.5"
   },
   "private": true,
   "jest": {
