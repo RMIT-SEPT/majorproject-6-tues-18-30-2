@@ -32,3 +32,10 @@ steps:
     mergeTestResults: true
     testRunTitle: Jest Unit Tests
     failTaskOnFailedTests: ${{ parameters.failWithTests }}
+- task: PublishCodeCoverageResults@1
+  condition: ${{ parameters.runTests }}
+  displayName: Publish Website Code Coverage Results
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: ${{ format('{0}/coverage/cobertura-coverage.xml', parameters.directory) }}
+    failIfCoverageEmpty: false
