@@ -5,5 +5,5 @@ creds2.sh
 terraform.tfstate
 terraform.tfstate.backup
 tmp/
-Frontend/coverage/**
-Frontend/junit.xml
+FrontEnd/coverage/**
+FrontEnd/junit.xml
