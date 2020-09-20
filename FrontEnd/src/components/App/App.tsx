@@ -7,6 +7,7 @@ import {
   Dashboard,
   BookingForm
 } from '../../pages';
+import { UserProvider } from '../../contexts';
 import './App.style.css';
 
 /**
@@ -19,11 +20,13 @@ export interface ComponentProps {}
  */
 export const App: React.FC<ComponentProps> = () => {
   return (
-    <Router>
-      <Route page={<NotFound />} default />
-      <Route page={<Home />} path='/' />
-      <Route page={<Dashboard />} path='/dashboard' />
-      <Route page={<BookingForm />} path='/booking-form'/>
-    </Router>
+    <UserProvider>
+      <Router>
+        <Route page={<NotFound />} default />
+        <Route page={<Home />} path='/' />
+        <Route page={<Dashboard />} path='/dashboard' />
+        <Route page={<BookingForm />} path='/booking-form' />
+      </Router>
+    </UserProvider>
   );
 };
