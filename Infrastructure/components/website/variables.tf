@@ -34,7 +34,7 @@ variable "artifact_directory" {
   default     = "artifacts/distributable"
 
   validation {
-    condition     = var.artifact_directory != ""
+    condition     = length(var.artifact_directory) >= 1
     error_message = "The directory specified does not exist."
   }
 }
