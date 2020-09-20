@@ -20,7 +20,7 @@ module.exports = env => ({
     extensions: ['.ts', '.tsx', '.js']
   },
   output: {
-    filename: env === 'production' ? '[name].[hash].js' : 'bundle.js',
+    filename: env === 'production' ? '[name].[hash].js' : '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     library: 'vendor',
     publicPath: '/'
