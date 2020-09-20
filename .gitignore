@@ -1,7 +1,8 @@
-.idea
-creds.sh
-creds2.sh
-tmp/
+# Global
+**/.idea
+**/creds.sh
+**/creds2.sh
+**/tmp/**
 
 # Infrastructure
 Infrastructure/**/.terraform*
