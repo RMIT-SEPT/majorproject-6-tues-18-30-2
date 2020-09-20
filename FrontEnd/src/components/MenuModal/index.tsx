@@ -1,0 +1,1 @@
+export { MenuModal, ComponentProps as MenuModalProps } from './MenuModal';
