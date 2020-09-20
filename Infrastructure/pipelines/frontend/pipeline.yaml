@@ -7,11 +7,18 @@ trigger:
     - development
   paths:
     include:
-    - Infrastructure/pipelines/**
+    - FrontEnd/**
+    - Infrastructure/pipelines/frontend/**
+    - Infrastructure/pipelines/templates/javascript-build.yaml
+    - Infrastructure/components/website/**
+    - Infrastructure/core/**
+    - Infrastructure/configuration/**/components/website.tfvars
+    - Infrastructure/configuration/**/core/**
     exclude:
     - BackEnd/**
     - docs/**
-    - Infrastructure/**
+    - Infrastructure/binaries/**
+    - Infrastructure/binaries/**
     - README.md
 
 pool:
