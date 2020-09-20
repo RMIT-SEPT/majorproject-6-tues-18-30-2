@@ -3,7 +3,7 @@ include {
 }
 
 dependency "core_routing" {
-  config_path = "${get_parent_terrragrunt_dir()/core/routing}"
+  config_path = "${get_parent_terragrunt_dir()}/core/routing"
 }
 
 inputs = {
