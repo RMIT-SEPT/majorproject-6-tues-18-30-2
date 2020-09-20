@@ -1,9 +1,13 @@
 .idea
 creds.sh
 creds2.sh
+tmp/
+
+# Infrastructure
 .terraform*
 terraform.tfstate
 terraform.tfstate.backup
-tmp/
+
+# FrontEnd
 FrontEnd/coverage/**
 FrontEnd/junit.xml
