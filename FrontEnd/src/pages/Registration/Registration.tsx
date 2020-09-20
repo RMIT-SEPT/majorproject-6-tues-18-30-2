@@ -217,13 +217,3 @@ export const Registration: React.FC = () => {
     </FullWidthLayout>
   );
 };
-/*
-  "username": "johndoe@gmail.com",
-	"password": "123456",
-	"first_name": "John",
-	"last_name": "Doe",
-	"street_name": "Smith",
-	"street_no": "123",
-	"phone": "1233545",
-  "postcode": "12345"
-*/
