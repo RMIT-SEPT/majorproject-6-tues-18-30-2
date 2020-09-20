@@ -26,9 +26,16 @@ steps:
   workingDirectory: ${{ parameters.directory }}
 - task: PublishTestResults@2
   condition: ${{ parameters.runTests }}
-  displayName: Publish Website Test Results
+  displayName: Publish Test Results
   inputs:
     testResultsFiles: ${{ format('{0}/junit.xml', parameters.directory) }}
     mergeTestResults: true
     testRunTitle: Jest Unit Tests
     failTaskOnFailedTests: ${{ parameters.failWithTests }}
+- task: PublishCodeCoverageResults@1
+  condition: ${{ parameters.runTests }}
+  displayName: Publish Code Coverage Results
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: ${{ format('{0}/coverage/cobertura-coverage.xml', parameters.directory) }}
+    failIfCoverageEmpty: false
