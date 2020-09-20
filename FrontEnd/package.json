@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "rm -rf dist && webpack --config webpack.config.js --env development --mode production",
-    "build:ci": "rm -rd dist && webpack --config webpack.config.js --env production --mode production",
+    "build:ci": "rm -rf dist && webpack --config webpack.config.js --env production --mode production",
     "lint": "rm -rf dist && tsc --noEmit && eslint '**/*.{js,ts,tsx}' --quiet --fix",
     "test": "jest",
     "test:ci": "jest --ci --reporters=jest-junit --reporters=default --coverage --coverageReporters=cobertura --coverageReporters=html",
