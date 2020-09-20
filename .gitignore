@@ -8,6 +8,7 @@
 Infrastructure/**/.terraform*
 Infrastructure/**/terraform.tfstate
 Infrastructure/**/terraform.tfstate.backup
+Infrastructure/**/artifacts/**
 
 # FrontEnd
 FrontEnd/coverage/**
