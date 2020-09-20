@@ -4,9 +4,9 @@ creds2.sh
 tmp/
 
 # Infrastructure
-.terraform*
-terraform.tfstate
-terraform.tfstate.backup
+Infrastructure/**/.terraform*
+Infrastructure/**/terraform.tfstate
+Infrastructure/**/terraform.tfstate.backup
 
 # FrontEnd
 FrontEnd/coverage/**
