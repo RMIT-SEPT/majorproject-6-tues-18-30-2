@@ -33,7 +33,7 @@ stages:
     steps:
     - checkout: self
       lfs: true
-    - template: ../templates/java-build.yaml
+    - template: ../../templates/java-build.yaml
       parameters:
         directory: $(source)
     # TODO: Dockerfile Publish
