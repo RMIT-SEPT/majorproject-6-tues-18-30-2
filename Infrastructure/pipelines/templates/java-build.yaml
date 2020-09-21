@@ -1,0 +1,20 @@
+parameters:
+  - name: directory
+    type: string
+  
+  steps:
+  - task: Maven@3
+    displayName: Validate
+    inputs:
+      goals: validate
+      mavenPomFile: ${{ format('{0}/pom.xml', parameters.directory) }}
+      javaHomeVersion: JDKVersion
+      jdkAchitectureOption: x64
+  - task: Maven@3
+    displayName: Test
+    inputs:
+      goals: package
+      mavenPomFile: ${{ format('{0}/pom.xml', parameters.directory) }}
+      mavenOptions: -Xmx3072m
+      javaHomeVersion: JDKVersion
+      jdkAchitectureOption: x64
