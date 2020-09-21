@@ -7,8 +7,8 @@ trigger:
     - development
   paths:
     include:
-    - BackEnd/sept-login/**
-    - Infrastructure/pipelines/backend/authentication/**
+    - BackEnd/sept-registration/**
+    - Infrastructure/pipelines/backend/registration/**
     - Infrastructure/pipelines/templates/java-build.yaml
     exclude:
     - FrontEnd/**
@@ -22,7 +22,7 @@ pool:
 
 variables:
   revision: 1
-  source: $(Build.SourcesDirectory)/BackEnd/sept-login
+  source: $(Build.SourcesDirectory)/BackEnd/sept-registration
 
 stages:
 - stage: compile
@@ -36,4 +36,5 @@ stages:
     - template: ../../templates/java-build.yaml
       parameters:
         directory: $(source)
+        failWithTests: false
     # TODO: Dockerfile Publish

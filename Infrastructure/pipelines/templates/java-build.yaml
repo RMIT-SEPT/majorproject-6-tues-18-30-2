@@ -4,6 +4,9 @@ parameters:
 - name: runTests
   type: boolean
   default: true
+- name: failWithTests
+  type: boolean
+  default: true
   
 steps:
 - task: Maven@3
@@ -25,6 +28,7 @@ steps:
 - task: Maven@3
   displayName: Test Project
   condition: ${{ parameters.runTests }}
+  continueOnError: ${{ not(parameters.failWithTests) }}
   inputs:
     goals: test
     mavenPomFile: ${{ format('{0}/pom.xml', parameters.directory) }}
