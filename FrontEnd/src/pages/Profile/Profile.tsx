@@ -50,8 +50,7 @@ export const Profile: React.FC = () => {
             <Card style={{ width: '100%' }}>
               <Meta
                 avatar={<Avatar size={64} icon={<UserOutlined />} />}
-                //title={`${user.firstName} ${user.lastName}`}
-                title="FName LName"
+                title={`${user.firstName} ${user.lastName}`}
                 description="This is a short description of the users profile."
               />
             </Card>
