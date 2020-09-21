@@ -9,7 +9,7 @@ trigger:
     include:
     - BackEnd/sept-login/**
     - Infrastructure/pipelines/backend/authentication/**
-    - Infrastructure/pipelines/templates/java-build.yaml\
+    - Infrastructure/pipelines/templates/java-build.yaml
     exclude:
     - FrontEnd/**
     - docs/**
