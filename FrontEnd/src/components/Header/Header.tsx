@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Layout, Menu } from 'antd';
 import { useLocation } from '@reach/router';
-import { MenuItem } from '../';
+import { MenuItem, MenuModal, Login } from '../';
 import * as styles from './Header.style';
+import { UserContext } from '../../contexts';
+import SubMenu from 'antd/lib/menu/SubMenu';
 
 /**
  * Header Properties
@@ -15,6 +17,7 @@ export interface ComponentProps {
  * Header Component
  */
 export const Header: React.FC<ComponentProps> = ({ logoHidden, children}) => {
+  const { user } = useContext(UserContext);
   const { Header: Foundation } = Layout;
   const location = useLocation();
 
@@ -26,17 +29,37 @@ export const Header: React.FC<ComponentProps> = ({ logoHidden, children}) => {
         <MenuItem key="/" route="/">
           HOME
         </MenuItem>
-        <MenuItem key="/dashboard" route="/dashboard">
-          DASHBOARD
-        </MenuItem>
+        {
+          user === null
+          ? null
+          : (
+            <MenuItem key="/dashboard" route="/dashboard">
+              DASHBOARD
+            </MenuItem>
+          )
+        }
       </Menu>
       <Menu theme="dark" mode="horizontal" selectedKeys={[location.pathname]} className={styles.userNavbar}>
-        <MenuItem key="/login" route="/login">
-          LOGIN
-        </MenuItem>
-        <MenuItem key="/register" route="/register">
-          REGISTER
-        </MenuItem>
+        {
+          user === null
+            ? (
+              <>
+                <MenuModal modal={{ title: "Account Login", component: <Login /> }}>
+                  LOGIN
+                </MenuModal>
+                <MenuItem key="/register" route="/register">
+                  REGISTER
+                </MenuItem>
+              </>
+            )
+            : (
+              <SubMenu key="account" title={`${user.firstName} ${user.lastName}`}>
+                <MenuItem key="/profile" route="/profile">
+                  MY PROFILE
+                </MenuItem>
+              </SubMenu>
+            )
+        }
       </Menu>
     </Foundation>
   );
