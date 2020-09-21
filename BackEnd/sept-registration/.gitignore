@@ -34,5 +34,4 @@ build/
 
 ### MISC ###
 .DS_Store
-deployment/
 env_file
