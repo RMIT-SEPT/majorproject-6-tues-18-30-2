@@ -36,4 +36,5 @@ stages:
     - template: ../../templates/java-build.yaml
       parameters:
         directory: $(source)
+        failWithTests: false
     # TODO: Dockerfile Publish
