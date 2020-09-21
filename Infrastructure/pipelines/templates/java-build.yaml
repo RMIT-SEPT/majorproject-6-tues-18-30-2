@@ -1,6 +1,9 @@
 parameters:
 - name: directory
   type: string
+- name: runTests
+  type: boolean
+  default: true
   
 steps:
 - task: Maven@3
@@ -21,6 +24,7 @@ steps:
     publishJUnitResults: false
 - task: Maven@3
   displayName: Test Project
+  condition: ${{ parameters.runTests }}
   inputs:
     goals: test
     mavenPomFile: ${{ format('{0}/pom.xml', parameters.directory) }}
