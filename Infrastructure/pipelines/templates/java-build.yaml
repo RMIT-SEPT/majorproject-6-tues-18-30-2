@@ -4,12 +4,13 @@ parameters:
   
 steps:
 - task: Maven@3
-  displayName: Validate
+  displayName: Validate Project
   inputs:
     goals: validate
     mavenPomFile: ${{ format('{0}/pom.xml', parameters.directory) }}
     javaHomeVersion: JDKVersion
     jdkAchitectureOption: x64
+    publishJUnitResults: false
 - task: Maven@3
   displayName: Test
   inputs:
