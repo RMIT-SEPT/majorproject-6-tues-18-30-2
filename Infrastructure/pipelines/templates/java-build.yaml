@@ -49,6 +49,3 @@ steps:
     javaHomeVersion: JDKVersion
     jdkAchitectureOption: x64
     publishJUnitResults: false
-- script: ls -al
-  displayName: List Directory Files
-  workingDirectory: ${{ parameters.directory }}
