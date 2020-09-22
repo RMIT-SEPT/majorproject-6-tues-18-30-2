@@ -10,9 +10,19 @@ export const Dashboard: React.FC = () => {
   const [upcomingBookings, setUpcomingBookings] = useState([]);
   const [completedBookings, setCompletedBookings] = useState([]);
 
-  useEffect(() => {
-    setUpcomingBookings(getBookingData('u1@gmail.com', true));
-    setCompletedBookings(getBookingData('u1@gmail.com', false));
+  useEffect(() =>{
+      async function fetchUpcomingData(){
+        const request = await getUpcomingBookings("u1@gmail.com");
+        setUpcomingBookings(request.data);
+      }
+
+      async function fetchCompletedData(){
+        const request = await getCompletedBookings("u1@gmail.com");
+        setCompletedBookings(request.data);
+      }
+
+      fetchUpcomingData();
+      fetchCompletedData();
   }, []);
 
   const columns = [
@@ -63,20 +73,4 @@ export const Dashboard: React.FC = () => {
       </Row>
     </SideBarLayout>
   );
-};
-
-const getBookingData = (customerId: string, isUpcoming: boolean) => {
-  let bookingData = [];
-
-  if (isUpcoming == true) {
-    getUpcomingBookings(customerId).then(response => {
-      bookingData = response.data;
-    });
-  } else {
-    getCompletedBookings(customerId).then(response => {
-      bookingData = response.data;
-    });
-  }
-
-  return bookingData;
 };
