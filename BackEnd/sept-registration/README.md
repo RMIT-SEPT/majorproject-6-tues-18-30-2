@@ -58,3 +58,31 @@ POST http://localhost:8081/api/register
 }
 ```
 
+# Building Docker image
+```
+docker build --build-arg JAR_FILE=target/*.jar -t sept/registration .
+```
+
+# Running Docker image
+1. Copy file **env_file.example** into **env_file**
+```
+APP_PORT=8081
+JWT_SECRET=
+DATABASE_URL=jdbc:mysql://host:port/dbname
+DATABASE_USER=
+DATABASE_PASSWORD=
+DATABASE_DRIVER=com.mysql.jdbc.Driver
+```
+2. Set the APP_PORT
+3. Set the JWT_SECRET with a confidential string (random). Once set, don't change again to avoid issues
+4. Set the DATABASE_URL e.g:
+	host: localhost / AWS database endpoint
+	port: 3306
+	dbname: sept
+5. Set the DATABASE_USER
+6. Set the DATABASE_PASSWORD
+7. 
+```
+docker run -p 8081:8081 --env-file=env_file sept/registration
+```
+8. 
