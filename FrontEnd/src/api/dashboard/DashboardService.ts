@@ -1,15 +1,25 @@
-import axios from "axios";
+import axios from 'axios';
 
-//GET request for Upcoming Bookings based on given customerId
+/**
+ * GET Upcoming Bookings
+ * @param customerId the customer to retrieve bookings for.
+ */
 export const getUpcomingBookings = (customerId :string) => {
-    return axios.get("http://localhost:8090/api/dashboard/upcoming-bookings", {params: {
-        "customerId": customerId
-    }});
-}
+  return axios.get("http://localhost:8090/api/dashboard/upcoming-bookings", {
+    params: {
+      "customerId": customerId
+    }
+  });
+};
 
-//GET request for Completed Bookings based on given customerId
+/**
+ * GET Completed Bookings
+ * @param customerId the customer to retrieve bookings for.
+ */
 export const getCompletedBookings = (customerId :string) => {
-    return axios.get("http://localhost:8090/api/dashboard/completed-bookings", {params: {
-        "customerId": customerId
-    }});
-}
+  return axios.get("http://localhost:8090/api/dashboard/completed-bookings", {
+    params: {
+      "customerId": customerId
+    }
+  });
+};
