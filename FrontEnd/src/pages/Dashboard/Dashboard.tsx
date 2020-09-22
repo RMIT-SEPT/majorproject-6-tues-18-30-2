@@ -64,9 +64,11 @@ const getBookingData = (customerId: string, isUpcoming: boolean) => {
   if (isUpcoming == true) {
     DashboardService.getUpcomingBookings(customerId).then(response => {
       bookingData = response.data;
+      console.log(bookingData);
     });
   } else {
     DashBoardService.getCompletedBookings(customerId).then(response => {
+      console.log(bookingData);
       bookingData = response.data;
     });
   }

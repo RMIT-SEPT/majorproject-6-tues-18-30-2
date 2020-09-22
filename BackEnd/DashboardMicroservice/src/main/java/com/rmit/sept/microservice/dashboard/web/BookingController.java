@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/dashboard")
+@CrossOrigin(origins = "http://localhost:8080")
 public class BookingController {
     private static final Integer UPCOMING_STATUS = 1;
     private static final Integer COMPLETE_STATUS = 2;
