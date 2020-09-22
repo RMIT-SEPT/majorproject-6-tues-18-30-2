@@ -9,7 +9,10 @@ import {
   Tooltip,
   Timeline,
   Descriptions,
-  Modal
+  Modal,
+  Form,
+  Input,
+  Button
 } from 'antd';
 import {
   UserOutlined,
@@ -27,11 +30,48 @@ import { UserContext } from '../../contexts';
  */
 export const Profile: React.FC = () => {
   const { Meta } = Card;
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+  const [profileData, setProfileData] = useState({
+    firstName: user?.firstName ?? "Nick",
+    lastName: user?.lastName ?? "Mladenov",
+    description: "This is a short description of the users profile.",
+    organisation: "RMIT",
+    department: "Information Technology",
+    role: "Administrator",
+    country: "Australia"
+  });
   const [profileVisibility, setProfileVisibility] = useState(true);
   const toggleProfileVisibility = () => setProfileVisibility(!profileVisibility);
   const [editProfile, setEditProfile] = useState(false);
   const toggleEditProfile = () => setEditProfile(!editProfile);
+  const [form] = Form.useForm();
+  const onValidSubmission = values => {
+    // TODO: Submit Profile & Validate Response
+    setUser({
+      username: user?.username,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      password: values.password,
+      streetNo: "test",
+      streetName: "test",
+      postcode: "test",
+      phone: "test",
+      role: {
+        id: 1,
+        name: "test",
+      }
+    })
+    setProfileData({
+      firstName: values.firstName,
+      lastName: values.lastName,
+      description: values.description,
+      organisation: values.organisation,
+      department: values.department,
+      role: values.role,
+      country: values.country
+    });
+    toggleEditProfile();
+  };
 
   return (
     <FullWidthLayout>
@@ -50,8 +90,8 @@ export const Profile: React.FC = () => {
             <Card style={{ width: '100%' }}>
               <Meta
                 avatar={<Avatar size={64} icon={<UserOutlined />} />}
-                title={`${user.firstName} ${user.lastName}`}
-                description="This is a short description of the users profile."
+                title={`${profileData.firstName} ${profileData.lastName}`}
+                description={profileData.description}
               />
             </Card>
           </Row>
@@ -78,16 +118,16 @@ export const Profile: React.FC = () => {
                 description={
                   <Descriptions layout="horizontal">
                     <Descriptions.Item label="Organisation" span={3}>
-                      RMIT
+                      { profileData.organisation }
                     </Descriptions.Item>
                     <Descriptions.Item label="Department" span={3}>
-                      Information Technology
+                      { profileData.department }
                     </Descriptions.Item>
                     <Descriptions.Item label="Role" span={3}>
-                      Administrator
+                      { profileData.role }
                     </Descriptions.Item>
                     <Descriptions.Item label="Country">
-                      Australia
+                      { profileData.country }
                     </Descriptions.Item>
                   </Descriptions>
                 }
@@ -100,7 +140,92 @@ export const Profile: React.FC = () => {
               footer={null}
               centered
             >
-              TODO: Edit Profile Form
+              <Form
+                form={form}
+                name="profile"
+                labelCol={{
+                  xs: {
+                    span: 10
+                  },
+                  sm: {
+                    span: 5
+                  }
+                }}
+                wrapperCol={{
+                  xs: {
+                    span: 20
+                  },
+                  sm: {
+                    span: 20
+                  }
+                }}
+                onFinish={onValidSubmission}
+                initialValues={profileData}
+              >
+                <Form.Item
+                  name="firstName"
+                  label="First Name"
+                >
+                  <Input
+                    placeholder="Enter your first name."
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="lastName"
+                  label="Last Name"
+                >
+                  <Input
+                    placeholder="Enter your last name."
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="description"
+                  label="Description"
+                >
+                  <Input
+                    placeholder="Enter a description."
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="organisation"
+                  label="Organisation"
+                >
+                  <Input
+                    placeholder="Enter your organisation."
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="department"
+                  label="Department"
+                >
+                  <Input
+                    placeholder="Enter your department."
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="role"
+                  label="Role"
+                >
+                  <Input
+                    placeholder="Enter your role."
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="country"
+                  label="Country"
+                >
+                  <Input
+                    placeholder="Enter your country."
+                  />
+                </Form.Item>
+                <Form.Item
+                  style={{ alignItems: 'center', justifyContent: 'center' }}
+                >
+                  <Button type="primary" shape="round" size="large" htmlType="submit" block>
+                    UPDATE PROFILE
+                  </Button>
+                </Form.Item>
+              </Form>
             </Modal>
             </Card>
           </Row>
