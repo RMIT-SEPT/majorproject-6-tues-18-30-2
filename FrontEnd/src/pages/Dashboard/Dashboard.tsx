@@ -1,8 +1,7 @@
 import React from 'react';
 import { SideBarLayout } from '../../layouts';
 import { Row, Col, Table } from 'antd';
-import DashBoardService from '../../API/dashboard/DashboardService';
-import DashboardService from '../../API/dashboard/DashboardService';
+import {getUpcomingBookings, getCompletedBookings} from '../../API/dashboard/DashboardService';
 
 /**
  * Dashboard Page
@@ -62,12 +61,12 @@ const getBookingData = (customerId: string, isUpcoming: boolean) => {
   let bookingData = [];
 
   if (isUpcoming == true) {
-    DashboardService.getUpcomingBookings(customerId).then(response => {
+    getUpcomingBookings(customerId).then(response => {
       bookingData = response.data;
       console.log(bookingData);
     });
   } else {
-    DashBoardService.getCompletedBookings(customerId).then(response => {
+    getCompletedBookings(customerId).then(response => {
       console.log(bookingData);
       bookingData = response.data;
     });
