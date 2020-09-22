@@ -21,6 +21,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  registryName: SEPT-Registry
   revision: 1
   source: $(Build.SourcesDirectory)/BackEnd/sept-registration
 
@@ -41,12 +42,12 @@ stages:
       displayName: Login Container Registry
       inputs:
         command: login
-        containerRegistry: dockerRegistryServiceConnection2
+        containerRegistry: $(registryName)
     - task: Docker@2
       displayName: Build and Push Container
       inputs:
         command: buildAndPush
-        containerRegistry: SEPT-Registry
+        containerRegistry: $(registryName)
         repository: registration
         tags: $(Build.BuildId)
         dockerfile: $(source)/Dockerfile
