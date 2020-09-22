@@ -48,6 +48,6 @@ stages:
       inputs:
         command: buildAndPush
         containerRegistry: $(registryName)
-        repository: registration
+        repository: sept
         tags: $(Build.BuildId)
         dockerfile: $(source)/Dockerfile
