@@ -7,9 +7,16 @@ import { getUpcomingBookings, getCompletedBookings } from '../../API/dashboard/D
  * Dashboard Page
  */
 export const Dashboard: React.FC = () => {
+  /**
+   * Dashboard State Properties
+   * 
+   */
   const [upcomingBookings, setUpcomingBookings] = useState([]);
   const [completedBookings, setCompletedBookings] = useState([]);
 
+  /**
+   * Grab Upcoming Bookings and Completed Booking data from the backend
+   */
   useEffect(() =>{
       async function fetchUpcomingData(){
         const request = await getUpcomingBookings("u1@gmail.com");
@@ -25,6 +32,10 @@ export const Dashboard: React.FC = () => {
       fetchCompletedData();
   }, []);
 
+
+  /**
+   * Column definitions for the table
+   */
   const columns = [
     {
       title: 'Booking Id',
