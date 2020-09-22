@@ -2,5 +2,5 @@ APP_PORT=8081
 JWT_SECRET=kdagdiyagsdjeHFF6
 DATABASE_URL=jdbc:mysql://sept.cnfpi8ktfjyf.ap-southeast-2.rds.amazonaws.com:3306/sept
 DATABASE_USER=admin
-DATABASE_PASSWORD=LPiT4EisM79aZkqSyA60
+DATABASE_PASSWORD=
 DATABASE_DRIVER=com.mysql.cj.jdbc.Driver
