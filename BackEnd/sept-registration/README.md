@@ -83,6 +83,6 @@ DATABASE_DRIVER=com.mysql.jdbc.Driver
 6. Set the DATABASE_PASSWORD
 7. 
 ```
-docker run -p 8081:8081 -d --env-file=env_file sept/registration
+docker run -p 8081:8081 --env-file=env_file sept/registration
 ```
 8. 
