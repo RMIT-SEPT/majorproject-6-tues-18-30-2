@@ -59,6 +59,8 @@ POST http://localhost:8081/api/register
 ```
 
 # Building Docker image
+
+Makesure use the latest .jar by running ./mvnw install
 ```
 docker build --build-arg JAR_FILE=target/*.jar -t sept/login .
 ```
