@@ -21,6 +21,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  registryName: SEPT-Registry-Authentication
   revision: 1
   source: $(Build.SourcesDirectory)/BackEnd/sept-login
 
@@ -36,4 +37,9 @@ stages:
     - template: ../../templates/java-build.yaml
       parameters:
         directory: $(source)
-    # TODO: Dockerfile Publish
+    - template: ../../templates/container-build-push.yaml
+      parameters:
+        directory: $(source)
+        registry: $(registryName)
+        repository: sept/authentication
+        tag: $(Build.BuildNumber)
