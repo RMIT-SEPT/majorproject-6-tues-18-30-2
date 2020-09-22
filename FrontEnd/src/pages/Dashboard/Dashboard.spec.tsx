@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Dashboard } from './Dashboard';
+import {Dashboard} from "../Dashboard"
 
-describe('<Dashboard />', () => {
+describe('<Booking />', () => {
   test('Render Test', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Dashboard userId='u1' userType={3} />, div);
+    ReactDOM.render(<Dashboard />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });
