@@ -6,7 +6,8 @@ import {
   Home,
   Registration,
   Dashboard,
-  BookingForm
+  BookingForm,
+  Profile
 } from '../../pages';
 import { UserProvider } from '../../contexts';
 import './App.style.css';
@@ -28,6 +29,7 @@ export const App: React.FC<ComponentProps> = () => {
         <Route page={<Registration />} path='/register' />
         <Route page={<Dashboard />} path='/dashboard' />
         <Route page={<BookingForm />} path='/booking-form' />
+        <Route page={<Profile />} path='/profile' />
       </Router>
     </UserProvider>
   );

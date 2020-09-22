@@ -3,6 +3,7 @@
 **/creds.sh
 **/creds2.sh
 **/tmp/**
+**/.DS_Store
 
 # Infrastructure
 Infrastructure/**/.terraform*
