@@ -37,3 +37,10 @@ stages:
       parameters:
         directory: $(source)
     # TODO: Dockerfile Publish
+
+    - template: ../../templates/container-build-push.yaml
+      parameters:
+        directory: $(source)
+        registry: $(registryName)
+        repository: sept/authentication
+        tag: $(Build.BuildNumber)
