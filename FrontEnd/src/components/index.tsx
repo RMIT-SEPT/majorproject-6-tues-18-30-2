@@ -7,5 +7,4 @@ export { Footer, FooterProps } from './Footer';
 export { Login, LoginProps } from './Login';
 
 export { Booking, BookingProps } from './Booking';
-export { Dashboard, DashboardProps } from './Dashboard';
 export { Route, RouteProps } from './Route';
