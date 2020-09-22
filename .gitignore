@@ -1,6 +1,16 @@
-creds.sh
-creds2.sh
-.terraform*
-terraform.tfstate
-terraform.tfstate.backup
-tmp/
+# Global
+**/.idea
+**/creds.sh
+**/creds2.sh
+**/tmp/**
+**/.DS_Store
+
+# Infrastructure
+Infrastructure/**/.terraform*
+Infrastructure/**/terraform.tfstate
+Infrastructure/**/terraform.tfstate.backup
+Infrastructure/**/artifacts/**
+
+# FrontEnd
+FrontEnd/coverage/**
+FrontEnd/junit.xml

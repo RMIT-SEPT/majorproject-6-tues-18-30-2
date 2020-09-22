@@ -1,0 +1,1 @@
+export { FullWidth as FullWidthLayout } from './FullWidth';

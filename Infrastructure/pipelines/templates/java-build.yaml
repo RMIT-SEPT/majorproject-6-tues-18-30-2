@@ -1,0 +1,55 @@
+parameters:
+- name: directory
+  type: string
+- name: runTests
+  type: boolean
+  default: true
+- name: failWithTests
+  type: boolean
+  default: true
+  
+steps:
+- task: Maven@3
+  displayName: Validate Project
+  inputs:
+    goals: validate
+    mavenPomFile: ${{ format('{0}/pom.xml', parameters.directory) }}
+    javaHomeVersion: JDKVersion
+    jdkAchitectureOption: x64
+    publishJUnitResults: false
+- task: Maven@3
+  displayName: Compile Project
+  inputs:
+    goals: compile
+    mavenPomFile: ${{ format('{0}/pom.xml', parameters.directory) }}
+    javaHomeVersion: JDKVersion
+    jdkAchitectureOption: x64
+    publishJUnitResults: false
+- task: Maven@3
+  displayName: Test Project
+  condition: ${{ parameters.runTests }}
+  continueOnError: ${{ not(parameters.failWithTests) }}
+  inputs:
+    goals: test
+    mavenPomFile: ${{ format('{0}/pom.xml', parameters.directory) }}
+    javaHomeVersion: JDKVersion
+    jdkAchitectureOption: x64
+    publishJUnitResults: true
+- task: Maven@3
+  displayName: Package Project
+  inputs:
+    goals: package
+    mavenPomFile: ${{ format('{0}/pom.xml', parameters.directory) }}
+    mavenOptions: -Xmx3072m
+    javaHomeVersion: JDKVersion
+    jdkAchitectureOption: x64
+    publishJUnitResults: false
+- task: Maven@3
+  displayName: Verify Project
+  inputs:
+    goals: verify
+    mavenPomFile: ${{ format('{0}/pom.xml', parameters.directory) }}
+    mavenOptions: -Xmx3072m
+    javaHomeVersion: JDKVersion
+    jdkAchitectureOption: x64
+    publishJUnitResults: false

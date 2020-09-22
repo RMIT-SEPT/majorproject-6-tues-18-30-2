@@ -1,0 +1,46 @@
+name: $(revision).$(date:yyyyMMdd).$(rev:r)
+
+trigger:
+  branches:
+    include:
+    - master
+    - development
+  paths:
+    include:
+    - FrontEnd/**
+    - Infrastructure/pipelines/frontend/**
+    - Infrastructure/pipelines/templates/javascript-build.yaml
+    - Infrastructure/components/website/**
+    - Infrastructure/core/**
+    - Infrastructure/configuration/**/components/website.tfvars
+    - Infrastructure/configuration/**/core/**
+    exclude:
+    - BackEnd/**
+    - docs/**
+    - Infrastructure/binaries/**
+    - Infrastructure/binaries/**
+    - README.md
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  revision: 1
+  source: $(Build.SourcesDirectory)/FrontEnd
+
+stages:
+- stage: compile
+  displayName: Build & Test
+  jobs:
+  - job: build
+    displayName: Procedure
+    steps:
+    - checkout: self
+      lfs: true
+    - template: ../templates/javascript-build.yaml
+      parameters:
+        directory: $(source)
+        failWithTests: false
+    - publish: $(source)/dist
+      artifact: website
+      displayName: Publish Website

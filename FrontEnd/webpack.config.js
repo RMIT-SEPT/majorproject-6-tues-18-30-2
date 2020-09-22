@@ -1,30 +1,48 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-  entry: './src/index.tsx',
+module.exports = env => ({
+  mode: env === 'production' ? 'production' : 'development',
+  entry: {
+    main: './src/index.tsx',
+    vendor: [
+			'react',
+      'react-dom',
+      'react-router-dom',
+      'react-day-picker',
+      'antd',
+			'typestyle',
+      'history',
+      'formik'
+    ]
+  },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.tsx', '.js']
   },
   output: {
+    filename: env === 'production' ? '[name].[hash].js' : '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.min.js',
-    publicPath: '/',
+    library: 'vendor',
+    publicPath: '/'
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
+        loader: 'awesome-typescript-loader'
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader']
       }
-    ],
+    ]
   },
   devServer: {
-    historyApiFallback: true,
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: './public/index.html'
     })
-  ],
-};
+  ]
+});

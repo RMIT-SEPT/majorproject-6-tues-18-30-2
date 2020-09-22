@@ -1,0 +1,45 @@
+name: $(revision).$(date:yyyyMMdd).$(rev:r)
+
+trigger:
+  branches:
+    include:
+    - master
+    - development
+  paths:
+    include:
+    - BackEnd/sept-dashboard/**
+    - Infrastructure/pipelines/backend/dashboard/**
+    - Infrastructure/pipelines/templates/java-build.yaml
+    exclude:
+    - FrontEnd/**
+    - docs/**
+    - Infrastructure/binaries/**
+    - Infrastructure/binaries/**
+    - README.md
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  registryName: SEPT-Registry-Dashboard
+  revision: 1
+  source: $(Build.SourcesDirectory)/BackEnd/sept-dashboard
+
+stages:
+- stage: compile
+  displayName: Build & Test
+  jobs:
+  - job: build
+    displayName: Procedure
+    steps:
+    - checkout: self
+      lfs: true
+    - template: ../../templates/java-build.yaml
+      parameters:
+        directory: $(source)
+    - template: ../../templates/container-build-push.yaml
+      parameters:
+        directory: $(source)
+        registry: $(registryName)
+        repository: sept/dashboard
+        tag: $(Build.BuildNumber)
