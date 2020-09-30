@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { SideBarLayout } from '../../layouts';
 import { Row, Col, Table } from 'antd';
-import { getUpcomingBookings, getCompletedBookings } from '../../API/dashboard/DashboardService';
+import { getUpcomingBookings, getCompletedBookings } from '../../api/dashboard/DashboardService';
 
-/**
- * Dashboard Page
- */
+// Dashboard Page
 export const Dashboard: React.FC = () => {
   /**
    * Dashboard State Properties
-   * 
+   *
    */
   const [upcomingBookings, setUpcomingBookings] = useState([]);
   const [completedBookings, setCompletedBookings] = useState([]);
@@ -17,21 +15,20 @@ export const Dashboard: React.FC = () => {
   /**
    * Grab Upcoming Bookings and Completed Booking data from the backend
    */
-  useEffect(() =>{
-      async function fetchUpcomingData(){
-        const request = await getUpcomingBookings("u1@gmail.com");
-        setUpcomingBookings(request.data);
-      }
+  useEffect(() => {
+    async function fetchUpcomingData() {
+      const request = await getUpcomingBookings('u1@gmail.com');
+      setUpcomingBookings(request.data);
+    }
+    
+    async function fetchCompletedData() {
+      const request = await getCompletedBookings('u1@gmail.com');
+      setCompletedBookings(request.data);
+    }
 
-      async function fetchCompletedData(){
-        const request = await getCompletedBookings("u1@gmail.com");
-        setCompletedBookings(request.data);
-      }
-
-      fetchUpcomingData();
-      fetchCompletedData();
+    fetchUpcomingData();
+    fetchCompletedData();
   }, []);
-
 
   /**
    * Column definitions for the table
