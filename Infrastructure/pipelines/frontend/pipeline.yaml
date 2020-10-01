@@ -36,7 +36,7 @@ stages:
     displayName: Procedure
     steps:
     - checkout: self
-      lfs: true
+      lfs: false
     - template: ../templates/javascript-build.yaml
       parameters:
         directory: $(source)

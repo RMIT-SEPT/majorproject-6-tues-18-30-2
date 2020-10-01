@@ -39,7 +39,7 @@ stages:
     displayName: Procedure
     steps:
     - checkout: self
-      lfs: true
+      lfs: false
     - template: ../../templates/java-build.yaml
       parameters:
         directory: $(source)
