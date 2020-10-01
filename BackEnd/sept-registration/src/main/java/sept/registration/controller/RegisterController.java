@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import sept.registration.error.InputEmptyException;
+import sept.registration.error.PasswordTooShortException;
+import sept.registration.error.PasswordTooWeakException;
+import sept.registration.error.PhoneTakenException;
+import sept.registration.error.UsernameTakenException;
 import sept.registration.model.Role;
 import sept.registration.model.User;
 import sept.registration.model.request.RegisterRequest;
@@ -29,20 +34,21 @@ public class RegisterController {
 	private RoleService roleService;
 
 	@PostMapping("/register")
-	public ResponseEntity<User> register(@RequestBody RegisterRequest request) {
+	public ResponseEntity<User> register(@RequestBody RegisterRequest request) throws PasswordTooShortException, PasswordTooWeakException, UsernameTakenException, PhoneTakenException, InputEmptyException {
 
 		User user = request.toUser();
 		
 		// Change user password
 		String plainPassword = user.getPassword();
-		String passwordHash = SecurityUtil.bcrypt(plainPassword);
+		//String passwordHash = SecurityUtil.bcrypt(plainPassword);
 		
-		user.setPassword(passwordHash);
+		user.setPassword(plainPassword);
 		
 		// Set the user use "customer" role
 		Role customerRole = roleService.findByName("customer").get();
 		user.setRole(customerRole);
 
 		return ResponseEntity.ok(userService.register(user));
+		
 	}
 }

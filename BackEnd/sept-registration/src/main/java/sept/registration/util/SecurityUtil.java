@@ -20,4 +20,19 @@ public class SecurityUtil {
 
 		return bCryptPasswordEncoder.matches(plain, hash);
 	}
+	
+	public static boolean isWeak(String password) {
+		boolean hasLowercase = false;
+		boolean hasUppercase = false;
+		for (int i=0; i < password.length(); i++) {
+			char c = password.charAt(i);
+			if (c >= 'a' && c <= 'z') {
+				hasLowercase = true;
+			}
+			else if (c >= 'A' && c <= 'Z') {
+				hasUppercase = true;
+			}
+		}
+		return !(hasLowercase && hasUppercase);
+	}
 }
