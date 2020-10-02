@@ -70,3 +70,13 @@ variable "eks_cluster_administrators" {
   description = "The administrative users who have complete access to the EKS cluster."
   type        = list(string)
 }
+
+variable "domain_name" {
+  description = "The domain name designated to the AWS account."
+  type        = string
+
+  validation {
+    condition     = length(var.domain_name) >= 3
+    error_message = "The domain name must be a valid length and available TLD."
+  }
+}
