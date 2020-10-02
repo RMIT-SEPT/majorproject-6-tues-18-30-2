@@ -9,6 +9,7 @@ import {
   Button,
   Result
 } from 'antd';
+import { registerUser } from '../../api/registration';
 
 /**
  * Registration Page
@@ -18,9 +19,26 @@ export const Registration: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const { Title, Paragraph } = Typography
   const { Option } = Select;
-  const onValidSubmission = () => {
+  const onValidSubmission = (values) => {
     // TODO: Submit Registration & Validate Response
-    setSubmitted(true);
+    console.log(values);
+    var userDetails = {
+      username: values.emailAddress,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      password: values.password,
+      streetNo: values.streetNumber,
+      streetName: values.streetName,
+      postcode: values.postcode,
+      phone: values.phoneNumber
+    };
+
+    registerUser (userDetails).then(function(response){
+      console.log(response);
+      setSubmitted(true);
+    }).catch(function(error){
+      window.alert(error.response.data.message);
+    })
   };
 
   return (
