@@ -33,8 +33,14 @@ module "cluster" {
   }
   cluster_fault_tolerant = var.eks_cluster_fault_tolerant
   cluster_administrators = var.eks_cluster_administrators
+  cluster_namespaces     = list(local.application_namespace, local.ingress_namespace)
 
   depends_on = [
     module.networking
   ]
+}
+
+locals {
+  application_namespace = "components"
+  ingress_namespace     = "components-ingress"
 }
