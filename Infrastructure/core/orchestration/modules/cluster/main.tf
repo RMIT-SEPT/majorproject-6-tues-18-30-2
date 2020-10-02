@@ -33,6 +33,16 @@ module "namespaces" {
   ]
 }
 
+module "rbac" {
+  source  = "./modules/rbac"
+  name    = "developers"
+  members = var.cluster_developers
+
+  depends_on = [
+    module.eks
+  ]
+}
+
 locals {
   purpose         = "sept"
   available_zones = length(data.aws_availability_zones.all_available.zone_ids)
