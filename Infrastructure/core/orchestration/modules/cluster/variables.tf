@@ -55,3 +55,9 @@ variable "cluster_developers" {
   type        = list(string)
   default     = []
 }
+
+variable "cluster_namespaces" {
+  description = "The namespaces to provision within the Kubernetes cluster."
+  type        = list(string)
+  default     = []
+}
