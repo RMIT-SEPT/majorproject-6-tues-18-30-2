@@ -50,6 +50,18 @@ module "cluster_addons" {
   ]
 }
 
+module "routing" {
+  source           = "./modules/routing"
+  namespace        = local.ingress_namespace
+  environment_name = var.environment_name
+  root_domain      = var.domain_name
+
+  depends_on = [
+    module.cluster,
+    module.cluster_addons
+  ]
+}
+
 locals {
   application_namespace = "components"
   ingress_namespace     = "components-ingress"
