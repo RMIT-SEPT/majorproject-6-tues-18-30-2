@@ -16,3 +16,25 @@ module "networking" {
   ip_block_offset  = var.ip_block_offset
   eks_cluster_name = var.eks_cluster_name
 }
+
+module "cluster" {
+  source                 = "./modules/cluster"
+  environment_name       = var.environment_name
+  resource_suffix        = var.resource_suffix
+  cluster_name           = var.eks_cluster_name
+  cluster_network        = {
+    vpc_id  = module.networking.vpc_id
+    subnets = module.networking.private_subnets
+  }
+  cluster_size           = var.eks_cluster_size
+  cluster_capacity       = {
+    min = var.eks_cluster_min_capacity
+    max = var.eks_cluster_max_capacity
+  }
+  cluster_fault_tolerant = var.eks_cluster_fault_tolerant
+  cluster_administrators = var.eks_cluster_administrators
+
+  depends_on = [
+    module.networking
+  ]
+}
