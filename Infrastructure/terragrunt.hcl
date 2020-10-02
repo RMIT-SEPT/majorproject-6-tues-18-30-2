@@ -30,7 +30,9 @@ terraform {
       local.config_file
     ] : []
     env_vars           = {
-      TF_VAR_region_name = local.config_env.remote_state.config.region
+      TF_VAR_region_name      = local.config_env.remote_state.config.region
+      TF_VAR_environment_name = get_env("TF_VAR_ENVIRONMENT", local.default_env)
+      TF_VAR_resource_suffix  = "${local.config_env.region_code}-${substr(get_env("TF_VAR_ENVIRONMENT", local.default_env), 0, 1)}"
     }
   }
 }
