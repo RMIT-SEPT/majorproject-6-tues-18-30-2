@@ -45,3 +45,28 @@ variable "eks_cluster_name" {
   description = "The name of the EKS cluster."
   type        = string
 }
+
+variable "eks_cluster_size" {
+  description = "The worker node size for each EC2 instance."
+  type        = list(string)
+}
+
+variable "eks_cluster_min_capacity" {
+  description = "The minimum amount of worker nodes in the EKS cluster."
+  type        = number
+}
+
+variable "eks_cluster_max_capacity" {
+  description = "The maximum amount of worker nodes in the EKS cluster."
+  type        = number
+}
+
+variable "eks_cluster_fault_tolerant" {
+  description = "Is the EKS cluster going to be fault tolerant."
+  type        = bool
+}
+
+variable "eks_cluster_administrators" {
+  description = "The administrative users who have complete access to the EKS cluster."
+  type        = list(string)
+}
