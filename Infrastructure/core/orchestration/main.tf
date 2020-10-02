@@ -40,6 +40,16 @@ module "cluster" {
   ]
 }
 
+module "cluster_addons" {
+  source                    = "./modules/cluster_addons"
+  worker_scaling_template   = module.cluster.worker_scaling_template
+  worker_autoscaling_groups = module.cluster.workers_asg_names
+
+  depends_on = [
+    module.cluster
+  ]
+}
+
 locals {
   application_namespace = "components"
   ingress_namespace     = "components-ingress"
