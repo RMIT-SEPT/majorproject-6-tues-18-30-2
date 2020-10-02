@@ -24,6 +24,15 @@ data "aws_eks_cluster_auth" "cluster" {
   name = module.eks.cluster_id
 }
 
+module "namespaces" {
+  source = "./modules/namespaces"
+  names  = var.cluster_namespaces
+
+  depends_on = [
+    module.eks
+  ]
+}
+
 locals {
   purpose         = "sept"
   available_zones = length(data.aws_availability_zones.all_available.zone_ids)
