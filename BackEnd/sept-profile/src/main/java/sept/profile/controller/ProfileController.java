@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import sept.profile.model.User;
 import sept.profile.service.UserService;
@@ -22,6 +23,7 @@ public class ProfileController {
 	@Autowired
 	private UserService userService;
 
+	@CrossOrigin
 	@GetMapping("/profile")
 	public ResponseEntity<User> getProfile(HttpServletRequest request) {
 		
