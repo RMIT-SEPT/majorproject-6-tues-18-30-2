@@ -7,6 +7,14 @@ provider "aws" {
   region  = var.region_name
 }
 
+provider "kubernetes" {
+  version                = "~> 1.11"
+  host                   = module.cluster.cluster_configuration.host
+  cluster_ca_certificate = module.cluster.cluster_configuration.ca_certificate
+  token                  = module.cluster.cluster_authentication.token
+  load_config_file       = false
+}
+
 module "networking" {
   source           = "./modules/networking"
   environment_name = var.environment_name
