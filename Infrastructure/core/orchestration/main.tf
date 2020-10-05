@@ -83,4 +83,10 @@ module "routing" {
 locals {
   application_namespace = "components"
   ingress_namespace     = "components-ingress"
+  kubernetes            = {
+    host           = module.cluster.cluster_configuration.host
+    token          = module.cluster.cluster_authentication.token
+    ca_certificate = module.cluster.cluster_configuration.ca_certificate
+    namespace      = local.application_namespace
+  }
 }
