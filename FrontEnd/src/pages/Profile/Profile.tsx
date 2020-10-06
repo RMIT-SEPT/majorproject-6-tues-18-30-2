@@ -34,8 +34,8 @@ export const Profile: React.FC = () => {
   const { Meta } = Card;
   const { user, setUser } = useContext(UserContext);
   const [profileData, setProfileData] = useState({
-    firstName: user?.firstName ?? "Nick",
-    lastName: user?.lastName ?? "Mladenov",
+    firstName: user?.firstName ?? "",
+    lastName: user?.lastName ?? "",
     //description: "This is a short description of the users profile.",
     organisation: user?.organisation ?? "",
     department: user?.department ?? "",

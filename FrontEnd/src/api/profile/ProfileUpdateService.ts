@@ -14,7 +14,7 @@ export const putProfileUpdate = (userUpdate) => {
         last_name: userUpdate.lastName
       },
     {
-      baseURL: 'http://localhost:8082/',
+      baseURL: process.env.PROFILE_APP_URL,
       headers:{
         'Authorization': 'Bearer '.concat(localStorage.getItem('access_token')),
         'Content-Type': 'application/json',

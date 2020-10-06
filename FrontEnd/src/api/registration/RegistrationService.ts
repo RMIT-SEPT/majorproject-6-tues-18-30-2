@@ -18,7 +18,7 @@ export const registerUser = (userDetails) => {
         "phone": userDetails.phone
       
     },{
-      baseURL: 'http://localhost:8081/',
+      baseURL: process.env.REGISTER_APP_URL,
       headers:{
         'Content-Type': 'application/json',
       }
