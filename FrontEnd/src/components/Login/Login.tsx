@@ -45,10 +45,10 @@ export const Login: React.FC<ComponentProps> = () => {
           streetName: user.street_name,
           postcode: user.postcode,
           phone: user.phone,
-          role: {
-            id: 1,
-            name: "test",
-          }
+          department: user.department,
+          organisation: user.organisation,
+          country: user.country,
+          role: user.role
         });
         goToDashboard();
       }).catch(function(error){

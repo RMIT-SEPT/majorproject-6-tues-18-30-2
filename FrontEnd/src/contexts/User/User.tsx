@@ -12,6 +12,9 @@ export interface ContextProps {
   streetName: string;
   postcode: string;
   phone: string;
+  department: string;
+  country: string;
+  organisation: string;
   role: {
     id: number;
     name: string;

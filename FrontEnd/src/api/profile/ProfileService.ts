@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 /**
- * POST login User 
+ * GET view User profile
  * @param userDetails object containing user details from form
  */
 
