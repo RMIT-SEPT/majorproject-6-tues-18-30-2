@@ -7,6 +7,24 @@ provider "aws" {
   region  = var.region_name
 }
 
+provider "kubernetes" {
+  version                = "~> 1.11"
+  host                   = module.cluster.cluster_configuration.host
+  cluster_ca_certificate = module.cluster.cluster_configuration.ca_certificate
+  token                  = module.cluster.cluster_authentication.token
+  load_config_file       = false
+}
+
+provider "helm" {
+  version = "~> 1.2"
+  kubernetes {
+    host                   = module.cluster.cluster_configuration.host
+    cluster_ca_certificate = module.cluster.cluster_configuration.ca_certificate
+    token                  = module.cluster.cluster_authentication.token
+    load_config_file       = false
+  }
+}
+
 module "networking" {
   source           = "./modules/networking"
   environment_name = var.environment_name
@@ -65,4 +83,10 @@ module "routing" {
 locals {
   application_namespace = "components"
   ingress_namespace     = "components-ingress"
+  kubernetes            = {
+    host           = module.cluster.cluster_configuration.host
+    token          = module.cluster.cluster_authentication.token
+    ca_certificate = module.cluster.cluster_configuration.ca_certificate
+    namespace      = local.application_namespace
+  }
 }

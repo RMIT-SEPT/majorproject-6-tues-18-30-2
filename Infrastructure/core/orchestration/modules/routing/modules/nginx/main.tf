@@ -4,7 +4,7 @@ resource "helm_release" "ingress" {
   repository   = var.chart_repository
   version      = var.chart_version
   namespace    = var.namespace
-  timeout      = 1200
+  timeout      = 600
   force_update = false
 
   dynamic "set" {
@@ -25,13 +25,8 @@ resource "helm_release" "ingress" {
 
 data "kubernetes_service" "ingress" {
   metadata {
-    name = join(
-      "-",
-      [
-        helm_release.ingress.chart,
-        helm_release.ingress.name
-      ]
-    )
+    name      = "${helm_release.ingress.name}-controller"
+    namespace = var.namespace
   }
 
   depends_on = [
