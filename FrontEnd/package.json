@@ -4,7 +4,7 @@
   "description": "The assignment website.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot --port 9000",
+    "start": "webpack-dev-server --mode development --open --hot",
     "build": "rm -rf dist && webpack --config webpack.config.js --env development --mode production",
     "build:ci": "rm -rf dist && webpack --config webpack.config.js --env production --mode production",
     "lint": "rm -rf dist && tsc --noEmit && eslint '**/*.{js,ts,tsx}' --quiet --fix",

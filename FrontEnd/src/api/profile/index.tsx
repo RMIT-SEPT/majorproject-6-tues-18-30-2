@@ -1,1 +1,0 @@
-export { getProfile } from './ProfileService';

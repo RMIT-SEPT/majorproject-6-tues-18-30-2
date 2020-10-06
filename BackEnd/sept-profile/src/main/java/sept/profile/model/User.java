@@ -39,20 +39,23 @@ public class User {
 	@Column(name="phone")
 	private String phone;
 	
-	@Column(name="organisation")
-	private String organisation;
+	// @Column(name="organization")
+	@Transient
+	private String organization;
 	
-	@Column(name="country")
+	// @Column(name="country")
+	@Transient
 	private String country;
 	
-	@Column(name="department")
+	// @Column(name="department")
+	@Transient
 	private String department;
 	
 	@ManyToOne
 	private Role role;
 	
 	public User() {
-		this.organisation = "";
+		this.organization = "";
 		this.country = "";
 		this.department = "";
 	}
@@ -195,16 +198,16 @@ public class User {
 	/**
 	 * @return the organization
 	 */
-	@JsonGetter("organisation")
-	public String getOrganisation() {
-		return organisation;
+	@JsonGetter("organization")
+	public String getOrganization() {
+		return organization;
 	}
 
 	/**
 	 * @param organization the organization to set
 	 */
-	public void setOrganisation(String organisation) {
-		this.organisation = organisation;
+	public void setOrganization(String organization) {
+		this.organization = organization;
 	}
 
 	/**

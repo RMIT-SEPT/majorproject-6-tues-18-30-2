@@ -6,21 +6,16 @@ import axios from 'axios';
  */
 
 export const registerUser = (userDetails) => {
-    return axios.post(`/api/register`, {
-      
+    return axios.post("54.66.213.129", {
+      params: {
         "username": userDetails.username,
-        "first_name": userDetails.firstName,
-        "last_name": userDetails.lastName,
+        "firstName": userDetails.firstName,
+        "lastName": userDetails.lastName,
         "password": userDetails.password,
-        "street_no": userDetails.streetNo,
-        "street_name": userDetails.streetName,
+        "streetNo": userDetails.streetNo,
+        "streetName": userDetails.streetName,
         "postcode": userDetails.postcode,
         "phone": userDetails.phone
-      
-    },{
-      baseURL: 'http://localhost:8081/',
-      headers:{
-        'Content-Type': 'application/json',
       }
     });
   };
