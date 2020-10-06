@@ -68,6 +68,16 @@ module "cluster_addons" {
   ]
 }
 
+module "service_accounts" {
+  source                 = "./modules/service_accounts"
+  cluster_name           = var.eks_cluster_name
+  environment_namespaces = list(local.application_namespace, local.ingress_namespace)
+
+  depends_on = [
+    module.cluster
+  ]
+}
+
 module "routing" {
   source           = "./modules/routing"
   namespace        = local.ingress_namespace
@@ -85,7 +95,7 @@ locals {
   ingress_namespace     = "components-ingress"
   kubernetes            = {
     host           = module.cluster.cluster_configuration.host
-    token          = module.cluster.cluster_authentication.token
+    token          = module.service_accounts.environment_token
     ca_certificate = module.cluster.cluster_configuration.ca_certificate
     namespace      = local.application_namespace
   }
