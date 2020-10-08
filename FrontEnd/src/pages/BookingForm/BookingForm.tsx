@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Form, Input, Select, Button, DatePicker } from 'antd';
+import { Form, Input, Select, Button, DatePicker, TimePicker } from 'antd';
 import { UserContext } from '../../contexts';
 import { SideBarLayout } from '../../layouts';
 import moment from 'moment';
@@ -11,14 +11,16 @@ const { Option } = Select;
 
 export const BookingForm: React.FC = () => {
   const [form] = Form.useForm();
+  const closingHours = () => [0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 23, 24];
 
   const onValidSubmission = values => {
     const UPCOMING_STATUS = 0;
 
     const newBooking = {
       customerId: values.username,
+      employeeId: values.employee,
       bookingDate: values.booking_date.format('DD-MM-YYYY'),
-      workingDateId: values.time,
+      timeSlot: values.time.format('HH:mm'),
       serviceId: values.service,
       bookingStatusId: UPCOMING_STATUS
     };
@@ -33,7 +35,7 @@ export const BookingForm: React.FC = () => {
         name='add-booking'
         initialValues={{
           username: 'u1@gmail.com',
-          time: 1,
+          employee: 'e1@gmail.com',
           service: 1
         }}
         labelCol={{
@@ -49,6 +51,13 @@ export const BookingForm: React.FC = () => {
         <Form.Item label='Username' name='username'>
           <Input style={{ width: 120 }} placeholder='u1@gmail.com' value='u1@gmail.com' disabled />
         </Form.Item>
+        <Form.Item label='Employee' name='employee'>
+          <Select style={{ width: 120 }}>
+            <Option value='e1@gmail.com'>Employee 1</Option>
+            <Option value='e2@gmail.com'>Employee 2</Option>
+            <Option value='e3@gmail.com'>Employee 3</Option>
+          </Select>
+        </Form.Item>
         <Form.Item
           label='Booking Date'
           name='booking_date'
@@ -61,17 +70,8 @@ export const BookingForm: React.FC = () => {
             }}
           />
         </Form.Item>
-        <Form.Item label='Time' name='time'>
-          <Select defaultValue={1} style={{ width: 120 }}>
-            <Option value={1}>09:00AM</Option>
-            <Option value={2}>10:00AM</Option>
-            <Option value={3}>11:00AM</Option>
-            <Option value={4}>12:00PM</Option>
-            <Option value={5}>01:00PM</Option>
-            <Option value={7}>02:00PM</Option>
-            <Option value={8}>03:00PM</Option>
-            <Option value={9}>04:00PM</Option>
-          </Select>
+        <Form.Item label='Time' name='time' rules={[{ required: true, message: 'Time is Required!' }]}>
+          <TimePicker format='HH:mm' minuteStep={60} disabledHours={closingHours} />
         </Form.Item>
         <Form.Item label='Service' name='service'>
           <Select defaultValue={1} style={{ width: 120 }}>
