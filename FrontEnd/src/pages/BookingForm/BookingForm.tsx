@@ -55,6 +55,7 @@ export const BookingForm: React.FC = () => {
           rules={[{ required: true, message: 'Booking Date is Required!' }]}
         >
           <DatePicker
+            format='DD-MM-YYYY'
             disabledDate={current => {
               return current && current < moment().endOf('day');
             }}
