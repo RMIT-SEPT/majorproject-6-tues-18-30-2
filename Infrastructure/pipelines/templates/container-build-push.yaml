@@ -7,6 +7,9 @@ parameters:
   type: string
 - name: tag
   type: string
+- name: arguments
+  type: string
+  default: ''
     
 steps:
 - task: Docker@2
