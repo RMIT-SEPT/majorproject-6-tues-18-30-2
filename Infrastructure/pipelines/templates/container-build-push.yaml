@@ -1,6 +1,7 @@
 parameters:
 - name: directory
   type: string
+  default: '**'
 - name: registry
   type: string
 - name: repository
