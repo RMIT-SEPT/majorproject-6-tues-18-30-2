@@ -3,9 +3,9 @@ package sept.profile.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -49,6 +49,7 @@ public class User {
 	private String department;
 	
 	@ManyToOne
+	@JoinColumn(name="role_id")
 	private Role role;
 	
 	public User() {
@@ -180,7 +181,7 @@ public class User {
 	/**
 	 * @return the role
 	 */
-	@JsonIgnore
+	@JsonGetter("role")
 	public Role getRole() {
 		return role;
 	}

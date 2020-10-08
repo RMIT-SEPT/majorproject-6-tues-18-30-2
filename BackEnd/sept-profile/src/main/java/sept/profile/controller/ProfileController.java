@@ -34,6 +34,7 @@ public class ProfileController {
 		return ResponseEntity.ok(user.get());
 	}
 	
+	@CrossOrigin
 	@PutMapping("/profile")
 	public ResponseEntity<User> putProfile(HttpServletRequest request, @RequestBody User updatedUser) {
 		
