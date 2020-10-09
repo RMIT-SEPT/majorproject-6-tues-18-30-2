@@ -13,7 +13,7 @@ public class BookingService {
     @Autowired
     private BookingRepository bookingRepo;
 
-    //Check for booking existence based on customerId and the working date
+    //Check for booking existence based on customerId, employeeId, bookingDate and timeslot
     public boolean isExist(String customerId, String employeeId, Date bookingDate, Time timeslot) {
         if (bookingRepo.isExist(customerId, employeeId, bookingDate, timeslot) == null) {
             return false;

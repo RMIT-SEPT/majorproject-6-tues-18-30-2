@@ -9,7 +9,7 @@ import sept.rmit.booking.service.BookingService;
 
 import java.sql.Date;
 
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
 
 
 @SpringBootTest

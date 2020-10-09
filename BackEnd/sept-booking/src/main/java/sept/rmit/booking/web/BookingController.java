@@ -11,17 +11,17 @@ import sept.rmit.booking.service.BookingService;
 public class BookingController {
     @Autowired
     private BookingService bookingService;
-//
-//    @PostMapping("add")
-//    public @ResponseBody String addBooking(@RequestBody Booking booking){
-////        boolean isExist = bookingService.isExist(booking.getCustomerId(), booking.getWorkingDateId());
-////
-////        if(isExist == false){
-////            bookingService.create(booking.getCustomerId(), booking.getBookingDate(), booking.getWorkingDateId(), booking.getServiceId(), booking.getBookingStatusId());
-////            return "New Booking Added";
-////        }else{
-////            return "Duplicate Entry";
-////        }
-////    }
+
+    @PostMapping("add")
+    public @ResponseBody String addBooking(@RequestBody Booking booking){
+        boolean isExist = bookingService.isExist(booking.getCustomerId(), booking.getEmployeeId(), booking.getBookingDate(), booking.getTimeslot());
+
+        if(isExist == false){
+            bookingService.create(booking.getCustomerId(), booking.getEmployeeId(), booking.getBookingDate(), booking.getTimeslot(), booking.getServiceId(), booking.getBookingStatusId());
+            return "New Booking Added";
+        }else{
+            return "Duplicate Entry";
+        }
+    }
 
 }
