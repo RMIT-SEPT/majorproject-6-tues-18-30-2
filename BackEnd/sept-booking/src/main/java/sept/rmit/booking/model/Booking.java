@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.Objects;
 
 @Entity
@@ -13,17 +14,19 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String customerId;
+    private String employeeId;
     private Date bookingDate;
-    private Long workingDateId;
+    private Time timeslot;
     private Long serviceId;
     private Long bookingStatusId;
 
     protected Booking() {}
 
-    public Booking(String customerId, Date bookingDate, Long workingDateId, Long serviceId, Long bookingStatusId) {
+    public Booking(String customerId, String employeeId, Date bookingDate, Time timeslot, Long serviceId, Long bookingStatusId) {
         this.customerId = customerId;
+        this.employeeId = employeeId;
         this.bookingDate = bookingDate;
-        this.workingDateId = workingDateId;
+        this.timeslot = timeslot;
         this.serviceId = serviceId;
         this.bookingStatusId = bookingStatusId;
     }
@@ -44,6 +47,14 @@ public class Booking {
         this.customerId = customerId;
     }
 
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
+    }
+
     public Date getBookingDate() {
         return bookingDate;
     }
@@ -52,12 +63,12 @@ public class Booking {
         this.bookingDate = bookingDate;
     }
 
-    public Long getWorkingDateId() {
-        return workingDateId;
+    public Time getTimeslot() {
+        return timeslot;
     }
 
-    public void setWorkingDateId(Long workingDateId) {
-        this.workingDateId = workingDateId;
+    public void setTimeslot(Time timeslot) {
+        this.timeslot = timeslot;
     }
 
     public Long getServiceId() {
@@ -74,35 +85,5 @@ public class Booking {
 
     public void setBookingStatusId(Long bookingStatusId) {
         this.bookingStatusId = bookingStatusId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Booking booking = (Booking) o;
-        return Objects.equals(id, booking.id) &&
-                Objects.equals(customerId, booking.customerId) &&
-                Objects.equals(bookingDate, booking.bookingDate) &&
-                Objects.equals(workingDateId, booking.workingDateId) &&
-                Objects.equals(serviceId, booking.serviceId) &&
-                Objects.equals(bookingStatusId, booking.bookingStatusId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, customerId, bookingDate, workingDateId, serviceId, bookingStatusId);
-    }
-
-    @Override
-    public String toString() {
-        return "Booking{" +
-                "id=" + id +
-                ", customerId='" + customerId + '\'' +
-                ", bookingDate=" + bookingDate +
-                ", workingDateId=" + workingDateId +
-                ", serviceId=" + serviceId +
-                ", bookingStatusId=" + bookingStatusId +
-                '}';
     }
 }

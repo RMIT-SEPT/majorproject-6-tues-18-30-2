@@ -13,15 +13,15 @@ public class BookingService {
     private BookingRepository bookingRepo;
 
     //Check for booking existence based on customerId and the working date
-    public boolean isExist(String customerId, Long workingDateId) {
-        if (bookingRepo.isExist(customerId, workingDateId) == null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public Booking create(String customerId, Date bookingDate, Long workingDateId, Long serviceId, Long bookingStatusId) {
-        return bookingRepo.save(new Booking(customerId, bookingDate, workingDateId, serviceId, bookingStatusId));
-    }
+//    public boolean isExist(String customerId, Long workingDateId) {
+//        if (bookingRepo.isExist(customerId, workingDateId) == null) {
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
+//
+//    public Booking create(String customerId, Date bookingDate, Long workingDateId, Long serviceId, Long bookingStatusId) {
+//        return bookingRepo.save(new Booking(customerId, bookingDate, workingDateId, serviceId, bookingStatusId));
+//    }
 }
