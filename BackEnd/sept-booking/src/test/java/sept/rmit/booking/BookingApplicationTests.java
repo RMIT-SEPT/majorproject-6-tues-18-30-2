@@ -8,42 +8,73 @@ import sept.rmit.booking.model.Booking;
 import sept.rmit.booking.service.BookingService;
 
 import java.sql.Date;
+import java.sql.Time;
 
-//import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
 class BookingApplicationTests {
-//    @Autowired
-//    private BookingService service;
-//
-//    private String mockUser = "test@gmail.com";
-//    private Date mockDate = Date.valueOf("2020-01-01");
-//    private Long mockLong = 1L;
-//
-//    @DisplayName("Booking Creation")
-//    @Test
-//    void testCreationSuccess(){
-//        Booking mockBooking = new Booking(mockUser, mockDate, mockLong, mockLong, mockLong);
-//        Booking newBooking = service.create(mockUser, mockDate, mockLong, mockLong, mockLong);
-//        mockBooking.setId(newBooking.getId());
-//
-//        assertEquals(mockBooking, newBooking);
-//    }
-//
-//    @DisplayName("Booking Exist - True")
-//    @Test
-//    void testExistTrue(){
-//        service.create( mockUser, mockDate, mockLong, mockLong, mockLong);
-//        assertTrue(service.isExist(mockUser, mockLong));
-//    }
-//
-//    @DisplayName("Booking Exist - False")
-//    @Test
-//    void testExistFalse(){
-//        String nonExistentUser = "dontexist@gmail.com";
-//        Long nonExistentWorkingDate = 2L;
-//        assertFalse(service.isExist(nonExistentUser, nonExistentWorkingDate));
-//    }
+    @Autowired
+    private BookingService service;
+
+    private String mockUser = "test@gmail.com";
+    private String mockEmployee = "test1@gmail.com";
+    private Date mockDate = Date.valueOf("2020-01-01");
+    private Time mockTime = Time.valueOf("09:00:00");
+    private Long mockLong = 1L;
+    private int mockStatus = 1;
+
+    private String nonExistentUser = "dontexist@gmail.com";
+    private Date nonExistentDate = Date.valueOf("2020-01-02");
+    private Time nonExistentTime = Time.valueOf("10:00:00");
+
+    @DisplayName("Booking Creation")
+    @Test
+    void testCreationSuccess(){
+        Booking mockBooking = new Booking(mockUser, mockEmployee, mockDate, mockTime, mockLong, mockStatus);
+        Booking newBooking = service.create(mockUser, mockEmployee, mockDate, mockTime, mockLong, mockStatus);
+        mockBooking.setId(newBooking.getId());
+
+        assertEquals(mockBooking, newBooking);
+    }
+
+    @DisplayName("Booking Exist(True)")
+    @Test
+    void testExistTrue(){
+        service.create( mockUser, mockEmployee, mockDate, mockTime, mockLong, mockStatus);
+        assertTrue(service.isExist(mockUser, mockEmployee, mockDate, mockTime));
+    }
+
+    @DisplayName("Booking Exist(False)")
+    @Test
+    void testExistFalse(){
+        String nonExistentEmployee = "dontexistemp@gmail.com";
+        assertFalse(service.isExist(nonExistentUser, nonExistentEmployee, nonExistentDate, nonExistentTime));
+    }
+
+    @DisplayName("Booking Exist(False) - Non-existent User")
+    @Test
+    void testExistFalseUser(){
+        assertFalse(service.isExist(nonExistentUser, mockEmployee, mockDate, mockTime));
+    }
+
+    @DisplayName("Booking Exist(False) - Non-existent employee")
+    @Test
+    void testExistFalseEmployee(){
+        assertFalse(service.isExist(mockUser, nonExistentUser, mockDate, mockTime));
+    }
+
+    @DisplayName("Booking Exist(False) - Non-existent date")
+    @Test
+    void testExistFalseDate(){
+        assertFalse(service.isExist(mockUser, mockEmployee, nonExistentDate, mockTime));
+    }
+
+    @DisplayName("Booking Exist(False) - Non-existent time")
+    @Test
+    void testExistFalseTime(){
+        assertFalse(service.isExist(mockUser, mockEmployee, mockDate, nonExistentTime));
+    }
 
 }

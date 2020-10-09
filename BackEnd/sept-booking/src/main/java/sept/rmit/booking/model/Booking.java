@@ -86,4 +86,36 @@ public class Booking {
     public void setBookingStatusId(int bookingStatusId) {
         this.bookingStatusId = bookingStatusId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Booking booking = (Booking) o;
+        return bookingStatusId == booking.bookingStatusId &&
+                Objects.equals(id, booking.id) &&
+                Objects.equals(customerId, booking.customerId) &&
+                Objects.equals(employeeId, booking.employeeId) &&
+                Objects.equals(bookingDate, booking.bookingDate) &&
+                Objects.equals(timeslot, booking.timeslot) &&
+                Objects.equals(serviceId, booking.serviceId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, customerId, employeeId, bookingDate, timeslot, serviceId, bookingStatusId);
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", customerId='" + customerId + '\'' +
+                ", employeeId='" + employeeId + '\'' +
+                ", bookingDate=" + bookingDate +
+                ", timeslot=" + timeslot +
+                ", serviceId=" + serviceId +
+                ", bookingStatusId=" + bookingStatusId +
+                '}';
+    }
 }
