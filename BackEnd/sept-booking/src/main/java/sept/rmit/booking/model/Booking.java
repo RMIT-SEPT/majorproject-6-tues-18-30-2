@@ -18,11 +18,11 @@ public class Booking {
     private Date bookingDate;
     private Time timeslot;
     private Long serviceId;
-    private Long bookingStatusId;
+    private int bookingStatusId;
 
     protected Booking() {}
 
-    public Booking(String customerId, String employeeId, Date bookingDate, Time timeslot, Long serviceId, Long bookingStatusId) {
+    public Booking(String customerId, String employeeId, Date bookingDate, Time timeslot, Long serviceId, int bookingStatusId) {
         this.customerId = customerId;
         this.employeeId = employeeId;
         this.bookingDate = bookingDate;
@@ -79,11 +79,11 @@ public class Booking {
         this.serviceId = serviceId;
     }
 
-    public Long getBookingStatusId() {
+    public int getBookingStatusId() {
         return bookingStatusId;
     }
 
-    public void setBookingStatusId(Long bookingStatusId) {
+    public void setBookingStatusId(int bookingStatusId) {
         this.bookingStatusId = bookingStatusId;
     }
 }
