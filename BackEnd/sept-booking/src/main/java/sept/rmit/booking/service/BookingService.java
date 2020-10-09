@@ -6,22 +6,23 @@ import sept.rmit.booking.model.Booking;
 import sept.rmit.booking.repository.BookingRepository;
 
 import java.sql.Date;
+import java.sql.Time;
 
 @Service
 public class BookingService {
     @Autowired
     private BookingRepository bookingRepo;
 
-    //Check for booking existence based on customerId and the working date
-    public boolean isExist(String customerId, Long workingDateId) {
-        if (bookingRepo.isExist(customerId, workingDateId) == null) {
+    //Check for booking existence based on customerId, employeeId, bookingDate and timeslot
+    public boolean isExist(String customerId, String employeeId, Date bookingDate, Time timeslot) {
+        if (bookingRepo.isExist(customerId, employeeId, bookingDate, timeslot) == null) {
             return false;
         } else {
             return true;
         }
     }
 
-    public Booking create(String customerId, Date bookingDate, Long workingDateId, Long serviceId, Long bookingStatusId) {
-        return bookingRepo.save(new Booking(customerId, bookingDate, workingDateId, serviceId, bookingStatusId));
+    public Booking create(String customerId, String employeeId, Date bookingDate, Time timeslot, Long serviceId, int bookingStatusId) {
+        return bookingRepo.save(new Booking(customerId, employeeId, bookingDate, timeslot, serviceId, bookingStatusId));
     }
 }

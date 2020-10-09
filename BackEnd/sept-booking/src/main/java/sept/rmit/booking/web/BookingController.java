@@ -14,10 +14,10 @@ public class BookingController {
 
     @PostMapping("add")
     public @ResponseBody String addBooking(@RequestBody Booking booking){
-        boolean isExist = bookingService.isExist(booking.getCustomerId(), booking.getWorkingDateId());
+        boolean isExist = bookingService.isExist(booking.getCustomerId(), booking.getEmployeeId(), booking.getBookingDate(), booking.getTimeslot());
 
         if(isExist == false){
-            bookingService.create(booking.getCustomerId(), booking.getBookingDate(), booking.getWorkingDateId(), booking.getServiceId(), booking.getBookingStatusId());
+            bookingService.create(booking.getCustomerId(), booking.getEmployeeId(), booking.getBookingDate(), booking.getTimeslot(), booking.getServiceId(), booking.getBookingStatusId());
             return "New Booking Added";
         }else{
             return "Duplicate Entry";
