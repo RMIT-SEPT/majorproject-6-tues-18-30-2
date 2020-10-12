@@ -26,7 +26,9 @@ export const BookingForm: React.FC = () => {
       bookingStatusId: UPCOMING_STATUS
     };
 
-    addBooking(newBooking);
+    addBooking(newBooking).then(response => {
+      console.log(response.data);
+    });
   };
 
   return (
