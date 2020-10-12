@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Form, Input, Select, Button, DatePicker, TimePicker } from 'antd';
 import { UserContext } from '../../contexts';
 import { SideBarLayout } from '../../layouts';
+import { addBooking } from "../../api/booking";
 import moment from 'moment';
 
 /*
@@ -19,13 +20,13 @@ export const BookingForm: React.FC = () => {
     const newBooking = {
       customerId: values.username,
       employeeId: values.employee,
-      bookingDate: values.booking_date.format('DD-MM-YYYY'),
-      timeSlot: values.time.format('HH:mm'),
+      bookingDate: values.booking_date.format('YYYY-MM-DD'),
+      timeSlot: values.time.format('HH:mm:ss'),
       serviceId: values.service,
       bookingStatusId: UPCOMING_STATUS
     };
 
-    console.log(newBooking);
+    addBooking(newBooking);
   };
 
   return (
