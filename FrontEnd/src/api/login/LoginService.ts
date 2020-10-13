@@ -12,7 +12,7 @@ export const loginUser = (userDetails) => {
         "password": userDetails.password,
       
     },{
-      baseURL: process.env.LOGIN_APP_URL,
+      baseURL: 'http://localhost:8080/',
       headers:{
         'Content-Type': 'application/json',
       }

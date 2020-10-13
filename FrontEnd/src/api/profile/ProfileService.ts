@@ -8,7 +8,7 @@ import axios from 'axios';
 export const getProfile = () => {
     return axios.get(`/api/profile`,
     {
-      baseURL: process.env.PROFILE_APP_URL,
+      baseURL: 'http://localhost:8082/',
       headers:{
         'Authorization': 'Bearer '.concat(localStorage.getItem('access_token')),
         'Content-Type': 'application/x-www-form-urlencoded',
