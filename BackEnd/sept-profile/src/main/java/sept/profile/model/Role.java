@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 @Entity
 @Table(name="role")
 public class Role {
@@ -21,6 +23,7 @@ public class Role {
 	/**
 	 * @return the id
 	 */
+	@JsonGetter("id")
 	public Long getId() {
 		return id;
 	}
@@ -35,6 +38,7 @@ public class Role {
 	/**
 	 * @return the name
 	 */
+	@JsonGetter("name")
 	public String getName() {
 		return name;
 	}
@@ -45,6 +49,5 @@ public class Role {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	
 }
