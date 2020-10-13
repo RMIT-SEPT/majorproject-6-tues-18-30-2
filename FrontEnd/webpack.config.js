@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+
 module.exports = env => ({
   mode: env === 'production' ? 'production' : 'development',
   entry: {
@@ -42,7 +43,6 @@ module.exports = env => ({
     historyApiFallback: true
   },
   plugins: [
-    new webpack.DefinePlugin(envKeys),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     })
