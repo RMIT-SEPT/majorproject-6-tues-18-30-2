@@ -53,3 +53,4 @@ stages:
         registry: $(registryName)
         repository: sept/authentication
         tag: $(Build.BuildNumber)
+        arguments: '--build-arg JAR_FILE=target/*.jar'
