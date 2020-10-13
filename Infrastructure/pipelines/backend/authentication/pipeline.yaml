@@ -24,6 +24,7 @@ variables:
   registryName: SEPT-Registry-Authentication
   revision: 1
   source: $(Build.SourcesDirectory)/BackEnd/sept-login
+  store: authentication-api
 
 stages:
 - stage: compile
@@ -34,6 +35,15 @@ stages:
     steps:
     - checkout: self
       lfs: false
+    - template: ../../templates/aws-retrieve-secrets.yaml
+      parameters:
+        connection: aws-mladenov
+        secretStore: $(store)
+        secrets:
+        - database-username:DB_USER
+        - database-password:DB_PASS
+        - jwt:JWT_TOKEN
+        showResults: true
     - template: ../../templates/java-build.yaml
       parameters:
         directory: $(source)
