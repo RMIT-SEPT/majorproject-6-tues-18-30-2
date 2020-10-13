@@ -61,3 +61,4 @@ stages:
         registry: $(registryName)
         repository: sept/registration
         tag: $(Build.BuildNumber)
+        arguments: '--build-arg JAR_FILE=target/*.jar'
