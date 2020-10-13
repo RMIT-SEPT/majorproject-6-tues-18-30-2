@@ -43,9 +43,6 @@ stages:
         - database-username:DB_USER
         - database-password:DB_PASS
         - jwt:JWT_TOKEN
-    - script: |
-        printenv
-      displayName: Environment Variables
     - template: ../../templates/java-build.yaml
       parameters:
         directory: $(source)
