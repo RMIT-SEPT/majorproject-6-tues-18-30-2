@@ -22,6 +22,7 @@ pool:
 
 variables:
   app_port: 8080
+  database_driver: com.mysql.cj.jdbc.Driver
   registryName: SEPT-Registry-Authentication
   revision: 1
   source: $(Build.SourcesDirectory)/BackEnd/sept-login
