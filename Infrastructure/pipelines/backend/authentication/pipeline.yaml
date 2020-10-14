@@ -42,7 +42,7 @@ stages:
         secrets:
         - database-username:DB_USER
         - database-password:DB_PASS
-        - jwt:JWT_TOKEN
+        - jwt:JWT_SECRET
         showResults: true
     - template: ../../templates/java-build.yaml
       parameters:
