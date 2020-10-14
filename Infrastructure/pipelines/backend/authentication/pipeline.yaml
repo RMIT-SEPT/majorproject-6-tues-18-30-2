@@ -40,6 +40,7 @@ stages:
         connection: aws-mladenov
         secretStore: $(store)
         secrets:
+        - database-endpoint:DATABASE_URL
         - database-username:DB_USER
         - database-password:DB_PASS
         - jwt:JWT_SECRET
