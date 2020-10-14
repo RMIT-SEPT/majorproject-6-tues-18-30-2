@@ -27,35 +27,35 @@ public class UserServiceImpl implements UserService {
 	public User register(User user) throws PasswordTooShortException, PasswordTooWeakException, UsernameTakenException, PhoneTakenException, InputEmptyException{
 		// TODO Validation goes here
 		
-		if (user.getFirstName().isBlank()) {
+		if ("".equals(user.getFirstName())) {
 			throw new InputEmptyException("First Name");
 		}
 		
-		if (user.getLastName().isBlank()) {
+		if ("".equals(user.getLastName())) {
 			throw new InputEmptyException("Last Name");
 		}
 		
-		if (user.getPassword().isBlank()) {
+		if ("".equals(user.getPassword())) {
 			throw new InputEmptyException("Password");
 		}
 		
-		if (user.getPhone().isBlank()) {
+		if ("".equals(user.getPhone())) {
 			throw new InputEmptyException("Phone");
 		}
 		
-		if (user.getPostcode().isBlank()) {
+		if ("".equals(user.getPostcode())) {
 			throw new InputEmptyException("Postcode");
 		}
 		
-		if (user.getStreetName().isBlank()) {
+		if ("".equals(user.getStreetName())) {
 			throw new InputEmptyException("Street Name");
 		}
 		
-		if (user.getStreetNo().isBlank()) {
+		if ("".equals(user.getStreetNo())) {
 			throw new InputEmptyException("Street No");
 		}
 		
-		if (user.getUsername().isBlank()) {
+		if ("".equals(user.getUsername())) {
 			throw new InputEmptyException("Username");
 		}
 		
