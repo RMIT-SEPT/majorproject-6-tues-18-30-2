@@ -27,9 +27,11 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  app_port: ${{ parameters.port }}
   registryName: SEPT-Registry-Registration
   revision: 1
   source: $(Build.SourcesDirectory)/BackEnd/sept-registration
+  store: authentication-api
 
 stages:
 - stage: compile
@@ -40,21 +42,21 @@ stages:
     steps:
     - checkout: self
       lfs: false
+    - template: ../../templates/aws-retrieve-secrets.yaml
+      parameters:
+        connection: aws-mladenov
+        secretStore: $(store)
+        secrets:
+        - database-endpoint:DATABASE_URL
+        - database-username:DATABASE_USER
+        - database-password:DATABASE_PASSWORD
+        - database-driver:DATABASE_DRIVER
+        - jwt:JWT_SECRET
+        showResults: true
     - template: ../../templates/java-build.yaml
       parameters:
         directory: $(source)
         failWithTests: false
-    - script: |
-        cat <<EOT >> env_file
-        APP_PORT=${{ parameters.port }}
-        JWT_SECRET=$ENCRYPTION_SECRET
-        DATABASE_URL=jdbc:mysql://$DB_ENDPOINT
-        DATABASE_USER=$DB_USER
-        DATABASE_PASSWORD=$DB_PASSWORD
-        DATABASE_DRIVER=com.mysql.cj.jdbc.Driver
-        EOT
-      displayName: Create Environments File
-      workingDirectory: $(source)
     - template: ../../templates/container-build-push.yaml
       parameters:
         directory: $(source)

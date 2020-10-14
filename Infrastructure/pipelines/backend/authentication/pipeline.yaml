@@ -21,6 +21,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  app_port: 8080
   registryName: SEPT-Registry-Authentication
   revision: 1
   source: $(Build.SourcesDirectory)/BackEnd/sept-login
@@ -40,9 +41,11 @@ stages:
         connection: aws-mladenov
         secretStore: $(store)
         secrets:
-        - database-username:DB_USER
-        - database-password:DB_PASS
-        - jwt:JWT_TOKEN
+        - database-endpoint:DATABASE_URL
+        - database-username:DATABASE_USER
+        - database-password:DATABASE_PASSWORD
+        - database-driver:DATABASE_DRIVER
+        - jwt:JWT_SECRET
         showResults: true
     - template: ../../templates/java-build.yaml
       parameters:

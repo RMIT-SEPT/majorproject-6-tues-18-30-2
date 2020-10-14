@@ -1,5 +1,11 @@
 name: $(revision).$(date:yyyyMMdd).$(rev:r)
 
+parameters:
+- name: port
+  displayName: Application Port
+  type: string
+  default: 8082
+
 trigger:
   branches:
     include:
@@ -21,6 +27,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  app_port: ${{ parameters.port }}
   registryName: SEPT-Registry-Profile
   revision: 1
   source: $(Build.SourcesDirectory)/BackEnd/sept-profile
@@ -34,6 +41,17 @@ stages:
     steps:
     - checkout: self
       lfs: false
+    - template: ../../templates/aws-retrieve-secrets.yaml
+      parameters:
+        connection: aws-mladenov
+        secretStore: $(store)
+        secrets:
+        - database-endpoint:DATABASE_URL
+        - database-username:DATABASE_USER
+        - database-password:DATABASE_PASSWORD
+        - database-driver:DATABASE_DRIVER
+        - jwt:JWT_SECRET
+        showResults: true
     - template: ../../templates/java-build.yaml
       parameters:
         directory: $(source)
