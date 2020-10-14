@@ -7,7 +7,7 @@ import sept.rmit.booking.service.BookingService;
 
 @RestController
 @RequestMapping("/api/booking")
-@CrossOrigin(origins = "http://localhost:8000")
+@CrossOrigin(origins = "http://localhost:8080")
 public class BookingController {
     @Autowired
     private BookingService bookingService;
