@@ -111,7 +111,7 @@ resource "kubernetes_ingress" "application" {
         "nginx.ingress.kubernetes.io/enable-access-log" = "false"
       },
       var.ingress.path != "/" ? {
-        "nginx.ingress.kubernetes.io/rewrite-target" = var.strip_path ? "" : "${var.ingress.path}/$2"
+        "nginx.ingress.kubernetes.io/rewrite-target" = "${var.strip_path ? "" : var.ingress.path}/$2"
       } : {},
       var.ingress_annotations
     )
