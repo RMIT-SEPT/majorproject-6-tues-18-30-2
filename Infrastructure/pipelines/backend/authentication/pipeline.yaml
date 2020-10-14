@@ -21,6 +21,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  app_port: 8080
   registryName: SEPT-Registry-Authentication
   revision: 1
   source: $(Build.SourcesDirectory)/BackEnd/sept-login
