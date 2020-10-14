@@ -1,0 +1,62 @@
+name: $(revision).$(date:yyyyMMdd).$(rev:r)
+
+parameters:
+- name: port
+  displayName: Application Port
+  type: string
+  default: 8080
+
+trigger:
+  branches:
+    include:
+    - master
+    - development
+  paths:
+    include:
+    - BackEnd/sept-booking*
+    - Infrastructure/pipelines/backend/booking*
+    - Infrastructure/pipelines/templates/java-build.yaml
+    exclude:
+    - FrontEnd*
+    - docs*
+    - Infrastructure/binaries*
+    - README.md
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  app_port: ${{ parameters.port }}
+  registryName: SEPT-Registry-Booking
+  revision: 1
+  source: $(Build.SourcesDirectory)/BackEnd/sept-booking
+  store: booking-api
+
+stages:
+- stage: compile
+  displayName: Build & Test
+  jobs:
+  - job: build
+    displayName: Procedure
+    steps:
+    - checkout: self
+      lfs: false
+    - template: ../../templates/aws-retrieve-secrets.yaml
+      parameters:
+        connection: aws-mladenov
+        secretStore: $(store)
+        secrets:
+        - database-endpoint:DATABASE_URL
+        - database-username:DATABASE_USER
+        - database-password:DATABASE_PASSWORD
+        - database-driver:DATABASE_DRIVER
+        showResults: true
+    - template: ../../templates/java-build.yaml
+      parameters:
+        directory: $(source)
+    - template: ../../templates/container-build-push.yaml
+      parameters:
+        directory: $(source)
+        registry: $(registryName)
+        repository: sept/booking
+        tag: $(Build.BuildNumber)
