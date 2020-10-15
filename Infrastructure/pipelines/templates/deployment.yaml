@@ -42,13 +42,7 @@ steps:
     sudo mv terragrunt /usr/local/bin
     terragrunt --version
   displayName: Install IaC Binaries
-- task: AWSShellScript@1
-  displayName: Execute Infrastructure
-  inputs:
-    awsCredentials: ${{ parameters.connection }}
-    regionName: ${{ parameters.region }}
-    scriptType: inline
-    inlineScript: |
+- script: |
       echo "[PWD] Currently at $(eval pwd)"
       echo "[DIR] Structure of current directory -"
       tree
