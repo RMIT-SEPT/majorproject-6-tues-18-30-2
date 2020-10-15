@@ -33,7 +33,7 @@ Wait until the application started
 
 # Available API
 
-GET http://localhost:8082/api/profile
+GET http://localhost:8082/profile
 
 RESPONSE:
 

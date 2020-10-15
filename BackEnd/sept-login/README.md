@@ -33,7 +33,7 @@ Wait until the application started
 
 # Available API
 
-POST http://localhost:8080/api/login
+POST http://localhost:8080/login
 
 ```
 {
@@ -43,20 +43,6 @@ POST http://localhost:8080/api/login
 }
 ```
 
-POST http://localhost:8081/api/register
-
-```
-{
-	"username": "johndoe@gmail.com",
-	"password": "123456",
-	"first_name": "John",
-	"last_name": "Doe",
-	"street_name": "Smith",
-	"street_no": "123",
-	"phone": "1233545",
-	"postcode": "12345"
-}
-```
 
 # Building Docker image
 
