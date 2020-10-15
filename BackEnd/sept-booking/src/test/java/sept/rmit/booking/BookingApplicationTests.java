@@ -52,8 +52,6 @@ class BookingApplicationTests {
         Booking mockBooking = service.create( mockUser, mockEmployee, mockDate, mockTime, mockLong, mockStatus);
         assertTrue(service.isExist(mockUser, mockEmployee, mockDate, mockTime));
 
-        repo.deleteAll();
-
         repo.deleteById(mockBooking.getId());
     }
     
