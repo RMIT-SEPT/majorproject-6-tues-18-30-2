@@ -42,18 +42,29 @@ steps:
     sudo mv terragrunt /usr/local/bin
     terragrunt --version
   displayName: Install IaC Binaries
-- script: |
-    echo "[PWD] Currently at $(eval pwd)"
-    echo "[DIR] Structure of current directory -"
-    tree
-    echo "[ENV] Active environment variables -"
-    printenv
-    for METHOD in $(echo "${{ parameters.type }}" | sed "s/,/ /g"); do
-      COMMAND="terragrunt $METHOD -no-color --terragrunt-ignore-dependency-errors --terragrunt-ignore-external-dependencies --terragrunt-non-interactive --terragrunt-working-dir ./ --terragrunt-include-dir ${{ parameters.deployment }}"
-      if [ "$METHOD" == "apply" ]; then
-        COMMAND="$COMMAND -auto-approve"
-      fi
-      echo "[EXEC] $COMMAND"
-      eval $COMMAND
-    done
-  workingDirectory: $(Build.SourcesDirectory)/Infrastructure
+- task: AWSShellScript@1
+  displayName: Execute Infrastructure
+  inputs:
+    awsCredentials: ${{ parameters.connection }}
+    regionName: ${{ parameters.region }}
+    scriptType: inline
+    inlineScript: |
+      echo "[PWD] Currently at $(eval pwd)"
+      echo "[DIR] Structure of current directory -"
+      tree
+      echo "[ENV] Active environment variables -"
+      printenv
+      for METHOD in $(echo "${{ parameters.type }}" | sed "s/,/ /g"); do
+        COMMAND="terragrunt $METHOD -no-color --terragrunt-ignore-dependency-errors --terragrunt-ignore-external-dependencies --terragrunt-non-interactive --terragrunt-working-dir ./ --terragrunt-include-dir ${{ parameters.deployment }}"
+        if [ "$METHOD" == "apply" ]; then
+          COMMAND="$COMMAND -auto-approve"
+        fi
+        echo "[EXEC] $COMMAND"
+        eval $COMMAND
+      done
+    disableAutoCwd: true
+    workingDirectory: $(Build.SourcesDirectory)/Infrastructure
+  env:
+    TG_LOG: debug
+    TERRAGRUNT_DEBUG: true
+    TF_VAR_ENVIRONMENT: ${{ parameters.environment }}
