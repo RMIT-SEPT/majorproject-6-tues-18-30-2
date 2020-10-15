@@ -49,6 +49,7 @@ steps:
     regionName: ${{ parameters.region }}
     scriptType: inline
     inlineScript: |
+      echo "[PWD] Currently at $(eval pwd)"
       DIRECTORY="${{ format('$(Build.SourcesDirectory)/Infrastructure/{0}', parameters.deployment) }}"
       echo "[NAV] Moving into $DIRECTORY"
       cd $DIRECTORY
@@ -57,5 +58,7 @@ steps:
         echo "[EXEC] $COMMAND"
         eval $COMMAND
       done
+    disableAutoCwd: true
+    workingDirectory: ${{ format('$(Build.SourcesDirectory)/Infrastructure/{0}', parameters.deployment) }}
   env:
     TF_VAR_ENVIRONMENT: ${{ parameters.environment }}
