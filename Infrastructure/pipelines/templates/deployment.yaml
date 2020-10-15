@@ -52,10 +52,8 @@ steps:
       echo "[PWD] Currently at $(eval pwd)"
       echo "[DIR] Structure of current directory -"
       tree
-      echo "[ENV] Active environment variables -"
-      printenv
       for METHOD in $(echo "${{ parameters.type }}" | sed "s/,/ /g"); do
-        COMMAND="terragrunt $METHOD -no-color --terragrunt-ignore-dependency-errors --terragrunt-ignore-external-dependencies --terragrunt-non-interactive --terragrunt-working-dir ./ --terragrunt-include-dir ${{ parameters.deployment }}"
+        COMMAND="./binaries/linux/terragrunt $METHOD -no-color --terragrunt-ignore-dependency-errors --terragrunt-ignore-external-dependencies --terragrunt-non-interactive --terragrunt-working-dir ${{ parameters.deployment }}"
         if [ "$METHOD" == "apply" ]; then
           COMMAND="$COMMAND -auto-approve"
         fi
