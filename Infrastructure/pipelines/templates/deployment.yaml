@@ -51,7 +51,7 @@ steps:
     inlineScript: |
       echo "[PWD] Currently at $(eval pwd)"
       for METHOD in $(echo "${{ parameters.type }}" | sed "s/,/ /g"); do
-        COMMAND="terragrunt $METHOD -no-color --terragrunt-ignore-dependency-errors --terragrunt-ignore-external-dependencies --terragrunt-non-interactive
+        COMMAND="terragrunt $METHOD -no-color --terragrunt-ignore-dependency-errors --terragrunt-ignore-external-dependencies --terragrunt-non-interactive"
         if [ "$METHOD" == "apply" ]; then
           COMMAND="$COMMAND -auto-approve"
         fi
