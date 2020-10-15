@@ -14,7 +14,7 @@ export const putProfileUpdate = (userUpdate) => {
         last_name: userUpdate.lastName
       },
     {
-      baseURL: 'k8s.sept.mladenov.me',
+      baseURL: 'http://k8s.sept.mladenov.me/api/profile',
       headers:{
         'Authorization': 'Bearer '.concat(localStorage.getItem('access_token')),
         'Content-Type': 'application/json',
