@@ -62,7 +62,6 @@ steps:
         echo "[EXEC] $COMMAND"
         eval $COMMAND
       done
-    disableAutoCwd: true
     workingDirectory: $(Build.SourcesDirectory)/Infrastructure
   env:
     TG_LOG: debug
