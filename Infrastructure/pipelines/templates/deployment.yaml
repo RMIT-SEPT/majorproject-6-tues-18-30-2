@@ -26,7 +26,7 @@ steps:
 - script: |
     # System Packages
     sudo apt-get update
-    sudo apt-get install -y wget zip
+    sudo apt-get install -y wget zip tree
     # Terraform Installation
     wget ${{ format('https://releases.hashicorp.com/terraform/{0}/terraform_{0}_linux_amd64.zip', parameters.terraformVersion) }}
     unzip terraform*.zip
@@ -50,6 +50,8 @@ steps:
     scriptType: inline
     inlineScript: |
       echo "[PWD] Currently at $(eval pwd)"
+      echo "[DIR] Structure of current directory -"
+      tree
       for METHOD in $(echo "${{ parameters.type }}" | sed "s/,/ /g"); do
         COMMAND="terragrunt $METHOD -no-color --terragrunt-ignore-dependency-errors --terragrunt-ignore-external-dependencies --terragrunt-non-interactive --terragrunt-working-dir ./ --terragrunt-include-dir ${{ parameters.deployment }}"
         if [ "$METHOD" == "apply" ]; then
