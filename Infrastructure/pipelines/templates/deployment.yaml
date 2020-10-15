@@ -43,20 +43,17 @@ steps:
     terragrunt --version
   displayName: Install IaC Binaries
 - script: |
-      echo "[PWD] Currently at $(eval pwd)"
-      echo "[DIR] Structure of current directory -"
-      tree
-      echo "[ENV] Active environment variables -"
-      printenv
-      for METHOD in $(echo "${{ parameters.type }}" | sed "s/,/ /g"); do
-        COMMAND="terragrunt $METHOD -no-color --terragrunt-ignore-dependency-errors --terragrunt-ignore-external-dependencies --terragrunt-non-interactive --terragrunt-working-dir $(Build.SourcesDirectory)/Infrastructure --terragrunt-include-dir ${{ parameters.deployment }}"
-        if [ "$METHOD" == "apply" ]; then
-          COMMAND="$COMMAND -auto-approve"
-        fi
-        echo "[EXEC] $COMMAND"
-        eval $COMMAND
-      done
-    env:
-      TG_LOG: debug
-      TERRAGRUNT_DEBUG: true
-      TF_VAR_ENVIRONMENT: ${{ parameters.environment }}
+    echo "[PWD] Currently at $(eval pwd)"
+    echo "[DIR] Structure of current directory -"
+    tree
+    echo "[ENV] Active environment variables -"
+    printenv
+    for METHOD in $(echo "${{ parameters.type }}" | sed "s/,/ /g"); do
+      COMMAND="terragrunt $METHOD -no-color --terragrunt-ignore-dependency-errors --terragrunt-ignore-external-dependencies --terragrunt-non-interactive --terragrunt-working-dir ./ --terragrunt-include-dir ${{ parameters.deployment }}"
+      if [ "$METHOD" == "apply" ]; then
+        COMMAND="$COMMAND -auto-approve"
+      fi
+      echo "[EXEC] $COMMAND"
+      eval $COMMAND
+    done
+  workingDirectory: $(Build.SourcesDirectory)/Infrastructure
