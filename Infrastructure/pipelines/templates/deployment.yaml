@@ -61,4 +61,6 @@ steps:
     disableAutoCwd: true
     workingDirectory: ${{ format('$(Build.SourcesDirectory)/Infrastructure/{0}', parameters.deployment) }}
   env:
+    TG_LOG: debug
+    TERRAGRUNT_DEBUG: true
     TF_VAR_ENVIRONMENT: ${{ parameters.environment }}
