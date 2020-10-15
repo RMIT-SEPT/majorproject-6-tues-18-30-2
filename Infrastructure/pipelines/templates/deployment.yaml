@@ -22,5 +22,5 @@ steps:
     sudo mv terragrunt_linux_amd64 terragrunt
     sudo chmod +x terragrunt
     sudo mv terragrunt /usr/local/bin
-    terragrunt version
+    terragrunt --version
   displayName: Install IaC Binaries
