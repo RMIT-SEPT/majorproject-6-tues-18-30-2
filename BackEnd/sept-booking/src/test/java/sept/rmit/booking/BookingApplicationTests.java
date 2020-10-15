@@ -42,8 +42,9 @@ class BookingApplicationTests {
 
         assertEquals(mockBooking, newBooking);
 
-        repo.deleteById(newBooking.getId());
-        repo.deleteById(mockBooking.getId());
+        if(newBooking != null){
+            repo.deleteById(newBooking.getId());
+        }
     }
 
     @DisplayName("Booking Exist(True)")
