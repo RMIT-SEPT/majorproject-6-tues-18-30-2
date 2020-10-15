@@ -1,0 +1,67 @@
+parameters:
+- name: connection
+  type: string
+- name: region
+  type: string
+  default: ap-southeast-2
+- name: environment
+  type: string
+  default: development
+- name: terraformVersion
+  type: string
+  default: 0.13.3
+- name: terragruntVersion
+  type: string
+  default: 0.25.0
+- name: deployment
+  type: string
+- name: type
+  type: string
+  values:
+  - plan
+  - apply
+  - destroy
+  
+steps:
+- script: |
+    # System Packages
+    sudo apt-get update
+    sudo apt-get install -y wget zip
+    # Terraform Installation
+    wget ${{ format('https://releases.hashicorp.com/terraform/{0}/terraform_{0}_linux_amd64.zip', parameters.terraformVersion) }}
+    unzip terraform*.zip
+    sudo chmod +x terraform
+    sudo cp terraform $(Build.SourcesDirectory)/Infrastructure/binaries/linux
+    sudo mv terraform /usr/local/bin
+    terraform version
+    # Terragrunt Installation
+    wget ${{ format('https://github.com/gruntwork-io/terragrunt/releases/download/v{0}/terragrunt_linux_amd64', parameters.terragruntVersion) }}
+    sudo mv terragrunt_linux_amd64 terragrunt
+    sudo chmod +x terragrunt
+    sudo cp terragrunt $(Build.SourcesDirectory)/Infrastructure/binaries/linux
+    sudo mv terragrunt /usr/local/bin
+    terragrunt --version
+  displayName: Install IaC Binaries
+- task: AWSShellScript@1
+  displayName: Execute Infrastructure
+  inputs:
+    awsCredentials: ${{ parameters.connection }}
+    regionName: ${{ parameters.region }}
+    scriptType: inline
+    inlineScript: |
+      echo "[PWD] Currently at $(eval pwd)"
+      for METHOD in $(echo "${{ parameters.type }}" | sed "s/,/ /g"); do
+        COMMAND="terragrunt $METHOD -no-color --terragrunt-ignore-dependency-errors --terragrunt-ignore-external-dependencies --terragrunt-non-interactive"
+        if [ "$METHOD" == "apply" ]; then
+          COMMAND="$COMMAND -auto-approve"
+        fi
+        COMMAND="$COMMAND 2>&1"
+        echo "[EXEC] $COMMAND"
+        eval $COMMAND
+      done
+    disableAutoCwd: true
+    workingDirectory: ${{ format('$(Build.SourcesDirectory)/Infrastructure/{0}', parameters.deployment) }}
+  env:
+    TG_LOG: debug
+    TERRAGRUNT_DEBUG: true
+    TF_VAR_ENVIRONMENT: ${{ parameters.environment }}

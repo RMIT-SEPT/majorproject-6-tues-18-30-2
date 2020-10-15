@@ -1,5 +1,11 @@
 name: $(revision).$(date:yyyyMMdd).$(rev:r)
 
+parameters:
+- name: port
+  displayName: Application Port
+  type: string
+  default: 8080
+
 trigger:
   branches:
     include:
@@ -7,25 +13,24 @@ trigger:
     - development
   paths:
     include:
-    - BackEnd/sept-login/**
-    - Infrastructure/pipelines/backend/authentication/**
+    - BackEnd/sept-booking*
+    - Infrastructure/pipelines/backend/booking*
     - Infrastructure/pipelines/templates/java-build.yaml
     exclude:
-    - FrontEnd/**
-    - docs/**
-    - Infrastructure/binaries/**
-    - Infrastructure/binaries/**
+    - FrontEnd*
+    - docs*
+    - Infrastructure/binaries*
     - README.md
 
 pool:
   vmImage: ubuntu-latest
 
 variables:
-  app_port: 8080
-  registryName: SEPT-Registry-Authentication
+  app_port: ${{ parameters.port }}
+  registryName: SEPT-Registry-Booking
   revision: 1
-  source: $(Build.SourcesDirectory)/BackEnd/sept-login
-  store: authentication-api
+  source: $(Build.SourcesDirectory)/BackEnd/sept-booking
+  store: booking-api
 
 stages:
 - stage: compile
@@ -45,8 +50,6 @@ stages:
         - database-username:DATABASE_USER
         - database-password:DATABASE_PASSWORD
         - database-driver:DATABASE_DRIVER
-        - jwt:JWT_SECRET
-        showResults: true
     - template: ../../templates/java-build.yaml
       parameters:
         directory: $(source)
@@ -54,6 +57,5 @@ stages:
       parameters:
         directory: $(source)
         registry: $(registryName)
-        repository: sept/authentication
+        repository: sept/booking
         tag: $(Build.BuildNumber)
-        arguments: '--build-arg JAR_FILE=target/*.jar'

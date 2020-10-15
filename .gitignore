@@ -6,9 +6,11 @@
 **/.DS_Store
 
 # Infrastructure
-Infrastructure/**/.terraform*
+Infrastructure/**/.terraform/**
+Infrastructure/**/.terragrunt-cache/**
 Infrastructure/**/terraform.tfstate
 Infrastructure/**/terraform.tfstate.backup
+Infrastructure/**/kubernetes.tf
 Infrastructure/**/artifacts/**
 
 # FrontEnd
