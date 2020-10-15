@@ -1,4 +1,4 @@
-package com.rmit.sept.dashboard;
+package sept.rmit.dashboard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

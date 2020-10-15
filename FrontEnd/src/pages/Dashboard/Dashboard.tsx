@@ -20,7 +20,7 @@ export const Dashboard: React.FC = () => {
       const request = await getUpcomingBookings('u1@gmail.com');
       setUpcomingBookings(request.data);
     }
-    
+
     async function fetchCompletedData() {
       const request = await getCompletedBookings('u1@gmail.com');
       setCompletedBookings(request.data);
@@ -36,7 +36,7 @@ export const Dashboard: React.FC = () => {
   const columns = [
     {
       title: 'Booking Id',
-      dataIndex: 'bookingId',
+      dataIndex: 'id',
       key: 'bookingId'
     },
     {
@@ -45,14 +45,19 @@ export const Dashboard: React.FC = () => {
       key: 'customerId'
     },
     {
+      title: 'Employee Id',
+      dataIndex: 'employeeId',
+      key: 'employeeId'
+    },
+    {
       title: 'Booking Date',
       dataIndex: 'bookingDate',
       key: 'bookingDate'
     },
     {
-      title: 'Working Date Id',
-      dataIndex: 'workingDateId',
-      key: 'workingDateId'
+      title: 'Time Slot',
+      dataIndex: 'timeslot',
+      key: 'timeslot'
     },
     {
       title: 'Service Id',
