@@ -43,6 +43,5 @@ steps:
     awsCredentials: ${{ parameters.connection }}
     regionName: ${{ parameters.region }}
     scriptType: inline
-    workingDirectory: ${{ format('$(Build.SourcesDirectory)/Infrastructure/{0}', parameters.deployment) }}
     inlineScript: |
-      terragrunt ${{ parameters.type }} -no-color --terragrunt-non-interactive
+      terragrunt ${{ parameters.type }} --terragrunt-working-dir ${{ format('$(Build.SourcesDirectory)/Infrastructure/{0}', parameters.deployment) }} -no-color --terragrunt-non-interactive 
