@@ -37,6 +37,5 @@ terraform {
   }
 }
 
-terraform_binary              = "${local.binary_path}/terraform${get_platform() == "windows" ? ".exe" : ""}"
 terraform_version_constraint  = "0.13.3"
 terragrunt_version_constraint = ">= 0.25.0"
