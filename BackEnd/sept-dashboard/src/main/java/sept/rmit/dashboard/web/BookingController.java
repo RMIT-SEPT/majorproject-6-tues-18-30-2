@@ -1,9 +1,10 @@
-package com.rmit.sept.dashboard.web;
+package sept.rmit.dashboard.web;
 
-import com.rmit.sept.dashboard.model.Booking;
-import com.rmit.sept.dashboard.service.BookingService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sept.rmit.dashboard.model.Booking;
+import sept.rmit.dashboard.service.BookingService;
 
 import java.util.List;
 

@@ -1,9 +1,10 @@
-package com.rmit.sept.dashboard.service;
+package sept.rmit.dashboard.service;
 
-import com.rmit.sept.dashboard.model.Booking;
-import com.rmit.sept.dashboard.repository.BookingRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sept.rmit.dashboard.model.Booking;
+import sept.rmit.dashboard.repository.BookingRepository;
 
 import java.util.List;
 

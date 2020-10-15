@@ -1,4 +1,4 @@
-package com.rmit.sept.dashboard;
+package sept.rmit.dashboard;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

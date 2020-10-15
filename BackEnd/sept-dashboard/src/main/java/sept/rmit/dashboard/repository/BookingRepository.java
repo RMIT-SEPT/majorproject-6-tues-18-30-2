@@ -1,9 +1,10 @@
-package com.rmit.sept.dashboard.repository;
+package sept.rmit.dashboard.repository;
 
-import com.rmit.sept.dashboard.model.Booking;
+import sept.rmit.dashboard.model.Booking;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
 
 import java.util.List;
 
