@@ -45,14 +45,14 @@ class BookingApplicationTests {
         repo.delete(newBooking);
     }
 
-//    @DisplayName("Booking Exist(True)")
-//    @Test
-//    void testExistTrue() {
-//        Booking mockBooking = service.create(mockUser, mockEmployee, mockDate, mockTime, mockLong, mockStatus);
-//        assertTrue(service.isExist(mockUser, mockEmployee, mockDate, mockTime));
-//
-//        repo.delete(mockBooking);
-//    }
+    //    @DisplayName("Booking Exist(True)")
+    //    @Test
+    //    void testExistTrue() {
+    //        Booking mockBooking = service.create(mockUser, mockEmployee, mockDate, mockTime, mockLong, mockStatus);
+    //        assertTrue(service.isExist(mockUser, mockEmployee, mockDate, mockTime));
+    //
+    //        repo.delete(mockBooking);
+    //    }
 
     @DisplayName("Booking Exist(False)")
     @Test
