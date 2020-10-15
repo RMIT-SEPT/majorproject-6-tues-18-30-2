@@ -49,9 +49,6 @@ steps:
     regionName: ${{ parameters.region }}
     scriptType: inline
     inlineScript: |
-      echo "[PEM] Adjusting binary permissions"
-      sudo chmod +x ./binaries/linux/terraform
-      sudo chmod +x ./binaries/linux/terragrunt
       echo "[PWD] Currently at $(eval pwd)"
       for METHOD in $(echo "${{ parameters.type }}" | sed "s/,/ /g"); do
         COMMAND="terragrunt $METHOD -no-color --terragrunt-ignore-dependency-errors --terragrunt-ignore-external-dependencies --terragrunt-non-interactive
