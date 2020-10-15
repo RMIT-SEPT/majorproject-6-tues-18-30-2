@@ -18,3 +18,7 @@ stages:
     - checkout: self
       lfs: false
     - template: ../templates/deployment.yaml
+      parameters:
+        connection: TODO
+        deployment: core/dns
+        type: plan
