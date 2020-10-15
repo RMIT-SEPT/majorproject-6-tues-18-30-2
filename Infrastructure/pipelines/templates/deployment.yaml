@@ -57,6 +57,7 @@ steps:
         if [ "$METHOD" == "apply" ]; then
           COMMAND="$COMMAND -auto-approve"
         fi
+        COMMAND="$COMMAND 2>&1"
         echo "[EXEC] $COMMAND"
         eval $COMMAND
       done
