@@ -50,11 +50,11 @@ steps:
     scriptType: inline
     inlineScript: |
       echo "[PWD] Currently at $(eval pwd)"
-      DIRECTORY="${{ format('$(Build.SourcesDirectory)/Infrastructure/{0}', parameters.deployment) }}"
-      echo "[NAV] Moving into $DIRECTORY"
-      cd $DIRECTORY
       for METHOD in $(echo "init,${{ parameters.type }}" | sed "s/,/ /g"); do
-        COMMAND="terragrunt $METHOD --terragrunt-working-dir $DIRECTORY -no-color --terragrunt-non-interactive"
+        COMMAND="terragrunt $METHOD -no-color --terragrunt-non-interactive"
+        if [ "$METHOD" == "apply" ]; then
+          COMMAND="$COMMAND -auto-approve"
+        fi
         echo "[EXEC] $COMMAND"
         eval $COMMAND
       done
