@@ -56,7 +56,7 @@ steps:
       echo "[DIR] Structure of current directory -"
       tree
       for METHOD in $(echo "${{ join(',' parameters.type) }}" | sed "s/,/ /g"); do
-        COMMAND="./binaries/linux/terragrunt $METHOD -no-color --terragrunt-ignore-dependency-errors --terragrunt-ignore-external-dependencies --terragrunt-non-interactive --terragrunt-working-dir ${{ parameters.deployment }}"
+        COMMAND="terragrunt $METHOD --terragrunt-config terragrunt.hcl -no-color --terragrunt-ignore-dependency-errors --terragrunt-ignore-external-dependencies --terragrunt-non-interactive --terragrunt-working-dir ${{ parameters.deployment }}"
         if [ "$METHOD" == "apply" ]; then
           COMMAND="$COMMAND -auto-approve"
         fi
