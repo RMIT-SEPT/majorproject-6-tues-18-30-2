@@ -28,7 +28,7 @@ public class AuthApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry){
-				registry.addMapping("/api/login").allowedOrigins("http://localhost:9000");
+				registry.addMapping("/login").allowedOrigins("*");
 			}
 		};
 	}

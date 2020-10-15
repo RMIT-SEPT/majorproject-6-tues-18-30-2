@@ -22,7 +22,6 @@ import sept.registration.service.UserService;
 import sept.registration.util.SecurityUtil;
 
 @RestController
-@RequestMapping("/api")
 public class RegisterController {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(RegisterController.class);

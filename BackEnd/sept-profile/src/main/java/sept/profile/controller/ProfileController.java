@@ -17,7 +17,6 @@ import sept.profile.model.User;
 import sept.profile.service.UserService;
 
 @RestController
-@RequestMapping("/api")
 public class ProfileController {
 
 	@Autowired

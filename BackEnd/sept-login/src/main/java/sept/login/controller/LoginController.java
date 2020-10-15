@@ -17,7 +17,6 @@ import sept.login.model.response.LoginResponse;
 import sept.login.service.UserService;
 
 @RestController
-@RequestMapping("/api")
 public class LoginController {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
