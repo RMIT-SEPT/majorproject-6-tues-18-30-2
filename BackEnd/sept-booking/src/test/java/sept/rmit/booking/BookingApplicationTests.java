@@ -42,9 +42,8 @@ class BookingApplicationTests {
 
         assertEquals(mockBooking, newBooking);
 
-        if (newBooking != null) {
-            repo.deleteById(newBooking.getId());
-        }
+        repo.delete(mockBooking);
+        repo.delete(newBooking);
     }
 
     @DisplayName("Booking Exist(True)")
@@ -53,7 +52,7 @@ class BookingApplicationTests {
         Booking mockBooking = service.create(mockUser, mockEmployee, mockDate, mockTime, mockLong, mockStatus);
         assertTrue(service.isExist(mockUser, mockEmployee, mockDate, mockTime));
 
-        repo.deleteById(mockBooking.getId());
+        repo.delete(mockBooking);
     }
 
     @DisplayName("Booking Exist(False)")
