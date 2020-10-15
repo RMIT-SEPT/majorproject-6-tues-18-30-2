@@ -44,6 +44,8 @@ steps:
     regionName: ${{ parameters.region }}
     scriptType: inline
     inlineScript: |
-      COMMAND="${{ format('terragrunt {0} --terragrunt-working-dir $(Build.SourcesDirectory)/Infrastructure/{1} -no-color --terragrunt-non-interactive', parameters.type, parameters.deployment) }}"
+      DIRECTORY="${{ format('$(Build.SourcesDirectory)/Infrastructure/{0}', parameters.deployment) }}"
+      cd $DIRECTORY
+      COMMAND="${{ format('terragrunt {0} --terragrunt-working-dir $DIRECTORY -no-color --terragrunt-non-interactive', parameters.type) }}"
       echo "[EXEC] $COMMAND"
       eval $COMMAND
