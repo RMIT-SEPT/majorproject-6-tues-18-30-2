@@ -49,6 +49,9 @@ steps:
     regionName: ${{ parameters.region }}
     scriptType: inline
     inlineScript: |
+      echo "[PEM] Adjusting binary permissions"
+      sudo chmod +x ./binaries/linux/terraform
+      sudo chmod +x ./binaries/linux/terragrunt
       echo "[PWD] Currently at $(eval pwd)"
       echo "[DIR] Structure of current directory -"
       tree
