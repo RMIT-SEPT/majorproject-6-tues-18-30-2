@@ -4,6 +4,9 @@ parameters:
 - name: region
   type: string
   default: ap-southeast-2
+- name: environment
+  type: string
+  default: development
 - name: terraformVersion
   type: string
   default: 0.13.3
@@ -54,3 +57,5 @@ steps:
         echo "[EXEC] $COMMAND"
         eval $COMMAND
       done
+    env:
+      TF_VAR_ENVIRONMENT: ${{ parameters.environment }}
