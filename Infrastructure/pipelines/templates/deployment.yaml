@@ -57,5 +57,5 @@ steps:
         echo "[EXEC] $COMMAND"
         eval $COMMAND
       done
-    env:
-      TF_VAR_ENVIRONMENT: ${{ parameters.environment }}
+  env:
+    TF_VAR_ENVIRONMENT: ${{ parameters.environment }}
