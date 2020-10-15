@@ -52,8 +52,8 @@ steps:
       DIRECTORY="${{ format('$(Build.SourcesDirectory)/Infrastructure/{0}', parameters.deployment) }}"
       echo "[NAV] Moving into $DIRECTORY"
       cd $DIRECTORY
-      for $TYPE in $(echo "init,${{ parameters.type }}" | sed "s/,/ /g"); do
-        COMMAND="terragrunt $TYPE --terragrunt-working-dir $DIRECTORY -no-color --terragrunt-non-interactive"
+      for METHOD in $(echo "init,${{ parameters.type }}" | sed "s/,/ /g"); do
+        COMMAND="terragrunt $METHOD --terragrunt-working-dir $DIRECTORY -no-color --terragrunt-non-interactive"
         echo "[EXEC] $COMMAND"
         eval $COMMAND
       done
