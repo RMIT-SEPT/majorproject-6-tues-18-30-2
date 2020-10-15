@@ -28,12 +28,14 @@ steps:
     wget ${{ format('https://releases.hashicorp.com/terraform/{0}/terraform_{0}_linux_amd64.zip', parameters.terraformVersion) }}
     unzip terraform*.zip
     sudo chmod +x terraform
+    sudo cp terraform $(Build.SourcesDirectory)/Infrastructure/binaries/linux
     sudo mv terraform /usr/local/bin
     terraform version
     # Terragrunt Installation
     wget ${{ format('https://github.com/gruntwork-io/terragrunt/releases/download/v{0}/terragrunt_linux_amd64', parameters.terragruntVersion) }}
     sudo mv terragrunt_linux_amd64 terragrunt
     sudo chmod +x terragrunt
+    sudo cp terragrunt $(Build.SourcesDirectory)/Infrastructure/binaries/linux
     sudo mv terragrunt /usr/local/bin
     terragrunt --version
   displayName: Install IaC Binaries
