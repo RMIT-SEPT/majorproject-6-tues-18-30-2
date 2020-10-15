@@ -6,7 +6,7 @@ import axios from 'axios';
  */
 
 export const putProfileUpdate = (userUpdate) => {
-      return axios.put(`/api/profile`,{
+      return axios.put(`/profile`,{
         department: userUpdate.department,
         country: userUpdate.country,
         organisation: userUpdate.organisation,
@@ -14,7 +14,7 @@ export const putProfileUpdate = (userUpdate) => {
         last_name: userUpdate.lastName
       },
     {
-      baseURL: process.env.PROFILE_APP_URL,
+      baseURL: 'k8s.sept.mladenov.me',
       headers:{
         'Authorization': 'Bearer '.concat(localStorage.getItem('access_token')),
         'Content-Type': 'application/json',

@@ -6,7 +6,7 @@ import axios from 'axios';
  */
 
 export const registerUser = (userDetails) => {
-    return axios.post(`/api/register`, {
+    return axios.post(`/register`, {
       
         "username": userDetails.username,
         "first_name": userDetails.firstName,
@@ -18,7 +18,7 @@ export const registerUser = (userDetails) => {
         "phone": userDetails.phone
       
     },{
-      baseURL: process.env.REGISTER_APP_URL,
+      baseURL: 'k8s.sept.mladenov.me',
       headers:{
         'Content-Type': 'application/json',
       }

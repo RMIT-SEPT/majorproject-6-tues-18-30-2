@@ -6,13 +6,13 @@ import axios from 'axios';
  */
 
 export const loginUser = (userDetails) => {
-    return axios.post(`/api/login`, {
+    return axios.post(`/login`, {
       
         "username": userDetails.username,
         "password": userDetails.password,
       
     },{
-      baseURL: process.env.LOGIN_APP_URL,
+      baseURL: 'k8s.sept.mladenov.me',
       headers:{
         'Content-Type': 'application/json',
       }
