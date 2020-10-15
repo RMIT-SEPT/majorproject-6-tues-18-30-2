@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import sept.rmit.booking.model.Booking;
+import sept.rmit.booking.repository.BookingRepository;
 import sept.rmit.booking.service.BookingService;
 
 import java.sql.Date;
@@ -17,6 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class BookingApplicationTests {
     @Autowired
     private BookingService service;
+
+    @Autowired
+    private BookingRepository repo;
 
     private String mockUser = "test@gmail.com";
     private String mockEmployee = "test1@gmail.com";
@@ -44,8 +48,9 @@ class BookingApplicationTests {
     void testExistTrue(){
         service.create( mockUser, mockEmployee, mockDate, mockTime, mockLong, mockStatus);
         assertTrue(service.isExist(mockUser, mockEmployee, mockDate, mockTime));
+        repo.deleteAll();
     }
-
+    
     @DisplayName("Booking Exist(False)")
     @Test
     void testExistFalse(){
