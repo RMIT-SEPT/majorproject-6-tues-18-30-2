@@ -57,7 +57,7 @@ steps:
         eval $COMMAND
       done
     workingDirectory: $(Build.SourcesDirectory)/Infrastructure
-  env:
-    TG_LOG: debug
-    TERRAGRUNT_DEBUG: true
-    TF_VAR_ENVIRONMENT: ${{ parameters.environment }}
+    env:
+      TG_LOG: debug
+      TERRAGRUNT_DEBUG: true
+      TF_VAR_ENVIRONMENT: ${{ parameters.environment }}
