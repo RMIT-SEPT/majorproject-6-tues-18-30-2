@@ -1,0 +1,24 @@
+parameters:
+- name: terraformVersion
+  type: string
+  default: 0.13.3
+- name: terragruntVersion
+  type: string
+  default: 0.15.0
+  
+steps:
+- script: |
+    # System Packages
+    sudo apt-get update
+    sudo apt-get install -y wget zip
+    # Terraform Installation
+    wget ${{ format('https://releases.hashicorp.com/terraform/{0}/terraform_{0}_linux_amd64.zip', parameters.terraformVersion) }}
+    unzip terraform*.zip
+    mv terraform /usr/local/bin
+    terraform version
+    # Terragrunt Installation
+    wget ${{ format('https://github.com/gruntwork-io/terragrunt/releases/download/v{0}/terragrunt_linux_amd64', parameters.terragruntVersion) }}
+    mv terrgrunt_linux_amd64 terragrunt
+    mv terragrunt /usr/local/bin
+    terragrunt version
+  displayName: Install IaC Binaries
