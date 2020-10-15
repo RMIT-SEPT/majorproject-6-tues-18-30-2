@@ -19,6 +19,6 @@ stages:
       lfs: false
     - template: ../templates/deployment.yaml
       parameters:
-        connection: TODO
+        connection: aws-mladenov
         deployment: core/dns
         type: plan
