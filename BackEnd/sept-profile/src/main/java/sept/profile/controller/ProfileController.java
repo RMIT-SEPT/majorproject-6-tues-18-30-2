@@ -23,7 +23,7 @@ public class ProfileController {
 	private UserService userService;
 
 	@CrossOrigin
-	@GetMapping("/profile")
+	@GetMapping("/me")
 	public ResponseEntity<User> getProfile(HttpServletRequest request) {
 		
 		String username = (String) request.getAttribute("logged_user");
@@ -34,7 +34,7 @@ public class ProfileController {
 	}
 	
 	@CrossOrigin
-	@PutMapping("/profile")
+	@PutMapping("/me")
 	public ResponseEntity<User> putProfile(HttpServletRequest request, @RequestBody User updatedUser) {
 		
 //		System.out.println(updatedUser.getDepartment());
