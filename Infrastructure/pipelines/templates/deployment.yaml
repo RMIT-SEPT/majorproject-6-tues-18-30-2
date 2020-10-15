@@ -47,7 +47,10 @@ steps:
     scriptType: inline
     inlineScript: |
       DIRECTORY="${{ format('$(Build.SourcesDirectory)/Infrastructure/{0}', parameters.deployment) }}"
+      echo "[NAV] Moving into $DIRECTORY"
       cd $DIRECTORY
-      COMMAND="${{ format('terragrunt {0} --terragrunt-working-dir $DIRECTORY -no-color --terragrunt-non-interactive', parameters.type) }}"
-      echo "[EXEC] $COMMAND"
-      eval $COMMAND
+      for $TYPE in $(echo "init,${{ parameters.type }}" | sed "s/,/ /g"); do
+        COMMAND="terragrunt $TYPE --terragrunt-working-dir $DIRECTORY -no-color --terragrunt-non-interactive"
+        echo "[EXEC] $COMMAND"
+        eval $COMMAND
+      done
