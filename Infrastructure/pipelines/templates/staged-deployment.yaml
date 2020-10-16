@@ -11,12 +11,11 @@ parameters:
   default: development
 - name: name
   type: string
-  default: ''
 - name: deployment
   type: string
 
 stages:
-- stage: ${{ parameters.environment }}Plan
+- stage: ${{ parameters.environment }}Plan${{ parameters.name }}
   displayName: Plan ${{ coalesce(parameters.name, parameters.deployment) }}
   dependsOn: ${{ parameters.dependency }}
   jobs:
@@ -37,7 +36,7 @@ stages:
               region: ${{ parameters.region }}
               deployment: ${{ parameters.deployment }}
               type: plan
-- stage: ${{ parameters.environment }}Apply
+- stage: ${{ parameters.environment }}Apply${{ parameters.name }}
   displayName: Apply ${{ coalesce(parameters.name, parameters.deployment) }}
   dependsOn: ${{ parameters.environment }}Plan
   jobs:
@@ -58,7 +57,7 @@ stages:
               region: ${{ parameters.region }}
               deployment: ${{ parameters.deployment }}
               type: apply
-- stage: ${{ parameters.environment }}Destroy
+- stage: ${{ parameters.environment }}Destroy${{ parameters.name }}
   displayName: Destroy ${{ coalesce(parameters.name, parameters.deployment) }}
   dependsOn: ${{ parameters.environment }}Apply
   jobs:
