@@ -1,5 +1,11 @@
 name: $(revision).$(date:yyyyMMdd).$(rev:r)
 
+parameters:
+- name: port
+  displayName: Application Port
+  type: string
+  default: 8080
+
 trigger:
   branches:
     include:
@@ -21,6 +27,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  app_port: ${{ parameters.port }}
   registryName: SEPT-Registry-Dashboard
   revision: 1
   source: $(Build.SourcesDirectory)/BackEnd/sept-dashboard
