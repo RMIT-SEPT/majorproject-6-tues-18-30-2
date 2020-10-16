@@ -1,5 +1,11 @@
 name: $(revision).$(date:yyyyMMdd).$(rev:r)
 
+parameters:
+- name: deployments
+  displayName: Deploy Infrastructure?
+  type: boolean
+  default: true
+
 trigger:
   branches:
     include:
@@ -41,6 +47,12 @@ stages:
       parameters:
         directory: $(source)
         failWithTests: false
-    - publish: $(source)/dist
-      artifact: website
-      displayName: Publish Website
+        buildForInfrastructure: ${{ parameters.deployments }}
+    - ${{ not(parameters.deployments) }}:
+      - publish: $(source)/dist
+        artifact: website
+        displayName: Publish Website
+    - ${{ parameters.deployments }}:
+      - publish: $(Build.SourcesDirectory)/Infrastructure
+        artifact: Infrastructure
+        displayName: Publish Infrastructure
