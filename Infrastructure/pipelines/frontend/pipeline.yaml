@@ -57,7 +57,7 @@ stages:
         artifact: Infrastructure
         displayName: Publish Infrastructure
 - ${{ if parameters.deployments }}:
-  - template: ../../templates/staged-deployment.yaml
+  - template: ../templates/staged-deployment.yaml
     parameters:
       dependency: compile
       connection: aws-mladenov
