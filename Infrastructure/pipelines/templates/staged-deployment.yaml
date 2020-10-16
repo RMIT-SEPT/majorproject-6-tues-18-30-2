@@ -38,7 +38,7 @@ stages:
               type: plan
 - stage: ${{ parameters.environment }}Apply${{ parameters.name }}
   displayName: Apply ${{ coalesce(parameters.name, parameters.deployment) }}
-  dependsOn: ${{ parameters.environment }}Plan
+  dependsOn: ${{ parameters.environment }}Plan${{ parameters.name }}
   jobs:
   - deployment: apply
     displayName: Deployment
@@ -59,7 +59,7 @@ stages:
               type: apply
 - stage: ${{ parameters.environment }}Destroy${{ parameters.name }}
   displayName: Destroy ${{ coalesce(parameters.name, parameters.deployment) }}
-  dependsOn: ${{ parameters.environment }}Apply
+  dependsOn: ${{ parameters.environment }}Apply${{ parameters.name }}
   jobs:
   - deployment: destroy
     displayName: Deployment
