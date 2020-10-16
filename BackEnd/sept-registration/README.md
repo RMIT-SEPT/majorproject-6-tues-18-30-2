@@ -33,17 +33,7 @@ Wait until the application started
 
 # Available API
 
-POST http://localhost:8080/api/login
-
-```
-{
-	"username": "johndoe@gmail.com",
-	"password": "123456"
-	
-}
-```
-
-POST http://localhost:8081/api/register
+POST http://localhost:8081/register
 
 ```
 {

@@ -6,9 +6,9 @@ import axios from 'axios';
  */
 
 export const getProfile = () => {
-    return axios.get(`/api/profile`,
+    return axios.get(`/me`,
     {
-      baseURL: 'http://localhost:8082/',
+      baseURL: 'http://k8s.sept.mladenov.me/api/profile',
       headers:{
         'Authorization': 'Bearer '.concat(localStorage.getItem('access_token')),
         'Content-Type': 'application/x-www-form-urlencoded',
