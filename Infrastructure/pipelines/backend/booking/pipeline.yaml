@@ -45,7 +45,7 @@ stages:
     steps:
     - checkout: self
       lfs: false
-    ${{ if not(parameters.skip) }}:
+    - ${{ if not(parameters.skip) }}:
       - template: ../../templates/aws-retrieve-secrets.yaml
         parameters:
           connection: aws-mladenov
