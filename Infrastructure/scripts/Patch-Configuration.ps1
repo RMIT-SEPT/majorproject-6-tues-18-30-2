@@ -40,10 +40,10 @@ Param(
   [ValidateNotNullOrEmpty()]
   [Alias("InfrastructureName")]
   [string] $ApplicationInfrastructureName,
-  [Parameter(Mandatory=$False, Position=1)]
+  [Parameter(Mandatory=$False)]
   [ValidateNotNullOrEmpty()]
   [string] $EnvironmentName = "development",
-  [Parameter(Mandatory, Position=2)]
+  [Parameter(Mandatory, Position=1)]
   [ValidateNotNullOrEmpty()]
   [Alias("Tag")]
   [string] $ImageTag
