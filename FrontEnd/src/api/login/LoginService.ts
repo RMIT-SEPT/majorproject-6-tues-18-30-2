@@ -12,7 +12,7 @@ export const loginUser = (userDetails) => {
         "password": userDetails.password,
       
     },{
-      baseURL: 'http://k8s.sept.mladenov.me',
+      baseURL: 'http://k8s.sept.mladenov.me/api/login',
       headers:{
         'Content-Type': 'application/json',
       }
