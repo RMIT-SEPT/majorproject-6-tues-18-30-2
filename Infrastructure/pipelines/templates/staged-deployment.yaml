@@ -1,0 +1,81 @@
+parameters:
+- name: dependency
+  type: string
+- name: connection
+  type: string
+- name: region
+  type: string
+  default: ap-southeast-2
+- name: environment
+  type: string
+  default: development
+- name: name
+  type: string
+  default: ''
+- name: deployment
+  type: string
+
+stages:
+- stage: ${{ parameters.environment }}Plan
+  displayName: Plan ${{ coalesce(parameters.name, parameters.deployment) }}
+  dependsOn: ${{ parameters.dependency }}
+  jobs:
+  - deployment: plan
+    displayName: Deployment
+    continueOnError: false
+    environment: core-infrastructure
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: Infrastructure
+            displayName: Download Infrastructure
+          - template: ../templates/deployment.yaml
+            parameters:
+              connection: ${{ parameters.connection }}
+              region: ${{ parameters.region }}
+              deployment: ${{ parameters.deployment }}
+              type: plan
+- stage: ${{ parameters.environment }}Apply
+  displayName: Apply ${{ coalesce(parameters.name, parameters.deployment) }}
+  dependsOn: ${{ parameters.environment }}Plan
+  jobs:
+  - deployment: apply
+    displayName: Deployment
+    continueOnError: false
+    environment: core-infrastructure
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: Infrastructure
+            displayName: Download Infrastructure
+          - template: ../templates/deployment.yaml
+            parameters:
+              connection: ${{ parameters.connection }}
+              region: ${{ parameters.region }}
+              deployment: ${{ parameters.deployment }}
+              type: apply
+- stage: ${{ parameters.environment }}Destroy
+  displayName: Destroy ${{ coalesce(parameters.name, parameters.deployment) }}
+  dependsOn: ${{ parameters.environment }}Apply
+  jobs:
+  - deployment: destroy
+    displayName: Deployment
+    continueOnError: false
+    environment: core-infrastructure
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: Infrastructure
+            displayName: Download Infrastructure
+          - template: ../templates/deployment.yaml
+            parameters:
+              connection: ${{ parameters.connection }}
+              region: ${{ parameters.region }}
+              deployment: ${{ parameters.deployment }}
+              type: destroy
