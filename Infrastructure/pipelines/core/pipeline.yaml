@@ -30,5 +30,5 @@ stages:
   parameters:
     dependency: compile
     connection: aws-mladenov
-    name: DNS
+    name: Orchestration
     deployment: core/orchestration
