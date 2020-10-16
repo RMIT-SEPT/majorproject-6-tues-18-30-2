@@ -36,6 +36,7 @@ stages:
               region: ${{ parameters.region }}
               deployment: ${{ parameters.deployment }}
               type: plan
+              directory: $(Pipeline.Workspace)/Infrastructure
 - stage: ${{ parameters.environment }}Apply${{ parameters.name }}
   displayName: Apply ${{ coalesce(parameters.name, parameters.deployment) }}
   dependsOn: ${{ parameters.environment }}Plan${{ parameters.name }}
