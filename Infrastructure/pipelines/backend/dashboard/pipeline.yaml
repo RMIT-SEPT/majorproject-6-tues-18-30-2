@@ -31,6 +31,7 @@ variables:
   registryName: SEPT-Registry-Dashboard
   revision: 1
   source: $(Build.SourcesDirectory)/BackEnd/sept-dashboard
+  store: booking-api
 
 stages:
 - stage: compile
@@ -41,6 +42,15 @@ stages:
     steps:
     - checkout: self
       lfs: false
+    - template: ../../templates/aws-retrieve-secrets.yaml
+      parameters:
+        connection: aws-mladenov
+        secretStore: $(store)
+        secrets:
+        - database-endpoint:DATABASE_URL
+        - database-username:DATABASE_USER
+        - database-password:DATABASE_PASSWORD
+        - database-driver:DATABASE_DRIVER
     - template: ../../templates/java-build.yaml
       parameters:
         directory: $(source)
