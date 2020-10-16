@@ -6,7 +6,7 @@ import axios from 'axios';
  */
 
 export const addBooking = bookingDetails => {
-  return axios.post('http://k8s.sept.mladenov.me/api/booking', {
+  return axios.post('http://k8s.sept.mladenov.me/api/booking/add', {
     customerId: bookingDetails.customerId,
     employeeId: bookingDetails.employeeId,
     bookingDate: bookingDetails.bookingDate,
