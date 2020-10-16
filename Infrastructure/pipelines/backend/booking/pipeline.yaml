@@ -71,7 +71,7 @@ stages:
           filePath: $(Build.SourcesDirectory)/Infrastructure/scripts/Patch-Configuration.ps1
           arguments: |
             -ApplicationInfrastructureName booking
-            -ImageTag $(Build.BuildNumber)
+            -ImageTag "$(Build.BuildNumber)"
           pwsh: true
     - publish: $(Build.SourcesDirectory)/Infrastructure
       artifact: Infrastructure
