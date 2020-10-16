@@ -67,6 +67,4 @@ steps:
     disableAutoCwd: true
     workingDirectory: ${{ format('{0}/{1}', parameters.directory, parameters.deployment) }}
   env:
-    TG_LOG: debug
-    TERRAGRUNT_DEBUG: true
     TF_VAR_ENVIRONMENT: ${{ parameters.environment }}
