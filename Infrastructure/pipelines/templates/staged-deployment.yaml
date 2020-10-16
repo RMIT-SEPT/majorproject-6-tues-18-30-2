@@ -57,6 +57,7 @@ stages:
               region: ${{ parameters.region }}
               deployment: ${{ parameters.deployment }}
               type: apply
+              directory: $(Pipeline.Workspace)/Infrastructure
 - stage: ${{ parameters.environment }}Destroy${{ parameters.name }}
   displayName: Destroy ${{ coalesce(parameters.name, parameters.deployment) }}
   dependsOn: ${{ parameters.environment }}Apply${{ parameters.name }}
@@ -78,3 +79,4 @@ stages:
               region: ${{ parameters.region }}
               deployment: ${{ parameters.deployment }}
               type: destroy
+              directory: $(Pipeline.Workspace)/Infrastructure
