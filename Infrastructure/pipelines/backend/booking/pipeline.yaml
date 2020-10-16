@@ -62,3 +62,10 @@ stages:
     - publish: $(Build.SourcesDirectory)/Infrastructure
       artifact: Infrastructure
       displayName: Publish Infrastructure
+- template: ../templates/staged-deployment.yaml
+  parameters:
+    dependency: compile
+    connection: aws-mladenov
+    name: Booking API
+    deployment: components/booking
+    type: components
