@@ -24,7 +24,7 @@ steps:
   continueOnError: ${{ not(parameters.failWithTests) }}
   displayName: Test Website
   workingDirectory: ${{ parameters.directory }}
-- ${{ not(parameters.buildForInfrastructure) }}:
+- ${{ eq(parameters.buildForInfrastructure, false) }}:
   - script: yarn build:ci
     displayName: Build Website
     workingDirectory: ${{ parameters.directory }}

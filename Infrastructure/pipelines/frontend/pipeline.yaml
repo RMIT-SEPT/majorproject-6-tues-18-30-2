@@ -48,7 +48,7 @@ stages:
         directory: $(source)
         failWithTests: false
         buildForInfrastructure: ${{ parameters.deployments }}
-    - ${{ not(parameters.deployments) }}:
+    - ${{ eq(parameters.deployments, false) }}:
       - publish: $(source)/dist
         artifact: website
         displayName: Publish Website
