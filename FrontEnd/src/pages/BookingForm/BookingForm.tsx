@@ -15,7 +15,7 @@ export const BookingForm: React.FC = () => {
   const closingHours = () => [0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 23, 24];
 
   const onValidSubmission = values => {
-    const UPCOMING_STATUS = 0;
+    const UPCOMING_STATUS = 1;
 
     const newBooking = {
       customerId: values.username,
