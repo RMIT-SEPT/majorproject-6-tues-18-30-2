@@ -62,3 +62,6 @@ stages:
         repository: sept/profile
         tag: $(Build.BuildNumber)
         arguments: '--build-arg JAR_FILE=target/*.jar'
+    - publish: $(Build.SourcesDirectory)/Infrastructure
+      artifact: Infrastructure
+      displayName: Publish Infrastructure
