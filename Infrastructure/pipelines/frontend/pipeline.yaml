@@ -56,3 +56,11 @@ stages:
       - publish: $(Build.SourcesDirectory)/Infrastructure
         artifact: Infrastructure
         displayName: Publish Infrastructure
+- ${{ parameters.deployments }}:
+  - template: ../../templates/staged-deployment.yaml
+    parameters:
+      dependency: compile
+      connection: aws-mladenov
+      name: Website
+      deployment: components/website
+      type: components
