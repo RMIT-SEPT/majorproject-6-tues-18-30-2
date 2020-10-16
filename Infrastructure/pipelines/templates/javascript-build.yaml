@@ -28,7 +28,7 @@ steps:
   - script: yarn build:ci
     displayName: Build Website
     workingDirectory: ${{ parameters.directory }}
-- ${{ parameters.buildForInfrastructure }}:
+- ${{ eq(parameters.buildForInfrastructure, true) }}:
   - task: PowerShell@2
     displayName: Build Website
     inputs:

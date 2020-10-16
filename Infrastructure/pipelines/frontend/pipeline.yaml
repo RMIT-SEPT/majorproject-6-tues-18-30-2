@@ -52,11 +52,11 @@ stages:
       - publish: $(source)/dist
         artifact: website
         displayName: Publish Website
-    - ${{ parameters.deployments }}:
+    - ${{ eq(parameters.deployments, true) }}:
       - publish: $(Build.SourcesDirectory)/Infrastructure
         artifact: Infrastructure
         displayName: Publish Infrastructure
-- ${{ parameters.deployments }}:
+- ${{ eq(parameters.deployments, true) }}:
   - template: ../../templates/staged-deployment.yaml
     parameters:
       dependency: compile
