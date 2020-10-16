@@ -21,7 +21,7 @@ parameters:
   - infrastructure
 
 stages:
-- stage: ${{ parameters.environment }}Plan${{ parameters.name }}
+- stage: ${{ parameters.environment }}Plan${{ replace(parameters.name, ' ', '') }}
   displayName: Plan ${{ coalesce(parameters.name, parameters.deployment) }}
   dependsOn: ${{ parameters.dependency }}
   jobs:
@@ -43,9 +43,9 @@ stages:
               deployment: ${{ parameters.deployment }}
               type: plan
               directory: $(Pipeline.Workspace)/Infrastructure
-- stage: ${{ parameters.environment }}Apply${{ parameters.name }}
+- stage: ${{ parameters.environment }}Apply${{ replace(parameters.name, ' ', '') }}
   displayName: Apply ${{ coalesce(parameters.name, parameters.deployment) }}
-  dependsOn: ${{ parameters.environment }}Plan${{ parameters.name }}
+  dependsOn: ${{ parameters.environment }}Plan${{ replace(parameters.name, ' ', '') }}
   jobs:
   - deployment: apply
     displayName: Deployment
@@ -65,9 +65,9 @@ stages:
               deployment: ${{ parameters.deployment }}
               type: apply
               directory: $(Pipeline.Workspace)/Infrastructure
-- stage: ${{ parameters.environment }}Destroy${{ parameters.name }}
+- stage: ${{ parameters.environment }}Destroy${{ replace(parameters.name, ' ', '') }}
   displayName: Destroy ${{ coalesce(parameters.name, parameters.deployment) }}
-  dependsOn: ${{ parameters.environment }}Apply${{ parameters.name }}
+  dependsOn: ${{ parameters.environment }}Apply${{ replace(parameters.name, ' ', '') }}
   jobs:
   - deployment: destroy
     displayName: Deployment
