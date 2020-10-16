@@ -23,7 +23,7 @@ stages:
   - deployment: plan
     displayName: Deployment
     continueOnError: false
-    environment: core-infrastructure
+    environment: core-infrastructure-plan
     strategy:
       runOnce:
         deploy:
@@ -44,7 +44,7 @@ stages:
   - deployment: apply
     displayName: Deployment
     continueOnError: false
-    environment: core-infrastructure
+    environment: core-infrastructure-apply
     strategy:
       runOnce:
         deploy:
@@ -65,7 +65,7 @@ stages:
   - deployment: destroy
     displayName: Deployment
     continueOnError: false
-    environment: core-infrastructure
+    environment: core-infrastructure-destroy
     strategy:
       runOnce:
         deploy:
