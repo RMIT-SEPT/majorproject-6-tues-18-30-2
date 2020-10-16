@@ -35,6 +35,7 @@ variables:
   registryName: SEPT-Registry-Profile
   revision: 1
   source: $(Build.SourcesDirectory)/BackEnd/sept-profile
+  store: authentication-api
 
 stages:
 - stage: compile
