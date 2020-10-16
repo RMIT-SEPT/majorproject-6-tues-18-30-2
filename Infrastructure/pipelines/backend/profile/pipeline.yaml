@@ -5,6 +5,10 @@ parameters:
   displayName: Application Port
   type: string
   default: 8082
+- name: skip
+  displayName: Skip Build
+  type: boolean
+  default: false
 
 trigger:
   branches:
@@ -41,27 +45,28 @@ stages:
     steps:
     - checkout: self
       lfs: false
-    - template: ../../templates/aws-retrieve-secrets.yaml
-      parameters:
-        connection: aws-mladenov
-        secretStore: $(store)
-        secrets:
-        - database-endpoint:DATABASE_URL
-        - database-username:DATABASE_USER
-        - database-password:DATABASE_PASSWORD
-        - database-driver:DATABASE_DRIVER
-        - jwt:JWT_SECRET
-        showResults: true
-    - template: ../../templates/java-build.yaml
-      parameters:
-        directory: $(source)
-    - template: ../../templates/container-build-push.yaml
-      parameters:
-        directory: $(source)
-        registry: $(registryName)
-        repository: sept/profile
-        tag: $(Build.BuildNumber)
-        arguments: '--build-arg JAR_FILE=target/*.jar'
+    - ${{ if not(parameters.skip) }}:
+      - template: ../../templates/aws-retrieve-secrets.yaml
+        parameters:
+          connection: aws-mladenov
+          secretStore: $(store)
+          secrets:
+          - database-endpoint:DATABASE_URL
+          - database-username:DATABASE_USER
+          - database-password:DATABASE_PASSWORD
+          - database-driver:DATABASE_DRIVER
+          - jwt:JWT_SECRET
+          showResults: true
+      - template: ../../templates/java-build.yaml
+        parameters:
+          directory: $(source)
+      - template: ../../templates/container-build-push.yaml
+        parameters:
+          directory: $(source)
+          registry: $(registryName)
+          repository: sept/profile
+          tag: $(Build.BuildNumber)
+          arguments: '--build-arg JAR_FILE=target/*.jar'
     - publish: $(Build.SourcesDirectory)/Infrastructure
       artifact: Infrastructure
       displayName: Publish Infrastructure
