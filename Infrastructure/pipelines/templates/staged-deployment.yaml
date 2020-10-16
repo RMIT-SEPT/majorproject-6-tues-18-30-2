@@ -13,6 +13,12 @@ parameters:
   type: string
 - name: deployment
   type: string
+- name: type
+  type: string
+  default: infrastructure
+  values:
+  - components
+  - infrastructure
 
 stages:
 - stage: ${{ parameters.environment }}Plan${{ parameters.name }}
@@ -22,7 +28,7 @@ stages:
   - deployment: plan
     displayName: Deployment
     continueOnError: false
-    environment: core-infrastructure-plan
+    environment: core-${{ parameters.type }}-plan
     strategy:
       runOnce:
         deploy:
@@ -44,7 +50,7 @@ stages:
   - deployment: apply
     displayName: Deployment
     continueOnError: false
-    environment: core-infrastructure-apply
+    environment: core-${{ parameters.type }}-apply
     strategy:
       runOnce:
         deploy:
@@ -66,7 +72,7 @@ stages:
   - deployment: destroy
     displayName: Deployment
     continueOnError: false
-    environment: core-infrastructure-destroy
+    environment: core-${{ parameters.type }}-destroy
     strategy:
       runOnce:
         deploy:
