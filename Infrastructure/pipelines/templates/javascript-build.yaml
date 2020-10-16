@@ -7,6 +7,9 @@ parameters:
 - name: failWithTests
   type: boolean
   default: true
+- name: buildForInfrastructure
+  type: boolean
+  default: false
 
 steps:
 - task: NodeTool@0
@@ -21,9 +24,17 @@ steps:
   continueOnError: ${{ not(parameters.failWithTests) }}
   displayName: Test Website
   workingDirectory: ${{ parameters.directory }}
-- script: yarn build:ci
-  displayName: Build Website
-  workingDirectory: ${{ parameters.directory }}
+- ${{ not(parameters.buildForInfrastructure) }}:
+  - script: yarn build:ci
+    displayName: Build Website
+    workingDirectory: ${{ parameters.directory }}
+- ${{ parameters.buildForInfrastructure }}:
+  - task: PowerShell@2
+    displayName: Build Website
+    inputs:
+      targetType: filePath
+      filePath: ${{ parameters.directory }}/../Infrastructure/scripts/Publish-Website.ps1
+      pwsh: true
 - task: PublishTestResults@2
   condition: ${{ parameters.runTests }}
   displayName: Publish Test Results
