@@ -59,3 +59,6 @@ stages:
         registry: $(registryName)
         repository: sept/booking
         tag: $(Build.BuildNumber)
+    - publish: $(Build.SourcesDirectory)/Infrastructure
+      artifact: Infrastructure
+      displayName: Publish Infrastructure
