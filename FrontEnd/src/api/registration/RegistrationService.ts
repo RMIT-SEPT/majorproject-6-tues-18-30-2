@@ -18,7 +18,7 @@ export const registerUser = (userDetails) => {
         "phone": userDetails.phone
       
     },{
-      baseURL: 'http://k8s.sept.mladenov.me/api/register',
+      baseURL: 'http://k8s.sept.mladenov.me/api/registration',
       headers:{
         'Content-Type': 'application/json',
       }
