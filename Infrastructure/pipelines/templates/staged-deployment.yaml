@@ -1,0 +1,83 @@
+parameters:
+- name: dependency
+  type: string
+- name: connection
+  type: string
+- name: region
+  type: string
+  default: ap-southeast-2
+- name: environment
+  type: string
+  default: development
+- name: name
+  type: string
+- name: deployment
+  type: string
+
+stages:
+- stage: ${{ parameters.environment }}Plan${{ parameters.name }}
+  displayName: Plan ${{ coalesce(parameters.name, parameters.deployment) }}
+  dependsOn: ${{ parameters.dependency }}
+  jobs:
+  - deployment: plan
+    displayName: Deployment
+    continueOnError: false
+    environment: core-infrastructure-plan
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: Infrastructure
+            displayName: Download Infrastructure
+          - template: ../templates/deployment.yaml
+            parameters:
+              connection: ${{ parameters.connection }}
+              region: ${{ parameters.region }}
+              deployment: ${{ parameters.deployment }}
+              type: plan
+              directory: $(Pipeline.Workspace)/Infrastructure
+- stage: ${{ parameters.environment }}Apply${{ parameters.name }}
+  displayName: Apply ${{ coalesce(parameters.name, parameters.deployment) }}
+  dependsOn: ${{ parameters.environment }}Plan${{ parameters.name }}
+  jobs:
+  - deployment: apply
+    displayName: Deployment
+    continueOnError: false
+    environment: core-infrastructure-apply
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: Infrastructure
+            displayName: Download Infrastructure
+          - template: ../templates/deployment.yaml
+            parameters:
+              connection: ${{ parameters.connection }}
+              region: ${{ parameters.region }}
+              deployment: ${{ parameters.deployment }}
+              type: apply
+              directory: $(Pipeline.Workspace)/Infrastructure
+- stage: ${{ parameters.environment }}Destroy${{ parameters.name }}
+  displayName: Destroy ${{ coalesce(parameters.name, parameters.deployment) }}
+  dependsOn: ${{ parameters.environment }}Apply${{ parameters.name }}
+  jobs:
+  - deployment: destroy
+    displayName: Deployment
+    continueOnError: false
+    environment: core-infrastructure-destroy
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: Infrastructure
+            displayName: Download Infrastructure
+          - template: ../templates/deployment.yaml
+            parameters:
+              connection: ${{ parameters.connection }}
+              region: ${{ parameters.region }}
+              deployment: ${{ parameters.deployment }}
+              type: destroy
+              directory: $(Pipeline.Workspace)/Infrastructure
