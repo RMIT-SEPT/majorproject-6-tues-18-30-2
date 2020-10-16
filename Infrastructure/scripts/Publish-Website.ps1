@@ -37,7 +37,7 @@ Param(
   [ValidateNotNullOrEmpty()]
   [Alias("InfrastructureName")]
   [string] $ApplicationInfrastructureName = "website",
-  [Parameter(Mandatory=$False, Position=2)]
+  [Parameter(Mandatory=$False, Position=1)]
   [ValidateNotNullOrEmpty()]
   [Alias("ArtifactName")]
   [string] $ApplicationArtifactName = "distributable"
