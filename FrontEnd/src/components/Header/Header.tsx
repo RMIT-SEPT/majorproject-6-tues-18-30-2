@@ -33,9 +33,14 @@ export const Header: React.FC<ComponentProps> = ({ logoHidden, children}) => {
           user === null
           ? null
           : (
-            <MenuItem key="/dashboard" route="/dashboard">
-              DASHBOARD
-            </MenuItem>
+            <div>
+              <MenuItem key="/dashboard" route="/dashboard">
+                DASHBOARD
+              </MenuItem>
+              <MenuItem key="/booking-form" route="/booking-form">
+                MAKE A BOOKING
+              </MenuItem>
+            </div>
           )
         }
       </Menu>
