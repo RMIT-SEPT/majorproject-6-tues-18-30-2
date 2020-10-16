@@ -48,15 +48,15 @@ stages:
         directory: $(source)
         failWithTests: false
         buildForInfrastructure: ${{ parameters.deployments }}
-    - ${{ eq(parameters.deployments, false) }}:
+    - ${{ if not(parameters.deployments) }}:
       - publish: $(source)/dist
         artifact: website
         displayName: Publish Website
-    - ${{ eq(parameters.deployments, true) }}:
+    - ${{ if parameters.deployments }}:
       - publish: $(Build.SourcesDirectory)/Infrastructure
         artifact: Infrastructure
         displayName: Publish Infrastructure
-- ${{ eq(parameters.deployments, true) }}:
+- ${{ if parameters.deployments }}:
   - template: ../../templates/staged-deployment.yaml
     parameters:
       dependency: compile

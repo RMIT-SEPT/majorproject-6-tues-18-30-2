@@ -24,11 +24,11 @@ steps:
   continueOnError: ${{ not(parameters.failWithTests) }}
   displayName: Test Website
   workingDirectory: ${{ parameters.directory }}
-- ${{ eq(parameters.buildForInfrastructure, false) }}:
+- ${{ if not(parameters.buildForInfrastructure) }}:
   - script: yarn build:ci
     displayName: Build Website
     workingDirectory: ${{ parameters.directory }}
-- ${{ eq(parameters.buildForInfrastructure, true) }}:
+- ${{ if parameters.buildForInfrastructure }}:
   - task: PowerShell@2
     displayName: Build Website
     inputs:
