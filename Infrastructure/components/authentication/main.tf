@@ -34,7 +34,7 @@ module "application" {
 
   ingress = {
     hostname = var.application_fqdn
-    path     = "/api/authentication/"
+    path     = "/api/authentication"
   }
 
   ports = {
