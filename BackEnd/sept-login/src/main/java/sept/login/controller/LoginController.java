@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,8 @@ import sept.login.model.response.LoginResponse;
 import sept.login.service.UserService;
 
 @RestController
+@RequestMapping("/api/authentication")
+@CrossOrigin(origins = "*")
 public class LoginController {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(LoginController.class);

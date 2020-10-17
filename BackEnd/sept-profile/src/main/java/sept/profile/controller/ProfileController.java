@@ -17,6 +17,8 @@ import sept.profile.model.User;
 import sept.profile.service.UserService;
 
 @RestController
+@RequestMapping("/api/profile")
+@CrossOrigin(origins = "*")
 public class ProfileController {
 
 	@Autowired
