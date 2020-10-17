@@ -65,6 +65,15 @@ stages:
           registry: $(registryName)
           repository: sept/dashboard
           tag: $(Build.BuildNumber)
+      - task: PowerShell@2
+        displayName: Update Deployment Configuration
+        inputs:
+          targetType: filePath
+          filePath: $(Build.SourcesDirectory)/Infrastructure/scripts/Patch-Configuration.ps1
+          arguments: >
+            -ApplicationInfrastructureName dashboard
+            -ImageTag $(Build.BuildNumber)
+          pwsh: true
     - publish: $(Build.SourcesDirectory)/Infrastructure
       artifact: Infrastructure
       displayName: Publish Infrastructure
