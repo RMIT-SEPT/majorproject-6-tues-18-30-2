@@ -6,7 +6,7 @@ import axios from 'axios';
  */
 
 export const loginUser = (userDetails) => {
-    return axios.post(`/api/authentication/login`, {
+    return axios.post(`api/authentication/login`, {
       
         "username": userDetails.username,
         "password": userDetails.password,

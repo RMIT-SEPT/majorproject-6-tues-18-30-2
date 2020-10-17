@@ -21,7 +21,6 @@ module "application" {
   namespace  = var.kubernetes_namespace
   container  = var.application_container
   replicas   = 3
-  strip_path = true
 
   environment_variables = {
     "APP_PORT"          = "8082"
