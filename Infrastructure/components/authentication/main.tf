@@ -21,7 +21,6 @@ module "application" {
   namespace = var.kubernetes_namespace
   container = var.application_container
   replicas  = 3
-  strip_path = true
 
   environment_variables = {
     "APP_PORT"          = "8080"
@@ -34,7 +33,7 @@ module "application" {
 
   ingress = {
     hostname = var.application_fqdn
-    path     = "/api/authentication/"
+    path     = "/api/authentication"
   }
 
   ports = {
