@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useLayoutEffect, useState } from 'react';
 import { FullWidthLayout } from '../../layouts';
 import {
   Row,
@@ -24,6 +24,8 @@ import {
   BookOutlined
 } from '@ant-design/icons';
 import { UserContext } from '../../contexts';
+import { getProfile } from '../../api/profile';
+import { putProfileUpdate } from '../../api/profile';
 
 /**
  * Profile Page
@@ -32,13 +34,13 @@ export const Profile: React.FC = () => {
   const { Meta } = Card;
   const { user, setUser } = useContext(UserContext);
   const [profileData, setProfileData] = useState({
-    firstName: user?.firstName ?? "Nick",
-    lastName: user?.lastName ?? "Mladenov",
-    description: "This is a short description of the users profile.",
-    organisation: "RMIT",
-    department: "Information Technology",
-    role: "Administrator",
-    country: "Australia"
+    firstName: user?.firstName ?? "",
+    lastName: user?.lastName ?? "",
+    //description: "This is a short description of the users profile.",
+    organisation: user?.organisation ?? "",
+    department: user?.department ?? "",
+    role: user?.role?.name ?? "",
+    country: user?.country ?? ""
   });
   const [profileVisibility, setProfileVisibility] = useState(true);
   const toggleProfileVisibility = () => setProfileVisibility(!profileVisibility);
@@ -47,31 +49,69 @@ export const Profile: React.FC = () => {
   const [form] = Form.useForm();
   const onValidSubmission = values => {
     // TODO: Submit Profile & Validate Response
-    setUser({
-      username: user?.username,
-      firstName: values.firstName,
-      lastName: values.lastName,
-      password: values.password,
-      streetNo: "test",
-      streetName: "test",
-      postcode: "test",
-      phone: "test",
-      role: {
-        id: 1,
-        name: "test",
-      }
+    console.log(values);
+    putProfileUpdate(values).then(function(response){
+      console.log(response)
+      var user=response.data
+      setUser({
+        username: user.username,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        password: null,
+        streetNo: user.street_no,
+        streetName: user.street_name,
+        postcode: user.postcode,
+        phone: user.phone,
+        department: user.department,
+        organisation: user.organisation,
+        country: user.country,
+        role: user.role
+      });
+      setProfileData({
+        firstName: user.first_name,
+        lastName: user.last_name,
+        //description: values.description,
+        organisation: user.organisation,
+        department: user.department,
+        role: user?.role?.name,
+        country: user.country
+      });
+      toggleEditProfile();
+    }).catch(function(error){
+      console.log(error);
+      //window.alert(error.response.data.message);
     })
-    setProfileData({
-      firstName: values.firstName,
-      lastName: values.lastName,
-      description: values.description,
-      organisation: values.organisation,
-      department: values.department,
-      role: values.role,
-      country: values.country
-    });
-    toggleEditProfile();
   };
+
+  useLayoutEffect(() => {
+    let isMounted=true;
+
+    const loadProfile = async () => {
+      getProfile().then(response => {
+        var user=response.data
+        if (isMounted){
+          setUser({
+            username: user.username,
+            firstName: user.first_name,
+            lastName: user.last_name,
+            password: null,
+            streetNo: user.street_no,
+            streetName: user.street_name,
+            postcode: user.postcode,
+            phone: user.phone,
+            department: user.department,
+            organisation: user.organisation,
+            country: user.country,
+            role: user.role
+          })
+        }
+      }) 
+    };
+    loadProfile();
+    return () => { 
+      isMounted=false;
+    }
+  }, []);
 
   return (
     <FullWidthLayout>
@@ -91,7 +131,7 @@ export const Profile: React.FC = () => {
               <Meta
                 avatar={<Avatar size={64} icon={<UserOutlined />} />}
                 title={`${profileData.firstName} ${profileData.lastName}`}
-                description={profileData.description}
+                description=""
               />
             </Card>
           </Row>
@@ -179,14 +219,6 @@ export const Profile: React.FC = () => {
                   />
                 </Form.Item>
                 <Form.Item
-                  name="description"
-                  label="Description"
-                >
-                  <Input
-                    placeholder="Enter a description."
-                  />
-                </Form.Item>
-                <Form.Item
                   name="organisation"
                   label="Organisation"
                 >
@@ -200,14 +232,6 @@ export const Profile: React.FC = () => {
                 >
                   <Input
                     placeholder="Enter your department."
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="role"
-                  label="Role"
-                >
-                  <Input
-                    placeholder="Enter your role."
                   />
                 </Form.Item>
                 <Form.Item

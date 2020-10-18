@@ -1,0 +1,38 @@
+parameters:
+- name: directory
+  type: string
+  default: '**'
+- name: registry
+  type: string
+- name: repository
+  type: string
+- name: tag
+  type: string
+- name: arguments
+  type: string
+  default: ''
+    
+steps:
+- task: Docker@2
+  displayName: Login Container Registry
+  inputs:
+    command: login
+    containerRegistry: ${{ parameters.registry }}
+- task: Docker@2
+  displayName: Build Container
+  inputs:
+    command: build
+    containerRegistry: ${{ parameters.registry }}
+    repository: ${{ parameters.repository }}
+    tags: ${{ parameters.tag }}
+    ${{ if ne(parameters.arguments, '') }}:
+      arguments: ${{ parameters.arguments }}
+    dockerfile: ${{ format('{0}/Dockerfile', parameters.directory) }}
+- task: Docker@2
+  displayName: Push Container
+  inputs:
+    command: push
+    containerRegistry: ${{ parameters.registry }}
+    repository: ${{ parameters.repository }}
+    tags: ${{ parameters.tag }}
+    dockerfile: ${{ format('{0}/Dockerfile', parameters.directory) }}

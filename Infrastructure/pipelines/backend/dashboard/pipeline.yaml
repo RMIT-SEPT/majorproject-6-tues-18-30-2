@@ -1,0 +1,86 @@
+name: $(revision).$(date:yyyyMMdd).$(rev:r)
+
+parameters:
+- name: port
+  displayName: Application Port
+  type: string
+  default: 8080
+- name: skip
+  displayName: Skip Build
+  type: boolean
+  default: false
+
+trigger:
+  branches:
+    include:
+    - master
+    - development
+  paths:
+    include:
+    - BackEnd/sept-dashboard/**
+    - Infrastructure/pipelines/backend/dashboard/**
+    - Infrastructure/pipelines/templates/java-build.yaml
+    exclude:
+    - FrontEnd/**
+    - docs/**
+    - Infrastructure/binaries/**
+    - Infrastructure/binaries/**
+    - README.md
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  app_port: ${{ parameters.port }}
+  registryName: SEPT-Registry-Dashboard
+  revision: 1
+  source: $(Build.SourcesDirectory)/BackEnd/sept-dashboard
+  store: booking-api
+
+stages:
+- stage: compile
+  displayName: Build & Test
+  jobs:
+  - job: build
+    displayName: Procedure
+    steps:
+    - checkout: self
+      lfs: false
+    - ${{ if not(parameters.skip) }}:
+      - template: ../../templates/aws-retrieve-secrets.yaml
+        parameters:
+          connection: aws-mladenov
+          secretStore: $(store)
+          secrets:
+          - database-endpoint:DATABASE_URL
+          - database-username:DATABASE_USER
+          - database-password:DATABASE_PASSWORD
+          - database-driver:DATABASE_DRIVER
+      - template: ../../templates/java-build.yaml
+        parameters:
+          directory: $(source)
+      - template: ../../templates/container-build-push.yaml
+        parameters:
+          directory: $(source)
+          registry: $(registryName)
+          repository: sept/dashboard
+          tag: $(Build.BuildNumber)
+      - task: PowerShell@2
+        displayName: Update Deployment Configuration
+        inputs:
+          targetType: filePath
+          filePath: $(Build.SourcesDirectory)/Infrastructure/scripts/Patch-Configuration.ps1
+          arguments: >
+            -ApplicationInfrastructureName dashboard
+            -ImageTag $(Build.BuildNumber)
+          pwsh: true
+    - publish: $(Build.SourcesDirectory)/Infrastructure
+      artifact: Infrastructure
+      displayName: Publish Infrastructure
+- template: ../../templates/staged-deployment.yaml
+  parameters:
+    dependency: compile
+    connection: aws-mladenov
+    name: Dashboard API
+    deployment: components/dashboard
+    type: components

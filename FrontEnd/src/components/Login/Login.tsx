@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import { Form, Input, Button } from 'antd';
 import { UserContext } from '../../contexts';
+import { loginUser } from '../../api/login';
+import { getProfile } from '../../api/profile';
+import { navigate } from '@reach/router';
 
 /**
  * Login Properties
@@ -13,22 +16,49 @@ export interface ComponentProps {};
 export const Login: React.FC<ComponentProps> = () => {
   const { setUser } = useContext(UserContext);
   const [form] = Form.useForm();
+  const goToDashboard = () => {
+    navigate('/dashboard')
+  }
   const onValidSubmission = values => {
     // TODO: Submit Login & Validate Response
-    setUser({
+
+    console.log(values);
+    var userDetails = {
       username: values.username,
-      firstName: "Nick",
-      lastName: "Mladenov",
       password: values.password,
-      streetNo: "test",
-      streetName: "test",
-      postcode: "test",
-      phone: "test",
-      role: {
-        id: 1,
-        name: "test",
-      }
-    });
+    };
+
+    loginUser (userDetails).then(function(response){
+      console.log(response);
+      localStorage.setItem('access_token', response.data.accessToken);
+      console.log(localStorage.getItem('access_token'));
+      //TODO set user
+      getProfile ().then(function(response){
+        console.log(response)
+        var user=response.data
+        setUser({
+          username: user.username,
+          firstName: user.first_name,
+          lastName: user.last_name,
+          password: null,
+          streetNo: user.street_no,
+          streetName: user.street_name,
+          postcode: user.postcode,
+          phone: user.phone,
+          department: user.department,
+          organisation: user.organisation,
+          country: user.country,
+          role: user.role
+        });
+        goToDashboard();
+      }).catch(function(error){
+        console.log(error);
+        //window.alert(error.response.data.message);
+      })
+    }).catch(function(error){
+      window.alert(error.response.data.message);
+    })
+    
   };
 
   return (
