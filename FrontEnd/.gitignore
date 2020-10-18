@@ -37,3 +37,4 @@ pids
 .env*.local
 *debug.log*
 **/package-lock*.json
+.env

@@ -1,0 +1,837 @@
+* 5c54f60 (HEAD -> development, origin/development) Bugfix/sept 126 api backend & frontend routing (#96)
+* a7bb96c Booking Tests Failures (#93)
+* 7340f8a Core Infrastructure Pipeline (#102)
+| * e88f405 (origin/feature/sept-122-pipeline-core-infrastructure, feature/sept-122-pipeline-core-infrastructure) Added execution permission override for infrastructure bianaries.
+| * f9a62dd Added the missing directory for Infrastructure during plans.
+| * b7013ee Addded a mandatory directory specification for the root Infrastructure location when running deployments.
+| * 9aa2232 Updated dependency names.
+| * 2bcd888 Clarified the name for orchestration deployments.
+| * e9dc82a Added uniqueness to each stage name when deploying multiple components.
+| * 227f24b Separated the environments for each action type.
+| * 564ee39 Created a core deployment pipeline for deploying core infrastructure with all Terraform lifecycles independently.
+| * 9b94cf6 Implemented a staged deployment template for the Terraform lifecycle.
+|/  
+* 7e6548c Profile API Infrastructure (#101)
+* 6a12a2d Authentication API Infrastructure (#100)
+* dce1bf1 Dashboard API Infrastructure (#99)
+| * b5786da (origin/feature/sept-78-profile-infrastructure, feature/sept-78-profile-infrastructure) Specified the profile api component configuration for the development environment.
+| * 8eb130b Initialised the versions file for Terraform 0.13 compatibility with providers.
+| * e65b923 Created the output file.
+| * 791e5c1 Setup the terragrunt configuration file for the profile api component.
+| * 7ae7c2f Implemented the component infrastructure associated with the profile api.
+| * 673882e Defined the variable inputs necessary for the profile api component infrastructure.
+|/  
+| * 2cc40f8 (origin/feature/sept-74-authentication-infrastructure, feature/sept-74-authentication-infrastructure) Specified the authentication api component configuration for the development environment.
+| * 487d69a Initialised the versions file for Terraform 0.13 compatibility with providers.
+| * 4f0a43b Created the output file.
+| * 4dc476d Setup the terragrunt configuration file for the authentication api component.
+| * d586d74 Implemented the component infrastructure associated with the authentication api.
+| * b679424 Defined the variable inputs necessary for the authentication api component infrastructure.
+|/  
+| * 4e9a14f (origin/feature/sept-104-dashboard-infrastructure, feature/sept-104-dashboard-infrastructure) Specified the dashboard api component configuration for the development environment.
+| * 47b97b1 Initialised the versions file for Terraform 0.13 compatibility with providers.
+| * b2ea470 Created the output file.
+| * 1e6e7ba Setup the terragrunt configuration file for the dashboard api component.
+| * 8bb1324 Implemented the component infrastructure associated with the dashboard api.
+| * 2563f5e Defined the variable inputs necessary for the dashboard api component infrastructure.
+|/  
+* 603aa3c add missing extension to DockerFile (#98)
+* 79b8319 (origin/bugfix/sept-126-backend-frontend-routing) Registration API Infrastructure (#97)
+| *   4fc1e62 (origin/bugfix/sept-126-defaults) frontend api base_url
+| |\  
+| |/  
+|/|   
+| * 7513913 fixed readme & profile to me
+| * 5c67a64 modified the url
+| * cc69676 modified the doc
+| * 457eff9 frontend api routing adjustments
+| * 17ac9d8 /profile to /me
+| * 516facb fixed backend routing
+| * 05ba9d6 sens cred
+| * 297d010 added defaults
+| * 88ca673 Fixed build error & tests error for login & registration
+| | * 05319aa (origin/feature/sept-70-registration-infrastructure, feature/sept-70-registration-infrastructure) Specified the registration api component configuration for the development environment.
+| | * cef1b54 Initialised the versions file for Terraform 0.13 compatibility with providers.
+| | * 587f8ce Setup the terragrunt configuration file for the registration api component.
+| | * 4c9b93c Created the output file.
+| | * 1950b84 Implemented the component infrastructure associated with the registration api.
+| | * b9b272b Defined the variable inputs necessary for the registration api component infrastructure.
+| |/  
+|/|   
+* | d54f320 Booking API Infrastructure (#95)
+| | * 4357ee4 (origin/feature/sept-103-booking-infrastructure, feature/sept-103-booking-infrastructure) Specified the booking api component configuration for the development environment.
+| | * 6465d66 Initialised the versions file for Terraform 0.13 compatibility with providers.
+| | * a4f2e9a Created the output file.
+| | * 6fde03c Setup the terragrunt configuration file for the booking api.
+| | * c2b04ae Implemented the component infrastructure associated with the booking api.
+| | * 3a9bd65 Defined the variable inputs necessary for the booking api component infrastructure.
+| |/  
+|/|   
+* | dbd8fe2 Pipeline Deployment Template (#94)
+| | * bfd3bee (origin/feature/sept-121-pipeline-deployment-template, feature/sept-121-pipeline-deployment-template) Removed test core pipeline.
+| | * e433e54 Missing closing quote.
+| | * 8c7232e Removed permission adjustment.
+| | * d02c322 Reset working dir and removed default config file declaration.
+| | * afe41dc Removed tree.
+| | * b6b022f Updated terragrunt version.....
+| | * 81db7a5 Removed join.
+| | * 0c64adc Explicit reference to config file.
+| | * deee58e Added join.
+| | * 58ac75d Permissions.
+| | * 67fddf9 Error outputs.
+| | * d31486b Local terragrunt.
+| | * 89f1496 Restored format.
+| | * 81f759e Indentation.
+| | * 078fb6c Removed location.
+| | * 367b761 Restructured env.
+| | * 877f723 Test different script type.
+| | * 2beb8de Removed disableAutoCwd.
+| | * 79f5f59 Added environment variable output.
+| | * ae1f7b6 Restored binary location.
+| | * 6e90301 Removed version location temporarily.
+| | * 988f3de Added a tree command.
+| | * 5edfc8e Removed init command.
+| | * 411fdda Enhanced command.
+| | * 8cdc01b Added verbose logging.
+| | * fac7240 Customised command behaviours.
+| | * ced2602 Added working directory.
+| | * 98f27ba Corrected deployment iteration.
+| | * 69b5a61 Corrected the environment variable definition block.
+| | * da2deff Added an environment definition for deployment.
+| | * e611493 Added execution iteration for initialising first.
+| | * 9e2aac6 Copying binaries into appropriate infrastucture directory.
+| | * da32c74 Directory change to the infrastructure root.
+| | * 2264085 Updated command output.
+| | * e080cd8 Updated the terraform evalation.
+| | * 5334b9b Included the working directory directly inside the Terragrunt command.
+| | * b68c85d Updated the AWS connection name.
+| | * 2ff080f Updated the test to plan core dns.
+| | * cc000a3 Implemented the ability to run infrastructure actions against core and components.
+| | * c7d115c Updated the terragrunt deployment version.
+| | * f9cdb02 Added permission alignment for binary installation.
+| | * dd31596 Added the pipeline revision number.
+| | * 32bcb62 Updated the permissions for moving files on the agent operating system.
+| | * b089bc9 Added a temporary test pipeline for core deployments using IaC.
+| | * a3d32e6 Implemented a IaC deployment template to currently install the necessary binaries.
+| | | * e220e27 (origin/bug/sept-132-booking-tests-failure) missing extension in dockerfile
+| | | * 7af7d7c comment out exist test to check pipeline
+| | | * 9a38671 delete by object rather than id
+| | | * 7075471 formatting
+| | | * e1b4132 Creation test fix
+| |_|/  
+|/| |   
+* | | 9f364f3 Booking Database Purge After Testing (#91)
+* | | ac45d0b Dashboard Containerisation (#92)
+| |/  
+|/|   
+* | 4feedd6 Booking API Pipeline (#90)
+| | * 16d4351 (origin/feature/sept-131-dashboard-refactor) Dockerize
+| | * 24c63e2 refactor and env variable set-up
+| |/  
+|/|   
+| | * 28f460b (origin/bug/sept-130-booking-existence-test) empty db after test
+| |/  
+|/|   
+| | * 304acea (origin/feature/sept-128-pipeline-booking-api, feature/sept-128-pipeline-booking-api) Removed the ability for showing the environment variables retrieves from AWS due to Azure not masking the secrets consistently.
+| | * 0a45294 Implemented the booking api pipeline.
+| |/  
+|/|   
+* | c64f6af Pipeline Secrets - Authentication, Registration, Profile (#88)
+* | 9bbb71a Kubernetes Application Deployment Nginx Rewrite (#89)
+| | * 4b8b784 (origin/bugfix/sept-129-kubernetes-nginx-rewrite, bugfix/sept-129-kubernetes-nginx-rewrite) Updated gitignore files.
+| | * c833b90 Corrected the condition used for rewriting the ingress target onwards to the application.
+| |/  
+|/|   
+* | 121cccd Feature/sept 108 booking backend integration (#87)
+| | * 5fab3c3 (origin/feature/sept-127-pipeline-aws-secrets, feature/sept-127-pipeline-aws-secrets) Added the secret retrieval to the profile pipeline.
+| | * d723277 Removed environment file generation for registration.
+| | * cea1552 Added secret retrieval to the registration pipeline.
+| | * 05573a9 Commented out env file generation.
+| | *   3b9425d Merge remote-tracking branch 'origin/development' into feature/sept-127-pipeline-aws-secrets
+| | |\  
+| |_|/  
+|/| |   
+* | | f53e5b5 Bugfix/sept 126 build fix, tests error fix, and defaults for env (#86)
+| | * 5da2a84 Modified the method for retrieving the driver.
+| | * 67a5709 Defined the database driver.
+| | * 11efa51 Defined the application port.
+| | * f4ff1ec Updated the database password environment variable.
+| | * f428b4a Updated the database username environment variable.
+| | * e794794 Added the database endpoint as an environment variable for the application.
+| | * b451ff5 Updated the JWS environment variable name.
+| |/  
+|/|   
+* | 5b1448f FrontEnd Environment File Fix (#85)
+|/  
+* 5ad7a36 Pipeline Docker Build Arguments (#84)
+| * dbc6349 (origin/feature/sept-113-additional-docker-arguments, feature/sept-113-additional-docker-arguments) Added the default tag for jar file location to registration api.
+| * 9dc52f1 Added the default tag for jar file location to authentication api.
+| * 1caa451 Removed the file list test.
+| *   e3de3fb Merged latest updates from development branch.
+| |\  
+| |/  
+|/|   
+* | a97b024 Pipeline AWS Secrets (#83)
+| *   8987b19 Merge remote-tracking branch 'origin/development' into feature/sept-113-additional-docker-arguments
+| |\  
+| |/  
+|/|   
+| * 9c1f447 Added a temporary task for displaying pipeline environment variables.
+| * dfecdfb Added a custom argument for the jar file location.
+| * dea3c1d Added a test at the end for files.
+| * 510577f Added as default value for the base directory where the dockerfile is located.
+| * 8893933 Modified the existing build and push task to only push the container as it has already been built.
+| * 17c1fec Added a task for building the docker container with additional arguments when they're supplied.
+| * 23bbccb Added a parameter for supporting dockerfile build arguments.
+| | * fcd8940 (origin/feature/sept-124-pipeline-aws-secrets, feature/sept-124-pipeline-aws-secrets) Addressed task indentation.
+| | * 248e325 Updated the parameter type.
+| | * e709b9c Enabled the debugging secrets output.
+| | * 756f7c9 Added a parameter for showing set environment variables when specified during debugging.
+| | * d8f43f7 Added a task to the secret list for displaying the secrets set.
+| | * c527411 Removed the complete environment list.
+| | * bda49e0 Corrected the environment variable evaluation by escaping nested quotes.
+| | * 3ee4fa6 Removed tests.
+| | * bdc161f Added another verbose output.
+| | * 3569236 Temporarily added the value retrieved to output.
+| | * 8d9fd36 Corrected the jq parsing when special characters are present inside the key.
+| | * a268bd2 Updated the iteration to separate values by commas.
+| | * 5c34f36 Added an output for mapping secrets.
+| | * 315d2db Corrected the environment variable reference.
+| | * 780c6b8 Added a temporary task for obtaining all environment variables.
+| | * 2a5926f Added a template for obtaining the application secrets from AWS.
+| | * f10f5a8 Implemented a template for retrieving application configuration from AWS secret management.
+| |/  
+|/|   
+| | * a67fc25 (origin/feature/sept-108-booking-backend-integration) yarn.lock update
+| | * 69f4928 log backend response
+| | * b15326e hookup backend and frontend
+| |/  
+|/|   
+* | 7e27905 (origin/feature/sept-71-login-fix) Feature/sept 114 booking backend refactor (#82)
+* | 10b2ebd Feature/sept 107 frontend integration profile (#80)
+* | d1b70d0 Feature/sept 111 booking form refactor (#81)
+|/  
+* 53e1729 Infrastructure Service Accounts (#79)
+| * 3e6fad7 (origin/feature/sept-111-booking-form-refactor) booking date format
+| * 5f468e8 form returning correct values for booking creation
+| * d45e57b (feature/sept-111-booking-form-refactor) replace formik with antd
+|/  
+| * 07bc114 (origin/feature/sept-107-frontend-integration-profile) Env variables
+| * b602d31 .gitignore add .env
+| * 4d56716 delete .env
+| * 1402af0 Profile integration frontend-backend
+| | * 18b32eb (origin/feature/sept-110-infrastructure-service-accounts, feature/sept-110-infrastructure-service-accounts) Added the service account deployment to the orchestration workspace with the kuebrnetes token outputted leveraging the environment service account credentials.
+| | * 61c4af2 Added the versions file for specifying provider versions with terraform version 0.13 compatibility.
+| | * c2eb819 Created the service account outputs containing Kubernetes access token for connection to the environment for cicd.
+| | * 7d319c1 Implemented the service account resources within the Kubernetes cluster with appropriate roles/permissions attached.
+| | * 039d4f7 Devised the orchestration service account variables to provision the necessary service accounts in the cluster scoped to certain namespaces for the environment.
+| |/  
+|/|   
+* | 08598a2 Feature/sept 23 booking form backend sql (#77)
+* | 3e4820e Infrastructure Application Deployments (#75)
+|/  
+* 0cb090c Backend support course for login, and integration for login (#74)
+* d708124 Code for update user profile attributes + fixed application.yaml in login as well (#63)
+| * c220e57 (origin/feature/sept-23-booking-form-backend-sql) Unit tests
+| * eab1745 Update to development code (#76)
+| * ee685dc service tests
+| * 63933ed entity mapping and booking adding
+| | * 878471f (origin/feature/sept-102-infrastructure-application-deployment, feature/sept-102-infrastructure-application-deployment) Created the outputs file.
+| | * 188a5af Implemented the application resources for deployment into Kubernetes with a service configuration and ingress with nginx annotations.
+| | * 679bb47 Created all of the necessary variable inputs for application deployments.
+| | * 64af06e Added the necessary cluster information for dependencies on core orchestration.
+| | * 7bead36 Added a local reference for outputting the kubernetes provider configuration to use with application dependencies and deployments.
+| | * 79c4d03 Implemented the helm provider definition for core orchestration.
+| | * aa88b5d Implemented the kubernetes provider definition for core orchestration.
+| | * 69f2cd9 Updated the nginx module to reference the updated service name in the defined namespace.
+| |/  
+|/|   
+* | c16b5fd Infrastructure Cluster Routing (#73)
+| | * 16b5cee (origin/feature/sept-100-infrastructure-cluster-routing, feature/sept-100-infrastructure-cluster-routing) Modified the automatic variable input injection against the root configuration to provide an environment name and resource suffix.
+| | * 17ef7ad Specified an explict dependency with core dns and mapped the input via automatic dependency injection using inputs.
+| | * 5b8d3ae Added the base domain reference within the orchestration variables.
+| | * cf868ff Implemented the routing deployment via underlying modules mapped with they inputs and dependencies.
+| | * 152cee3 Created the versions file for providers used with Terraform 0.13 for compatibility.
+| | * eb41751 Created an output for dependency mapping via orchestration on elb domain(s).
+| | * 1976712 Implemented the routing resources in asure via elasic load balancers with an SSL certificate being validated.
+| |/  
+|/|   
+* | 8c699f0 Infrastructure Cluster Ingress (#72)
+| | * 2977206 (origin/feature/sept-99-infrastructure-cluster-ingress, feature/sept-99-infrastructure-cluster-ingress) Implemented the nginx deployment model using the module created.
+| | * 9fa8b5b Specified the variables necessary as inputs from the orchestrator to provision nginx.
+| | * e4416c6 Added the versions file for specifying providers with Terraform 0.13 compatibility.
+| | * 8f583b7 Created the outputs file for dependency linking against the elastic load balancer host.
+| | * f8c0a2a Implemented the deployment of nginx ingress using Helm chart(s) with dynamic ingress annotations actioned via Kubernetes.
+| | * 3e2d1db Specified the necessary inputs for nginx ingress to be configured.
+| |/  
+|/|   
+* | ccc10ad Infrastructure Cluster Node Management (#70)
+* | a0aee46 Registration integration backend-frontend (#71)
+| | * 2dfdc0b (origin/feature/sept-98-infrastructure-cluster-node-management, feature/sept-98-infrastructure-cluster-node-management) Referenced the cluster addon module from the main orchestration workspace.
+| | * 7b74cb0 Created the outputs file.
+| | * 1c8084d Implemented the spot termination module with all necessary references.
+| | * 690bcfb Specified the necessary inputs to the spot termination module for creation via the orchestration workspace.
+| | * 3e41ba7 Created the versions file for specifying provider information with Terraform 0.13 compatibility.
+| | * 6a95d49 Added the outputs file.
+| | * fc410d2 Implemented the spot instance management using Helm chart(s) created by AWS for automatically rotating instances once they've been cancelled.
+| | * 4b63b58 Specified all of the necessary inputs for creating a spot termination service in Kubernetes to manage EKS spot instances with autoscaling.
+| |/  
+|/|   
+* | db6c908 Infrastructure Cluster RBAC (#69)
+| | * 02e73ff (origin/feature/sept-97-infrastructure-cluster-rbac, feature/sept-97-infrastructure-cluster-rbac) Added the RBAC module to the cluster.
+| | * f137d01 Added the versions file for specifying the provider versions for Terraform 0.13 compatibility.
+| | * a2af055 Created the RBAC outputs file.
+| | * 45b8374 Implemented the Kubernetes cluster roles associated with that membership group with permissions applied.
+| | * 48450a0 Specified the variables necessary for enabling RBAC against users.
+| |/  
+|/|   
+* | 5cefa2d Infrastructure Cluster Namespaces (#68)
+| | * bc8e63f (origin/feature/sept-96-infrastructure-cluster-namespaces, feature/sept-96-infrastructure-cluster-namespaces) Specified the namespaces to provision for the orchestrated Kubernetes cluster.
+| | * 7f6ae6f Added a variable for specifying the namespaces to create within the cluster.
+| | * 9b33f76 Added the amespace creation to the cluster definition.
+| | * de85d9c Added the versions file for provider specification with Terraform 0.13 compatibility.
+| | * 32df201 Created the outputs file.
+| | * 3beb2f1 Implementation for the namespace creation within a Kubernetes instance.
+| | * 3016f26 Determined the appropriate variables for modular namespace creation.
+| |/  
+|/|   
+* | d43f57a Infrastructure Core Cluster (#67)
+| | * 2b19218 (origin/feature/sept-95-infrastructure-core-cluster, feature/sept-95-infrastructure-core-cluster) Added the associated variables for the core orchestration in the development environment.
+| | * e1ed8c2 Added the necessary orchestration variables to support the cluster deployment.
+| | * e42f0fe Added the cluster module into the core orchestration deployment.
+| | * b955673 Added the versions file for provider initialisation with Terraform 0.13.
+| | * fcd4327 Added any outputs for dependencies into other modules for the EKS Cluster configuration.
+| | * a1e0415 Implemented the EKS Cluster resources wired to the network (VPC).
+| | * f373a8d Implemented the variables necessary for EKS Kubernetes Cluster setup.
+| |/  
+|/|   
+* | e78ef2e Infrastructure Core Networking (#66)
+|/  
+* 06be0b8 Pipeline Git LFS Capacity Limits (#65)
+| * b37a156 (origin/feature/sept-94-infrastructure-core-networking, feature/sept-94-infrastructure-core-networking) Added the orchestration configuration for networking.
+| * 51f854d Added the orchestration networking module for deployments.
+| * f01a2a2 Added the necessary environment variables for configuring the orchestration networking.
+| * ca128c5 Created the orchestration networking versions file for AWS provider(s) with Terraform 0.13.
+| * 59713f1 Created the outputs file for referencing important orchestration networking resources.
+| * 4b7ddf0 Implemented the orchestration networking using various AWS modules for isolated VPC instance(s) per environment.
+| * 3de4846 Created the core orchestration networking variables.
+| * ee50a74 Created the orchestration versions file for AWS provider(s) with Terraform 0.13.
+| * ea587e2 Created the outputs file for the orchestration.
+| * 4a6b33f Created the orchestration definiiton with the AWS provider initialised.
+| * 66165c2 Created an initial Terragrunt configuration file for core orchestration.
+| * f4ce36d Created the orchestration variables for determining the region.
+|/  
+* d415f49 Infrastructure Core DNS (#64)
+| * 2251092 (origin/bugfix/sept-101-pipeline-git-lfs, bugfix/sept-101-pipeline-git-lfs) Disabled git LFS checkout on the frontend website pipeline.
+| * ba9ec2d Disabled git LFS checkout on the backend registration pipeline.
+| * 561f5d2 Disabled git LFS checkout on the backend profile pipeline.
+| * 2f693a6 Disabled git LFS checkout on the backend dashboard pipeline.
+| * 7852aba Disabled git LFS checkout on the backend authentication pipeline.
+|/  
+| * ca36504 (origin/feature/sept-93-infrastructure-core-dns, feature/sept-93-infrastructure-core-dns) Added the development environment core dns configuration.
+| * f4fe384 Updated the website dependency and variable injection to reflect core DNS changes.
+| * 2128c3b Added the version information for providers with Terraform 0.13.
+| * f166f91 Added the Terragrunt configuration file for core DNS.
+| * 0607bd5 Added the necessary outputs for DNS dependency mapping in other workspaces.
+| * 5090c3d Added the implementation for creating the environment zone using a FQDN.
+| * 85fb03f Added the core DNS variables for configuration to a particular environment.
+| * 14e5a44 Removed the core routing implementation for refactoring.
+|/  
+| * d950f05 (origin/feature-sept-75-backend-improvements-profile) Code for update user profile attributes + fixed application.yaml in login as well
+|/  
+* 51cb54f (origin/feature-sept-67-frontend-integration-registration) Completed all the missing tests & error messages (#62)
+* 31dd691 Remote API Misreferenced (#60)
+| * f4903ef (origin/feature/sept-23-booking-form-backend) booking mapping and setup for mongodb
+| *   e601969 Merge branch 'development' into feature/sept-23-booking-form-backend
+| |\  
+| |/  
+|/|   
+* | 0107743 Submission Document (#59)
+| * aee6eca simplified front end to reflect db layout
+| * 864dc86 dupe checking
+| * 0cebac9 simplification
+| * 2457750 entity fields as tables
+| * d192d7c foreign key fixes
+| * bf3231a repositories for all models
+| * 51ce4d6 table, column, foreign key definitions
+| * bd48afb basic models
+| * 875a279 duplicate entry filter
+| * 5efe180 basic adding
+| * b7be502 code revamp w/ proper gitignore
+| * 5d4b135 Revert "code rehaul"
+| * 55feb5c Revert "sql export for dummy data"
+| * 584d358 code rehaul
+| * 4a8de82 sql export for dummy data
+| *   65524f1 Merge branch 'development' into feature/sept-23-booking-form-backend
+| |\  
+| * | a5e9034 connect to local db
+| * | 54968ea Updating code (#23)
+| * | 96b3a68 Controller methods for Booking
+| * | c49fb04 Booking Entity
+| | | * e1ed46d (tag: 1.1, origin/master, origin/HEAD, master) M2 Submission (#58)
+| | | | * 841937b (origin/submission, submission) Update dsubmission.
+| | | | * 6552eb9 Remove submission.
+| |_|_|/  
+|/| | |   
+* | | | fafb908 Doc2 (#57)
+* | | | 2c13ea2 (origin/doc-fix, doc-fix) Registration service defined (#55)
+* | | | 3a1f48d Profile Pipeline (#54)
+* | | | 528c5fa Dashboard ECS (#53)
+| | | | * 653c170 (origin/Doc2, Doc2) Removed conflict.
+| | | | * a267099 Conflict resolver
+| | | | | * 512cee8 (origin/Documentation) Delete M2 Submission.pdf
+| | | | | * 90e8996 Final Update 2
+| | | | | * 2353f7e Final Update
+| | | | | * 79c4f73 Updated
+| | | | | * bc05b1d DOD to pdf
+| | | | | * 11386e4 Update Milestone 2 Definition of Done.docx
+| | | | | * 8daddf2 M2 Submission Documentation
+| | | | |/  
+| | | | * 05837d7 Revert "M2 Submission Documentation"
+| | | | * f75a20b M2 Submission Documentation
+| | | | | * dfac7cf (origin/feature/sept-77-profile-pipeline, feature/sept-77-profile-pipeline) Implemented the profile pipeline.
+| |_|_|_|/  
+|/| | | |   
+* | | | | 2230ddc Profile Integration (#52)
+| | | | | * 312b55a (origin/feature/sept-46-dashboard-ecs, feature/sept-46-dashboard-ecs) Removed registration references.
+| | | | | * 18eb1fc Updated dashboard server.
+| | | | | *   9ca52c8 Merge branch 'feature/sept-69-registration-integration' into feature/sept-46-dashboard-ecs
+| | | | | |\  
+| | | | | * | 1c40bdc Removed old dashboard api.
+| |_|_|_|/ /  
+|/| | | | |   
+* | | | | | b576039 Dashboard Pipeline (#51)
+| | | | | | * 7118949 (origin/feature/sept-69-registration-integration) registraton service
+| | | | | | * 7416f30 code update (#50)
+| | | | | |/  
+| | | | | * 16a9b01 (feature/sept-69-registration-integration) Initialised the rollup.
+| | | | | * c3634b5 Package updates.
+| | | | | * 4ee5bb9 Added a rollup for dashboard api functions.
+| | | | | * c57dc26 Refactored existing api implementation.
+| | | | | * 277d6eb Readded the apis with directory lowercased.
+| | | | | * 5bbd58d Temporary removal of the dashboard apis.
+| | | | | | * be419df (origin/feature/sept-46-dashboard-pipeline, feature/sept-46-dashboard-pipeline) Implemented the dashboard pipeline with container push to ECR.
+| |_|_|_|_|/  
+|/| | | | |   
+* | | | | | c29c7ca (origin/feature/sept-78-profile-deployment, origin/feature/sept-75+78-profile-backend+deployment) Authentication Pipeline Containers (#49)
+* | | | | | f75bb99 dockerfile attempt (#44)
+| | | | | | * f4b3065 (origin/feature/sept-72-login-pipeline-container, feature/sept-72-login-pipeline-container) Added registry name variable reference.
+| | | | | | * 8f21078 Integrated the container push for auth.
+| |_|_|_|_|/  
+|/| | | | |   
+* | | | | | c4cb5c0 (origin/feature/sept-75-profile-backend) Deployment for login (#48)
+| |_|_|_|/  
+|/| | | |   
+* | | | | 22499fb Documentation update : DOD PDF (#47)
+* | | | | 1a2cf73 Registration Pipeline Container Publishing (#45)
+* | | | | 6b52cc8 M2 Documentation (#46)
+| |_|_|/  
+|/| | |   
+| | | | * 2d8b1b4 (origin/feature/sept-46-dashboard-dockerfile) fixed gitignore, restore + refactor files
+| | | | * 24fc9b3 dockerfile attempt
+| |_|_|/  
+|/| | |   
+| | | | *   aa31452 (origin/feature/sept-69-registration-container, feature/sept-69-registration-container) Merged development into branch.
+| | | | |\  
+| |_|_|_|/  
+|/| | | |   
+* | | | | 05782f6 Feature/sept 46 dashboard backend (#40)
+* | | | | 3dc3c54 Frontend Profile (#43)
+| | | | * a5d5b04 Added environment file generation.
+| | | | * 84b35c6 Modified functionality to utilise the template for container interaction.
+| | | | * bc204a6 Created a template for authorising, building and pushing containers into the AWS registry.
+| | | | * d202af1 Updated the build id.
+| | | | * a2321e2 Updated the registry name.
+| | | | * 32d33ea Corrected repository name.
+| | | | * 3043f35 Aligned the contaienr registry connection.
+| | | | * 92699d0 Added docker container registry login, build and push tasks.
+| | | | *   dcfdeda Merge remote-tracking branch 'origin/development' into feature/sept-69-registration-container
+| | | | |\  
+| | | | * | 06746dc (origin/feature/sept-70-registration-deploy) Add Dockerfile, and sample env_file.example. Adding instructions in README on how to Build & Run docker image
+| | | | * | 143fea3 adjusted @generated to fit MySQL
+| | | | * | 8eba2eb revert deployment ignore
+| | | | * | 03bd0a7 ignore env_file
+| | | | * | c7c13b4 ignore deployment folder
+| | | | | | * e8ce2a6 (origin/feature/sept-64-frontend-profile, feature/sept-64-frontend-profile) Added profile form editing functionality.
+| | | | | | * b3eff5c Removed store.
+| | | | | | * 25f736b Ignored DS store...
+| | | | | | *   a86178e Merge remote-tracking branch 'origin/development' into feature/sept-64-frontend-profile
+| | | | | | |\  
+| |_|_|_|_|_|/  
+|/| | | | | |   
+* | | | | | | bf1077c Registration Deployment (#42)
+| |_|_|_|/ /  
+|/| | | | |   
+| | | | | * d274d2d Utilised the user context for some profile information.
+| | | | | * d91aa5c Designed and implemented the ui/features for most of the profile functionality.
+| | | | | * 0fb66e1 Added a profile test for routing in the application.
+| | | | | * 3c8cb45 Added the profile page as a route in the application.
+| | | | | * 9b38012 Added the profile page to the global page rollup.
+| | | | | * cf03483 Added a paged component rollup.
+| | | | | * da04290 Implemented a basic profile page.
+| |_|_|_|/  
+|/| | | |   
+| | | | | * a06982f (origin/feature/sept-46-dashboard-backend) booking data as state
+| | | | | * a7484b5 DashboardService changes as per PR
+| | | | | * e25e2aa axios requests reading backend
+| | | | | * 114686b load data from backend attempt
+| | | | | * 5ea64bf hooking up backend to frontend
+| | | | | * cfbfbce backend get functions
+| | | | | | * 2da60be (origin/Release) Update
+| | | | | | * 7ec0a69 Milestone 2 Documentation
+| |_|_|_|_|/  
+|/| | | | |   
+* | | | | | c4d2ae6 (origin/feature/sept-74-login-deploy) Registration Pipeline (#41)
+| |_|_|/ /  
+|/| | | |   
+| | | | | *   33baa23 (origin/feature/sept-69-registration-pipeline, feature/sept-69-registration-pipeline) Merge remote-tracking branch 'origin/development' into feature/sept-69-registration-pipeline
+| | | | | |\  
+| |_|_|_|_|/  
+|/| | | | |   
+* | | | | | 807f6eb Registration Test Failures (#39)
+| | | | | * e610d07 Specified for the pipeline not to fail when tests do.
+| | | | | * 12c4fc8 Added a parameter for determining whether a test failure will result in an entire pipeline failure for the java/maven builds which is enabled by default.
+| | | | | * 061356a Corrected one of the trigger paths for inclusions.
+| | | | | * 357dcf9 Implemented the registration pipeline leveraging the java/maven build template.
+| |_|_|_|/  
+|/| | | |   
+* | | | | 9d4c474 Authentication/User Pipeline (#38)
+| | | | | * 59525d2 (origin/feature/sept-73-authentication-pipeline, feature/sept-73-authentication-pipeline) Removed the test task.
+| | | | | * abc47fe Added a template parameter for optionally skipping tests.
+| | | | | * 659d5ef Added a test task for viewing the project outputs.
+| | | | | * 02762d3 Added remaining tasks for building a java solution using maven with the lifecycle inferred by maven.
+| | | | | * b5b9c5c Finalised the validation task for preparing build requirements as part of the maven lifecycle.
+| | | | | * 5c8932d Addressed template indentation applied by the IDE.
+| | | | | * 560fd47 Corrected the backend pipeline template directory location.
+| | | | | * 76dcab1 Specified the pipeline definition for the authentication component.
+| | | | | * 7dd0d63 Added some basic tasks around the java build template using maven.
+| | | | | * 5dbedd5 Initialised the java build template.
+| | | | | * 5d1ecca Initialised the authentication pipeline.
+| |_|_|_|/  
+|/| | | |   
+* | | | | 91c2095 Backend Registration (#34)
+* | | | | 1a2abd6 Backend Login (#33)
+| |_|_|/  
+|/| | |   
+* | | | 0e5783d Frontend Registration Capabilities (#36)
+| | | | * 977fa06 (origin/feature/sept-16-frontend-registration, feature/sept-16-frontend-registration) Removed commented out lines for the backend model used to mock the inputs.
+| | | | * 3f74b51 Added the registration page route to the application.
+| | | | * f3a418b Added the registration page to the root roll up.
+| | | | * 9041610 Added the registration page roll up.
+| | | | * 70bee28 Implemented a complete registration page utilising various components and dynamics.
+| |_|_|/  
+|/| | |   
+| | | | *   295b471 (origin/feature/sept-71-login-backend) Merge branch 'development' into feature/sept-71-login-backend
+| | | | |\  
+| |_|_|_|/  
+|/| | | |   
+| | | | | *   f422e5c (origin/feature/sept-67-registration-backend) Merge branch 'development' into feature/sept-67-registration-backend
+| | | | | |\  
+| |_|_|_|_|/  
+|/| | | | |   
+* | | | | | 715afb9 Frontend Login Capabilities (#35)
+| | | | | * 13b8376 Backend code for registration functionality
+| | | | |/  
+| | | | * 5b5de26 Backend code for login functionality
+| |_|_|/  
+|/| | |   
+| | | | * b590e75 (origin/feature/sept-17-frontend-login, feature/sept-17-frontend-login) Added the login component to the global component roll up.
+| | | | * 59f7f63 Added the login component roll up.
+| | | | * 178d8f3 Implemented a login component for usage in any aspect for implementing user login functionality with sample data interacting with the user context.
+| | | | * 974e8eb Added the menu modal to the global component roll up.
+| | | | * eaed778 Added a component roll up for the menu modal.
+| | | | * 23e1b11 Implemented a generic menu modal component.
+| | | | * 87f17c7 Upgraded the header component to utilise the user context for rendering profile information and restricted pages.
+| | | | * 7f95320 Implemented the user context provider against the main application entrypoint for component utilisation.
+| | | | * 2f39353 Implemented a global roll up for contexts with the user context included.
+| | | | * 1b6de4d Added a roll up for the user context.
+| | | | * 95c6176 Implemented a react context for the user session.
+| |_|_|/  
+|/| | |   
+* | | | f787cd1 Infrastructure Frontend Website (#32)
+* | | | 6fae77d Frontend Pipeline Code Coverage (#31)
+| | | | * ee8aa65 (origin/feature/sept-43-infrastructure-frontend-website, feature/sept-43-infrastructure-frontend-website) Updated ci build invalid removal option.
+| | | | * a5adb2c Added a distributable removal when building the frontend to ensure only set of changes exist.
+| | | | * 2d7d01e Added better coverage for file coverage to automatic kick off builds & releases on the frontend.
+| | | | * 6d5dc3e Modified the artifact directory validation condition to align with the others.
+| | | | * f1e02f4 Initialised the component website configuration file for development.
+| | | | * 473140e Simplified the path validation.
+| | | | * 6cc9aa3 Corrected the function name for retrieving the parent terragrunt configuration directory.
+| | | | * 3104008 Ignored any artifacts stored in the infrastructure for deployment.
+| | | | * 7ff1c0e Refined the global/general ignored files.
+| | | | * 27a0ae7 Targeted terraform ignore filed to the infrastructure directory.
+| | | | * 1fbe5ae Added some comments for splitting sections of the gitignore.
+| | | | * 231ff0f Corrected the local development bundle to use the name inferred by the asset chunk when splitting bundles.
+| | | | * 3860480 Added resources for creating an SSL certificate for the static website but left it commented out.
+| | | | * 10e6fe9 Added the website component output variables.
+| | | | * 5e69a42 Added the Terraform 0.13.x versions file necessary for configuring the required providers against the website component.
+| | | | * 83559cd Implemented the resource definitions for hosting our static website.
+| | | | * 6c80541 Defined the website terragrunt configuration file with dependencies.
+| | | | * 6904d2d Implemented the website component variables necessary to configure frontend resources.
+| | | | * db4f297 Added the development environment core routing configuration variable value(s).
+| | | | * d40545b Implemented the core routing outputs generated from created resources to map dependencies from functional components.
+| | | | * 8da4179 Added the Terraform 0.13.x versions file necessary for configuring the required providers against core routing.
+| | | | * 5cb15df Added a email record definition which is currently left commented out.
+| | | | * a8379a6 Implemented the resource definitions for AWS core routing.
+| | | | * 36e2ec3 Defined the core routing terragrunt configuration file.
+| | | | * 2f2b403 Implemented core routing variables necessary to configure routing resources.
+| | | | * e0f2170 Upgraded the Terragrunt version constraint to enforce 0.25.0 as the minimum version prerequisite.
+| | | | * 4f0a88b Added a global configuration default for region name which is obtained from the environment configuration file.
+| | | | * fa2294f Updated function references for Terragrunt commands, fixed the function brackets by closing them appropriate for environment retrieval commands and dpecified a default environment if one isn't provided.
+| | | | * 737ff59 Restructured the formatting for remote AWS resources by utilising region and environment identifiers as a suffix.
+| | | | * 8f278b7 Upgraded the Terragrunt binary associated with a windows based operating system to version 0.25.0 to officially support Terraform 0.13.x.
+| | | | * de4d4e0 Upgraded the Terragrunt binary associated with a linux based operating system to version 0.25.0 to officially support Terraform 0.13.x.
+| | | | * 13addd6 Upgraded the Terragrunt binary associated with a darwin based operating system to version 0.25.0 to officially support Terraform 0.13.x.
+| | | | * 025649e Removed the temporary README files which were upholding the directory structure.
+| |_|_|/  
+|/| | |   
+| | | | * 80f9025 (origin/feature/sept-83-frontend-code-coverage-report, feature/sept-83-frontend-code-coverage-report) Simplified publish task names.
+| | | | * 7b94d4f Added pipeline compatibility with code coverage reports on frontend tests.
+| |_|_|/  
+|/| | |   
+* | | | c759517 Frontend Production Builds (#29)
+* | | | c907cdf Frontend Booking Form Bug (#30)
+| | | | * 3045734 (origin/bugfix/sept-23-booking-form-build, bugfix/sept-23-booking-form-build) Removed additional greater than sign causing build errors in the booking form.
+| |_|_|/  
+|/| | |   
+| | | | * 0a79d7f (origin/feature/sept-82-frontend-production-builds, feature/sept-82-frontend-production-builds) Restored formilk as it's still in use.
+| | | | * a8c8c2d Updated the frontend directory case sensitivity.
+| | | | * 30ec94d Modified the javascript build template to use the production build.
+| | | | * e226b3d Refactored the webpack configuration to detect environments and bundle differently depending on the vendors or main implementations as well as removed some unnecessary modules/plugins.
+| | | | * 6608e06 Removed unnecessary packages bloating the bundle(s) and added a ci optimised (production) build script.
+| | | | * e19bf5d Removed the coverage report generated by the frontend build.
+| |_|_|/  
+|/| | |   
+* | | | 44434ed Frontend Pipeline Testing (#28)
+| | | | * bae827a (origin/feature/sept-2-pipeline-test-results, feature/sept-2-pipeline-test-results) Removed unused exclude.
+| | | | * 12f5670 Updated the pipeline triggers.
+| | | | * 3fb966b Corrected the develop branch name.
+| | | | * 1ea123a Added a task for publishing junit test results.
+| | | | * 1861d2c Modified the test script to utilise the pipeline one.
+| | | | * 7eb87d7 Added the frontend coverage report file to the ignored file list.
+| | | | * c9779d6 Modified the frontend ci test script to publish coverage results for pipeline consumption.
+| |_|_|/  
+|/| | |   
+* | | | 8776a8a Frontend Pipeline (#27)
+| | | | *   c522969 (origin/feature/sept-12-frontend-pipeline, feature/sept-12-frontend-pipeline) Merge remote-tracking branch 'origin/development' into feature/sept-12-frontend-pipeline
+| | | | |\  
+| |_|_|_|/  
+|/| | | |   
+* | | | | 22bc9fc Removed Breaking Booking Code(#26)
+| |/ / /  
+|/| | |   
+| | | * af7f761 Specified falsy for when the pipeline fails alongside the tests for the timebeing until they're improved.
+| | | * 6c9eaaa Modified the default parameter value for pipeline failure to occur when the build fails to be truthful.
+| | | * be2cc75 Removed the multiline aspect from all the frontend scripts.
+| | | * 5604a3f Integrated a testing section to the javascript build process.
+| | | * 4f57fb8 Added a task for installing the solution packages.
+| | | * 7665e72 Specified the agent pool to use for the build.
+| | | * 13c46b6 Added the directory parameter for building the website and simplified reusability through a common variable.
+| | | * 5a0988c Added a working directory for the build script using a new parameter for the source directory.
+| | | * 4244c73 Added a checkout step for LFS binaries.
+| | | * 5a503db Migrated the pipelines into the infrastructure directory.
+| | | * 7b7d4f2 Implements a build template for javascript applications.
+| | | * 9daa9aa Implemented the build pipeline for the frontend.
+| |_|/  
+|/| |   
+* | | 3e3eec6 Infrastructure Binaries (#24)
+* | | 9fe74eb Database Fixes (Data types) (#20)
+| | | * 3525dd5 (origin/feature/sept-59-infrastructure-binaries, feature/sept-59-infrastructure-binaries) Added the Terragrunt binary for version 0.24.4 associated with the windows operating system distribution.
+| | | * c277226 Added the Terraform binary for version 0.13.3 associated with the windows operating system distribution.
+| | | * 771cbc0 Added the Terragrunt binary for version 0.24.4 associated with the linux operating system distribution.
+| | | * e6fcf65 Added the Terraform binary for version 0.13.3 associated with the linux operating system distribution.
+| | | * 5437ad5 Added the Terragrunt binary for version 0.24.4 associated with the darwin operating system distribution.
+| | | * 582df4a Added the Terraform binary for version 0.13.3 associated with the darwin operating system distribution.
+| | | * 63b6c9e Initialised git LFS and created the gitattributes file.
+| | | * 582f383 Specified the path associated with the Terraform binary which will be used for all infrastructure operations.
+| | | * ee4e528 Specified the binary path as a local terragrunt variable.
+| |_|/  
+|/| |   
+* | | 102548d Infrastructure Binary Restrictions (#22)
+| | | * c090075 (origin/feature/sept-58-infrastructure-restrictions, feature/sept-58-infrastructure-restrictions) Added the terragrunt version constraint for limiting which version(s) of terragrunt can be used to deploy the infrastructure.
+| | | * aed3090 Added the terraform version constraint for limiting which specific version of terraform can be used to deploy the infrastructure.
+| |_|/  
+|/| |   
+* | | e9629fc Frontend 404 Not Found Page (#21)
+* | | 7ce758a Feature/sept 22 booking form (#19)
+|/ /  
+| | * af8d8e1 (origin/feature/sept-63-frontend-404, feature/sept-63-frontend-404) Redesigned the 404 not found page.
+| | * ba6220e Added a test to ensure the 404 not found page is working.
+| | * 00f574c Implemented the 404 not found route as the default when the request page could not be found.
+| | * e70f55c Added a newline separation between special pages such as 404 not found.
+| | * a598f37 Added the not found page to the main page rollup.
+| | * b554ec0 Added the not found page rollup.
+| | * a9313d8 Implemented an extemely basic initial 404 page to get the routing going.
+| |/  
+|/|   
+* | cf0071a Frontend Heading & Footing (#17)
+| | * 73d1ee1 (origin/initial_database, origin/feature/sept-67-registration-database, origin/feature-backed) Updated data dype for Price, Postcode, and Mobile number
+| | * caa1e3b Added auto increment to the ID's
+| | * fb3725c Adjusted database, as discussed
+| | * 5583a5a Created the initial database instance (SEPT-32)
+| |/  
+| | * 368a0ac (origin/feature/sept-22-booking-form) formik conversion
+| | * be76d50 basic form and formik installation
+| | * 2cfb6d4 (origin/feature/sept-20-booking-info) front end code and revamp to modern js
+| | | * bf6b871 (origin/feature/sept-62-frontend-heading-footing, feature/sept-62-frontend-heading-footing) Implemented testing against the application for testing appropriate internal routing to various different pages implemented.
+| | | * 25afa08 Included the heading and footing components inside of the sidebar page layout.
+| | | * 7cd3673 Included the heading and footing components inside of the padded page layout.
+| | | * 42c8751 Included the heading and footing components inside of the full width page layout.
+| | | * 828c429 Added a newline separator between component types.
+| | | * e5a482d Added the footer component to the root rollup for components.
+| | | * 6f221ae Added the footer component rollup.
+| | | * 68253c7 Implmented the footer component to be utilised by various layouts.
+| | | * 0cfe6b0 Implemented styling for the footer component using typescript.
+| | | * d1c48b4 Added the header component to the root rollup for components.
+| | | * 04937bd Added the header component rollup.
+| | | * c5a21f1 Implemented the header component to be utilised by various different layouts.
+| | | * 4d5d60f Implemented a header component style using typescript styling.
+| | | * a6714ec Added the menu item to the root component rollup.
+| | | * 84e8f17 Added the menu item rollup.
+| | | * 5f273f4 Implemented a component representing a routable menu item for utilisation in a heading.
+| |_|/  
+|/| |   
+* | | dc20116 Frontend Layouts (#16)
+| | | * b576c66 (origin/feature/sept-47-frontend-layouts, feature/sept-47-frontend-layouts) Applied the sidebar layout to the dashboard page.
+| | | * 5d68a1e Applied the padded layout to the home page.
+| | | * 2c71901 Added the sidebar layout to the root rollup.
+| | | * 381f20c Added the rollup for the sidebar layout.
+| | | * 381f636 Implemented the sidebar layout utilised by pages on such as those on the dashboard which require a secondary menu.
+| | | * 6d049ba Implemented the styling for the sidebar layout.
+| | | * 39600fc Added the padded layout to the root rollup.
+| | | * 427770a Added the padded layout rollup.
+| | | * cfb4290 Implemented a padded layout for utilisation by pages which require side padding with a breadcrumb.
+| | | * ba9055e Implemented a padded layout style using typescript.
+| | | * 36e7482 Added the root rollup for all layouts which currently only includes the full width layout.
+| | | * 6553b21 Removed a full width enhancement with components that do not exist in this PR but will be added later.
+| | | * 91c2c2e Added the rollup for the full width layout.
+| | | * db8f953 Implemented a layout for a full width sized pages.
+| | | * e27eee8 Upgraded the full width styling to use typscript.
+| | | * b8d3a2d Implemented the initial styling prototype without a typescript styling framework.
+| | | * 560b09a Added a typescript JSX styling package for applying appropriate formats to layouts and designs at a later stage.
+| |_|/  
+|/| |   
+* | | a67fa46 Frontend UI Component Libary (#15)
+| | | * 7d949b5 (origin/feature/sept-42-ui-library-refactor, feature/sept-42-ui-library-refactor) Updated all of the necessary UI components for the home page.
+| | | * c51200b Updated all of the necessary UI components for the dashboard page.
+| | | * d68c163 Automatic lock changes form updating package(s).
+| | | * da0efef Upgraded the react testing library package.
+| | | * e7fccc0 Removed the configuration for erroring when local variables aren't referenced.
+| | | * 71273b5 Fixed the booking information component from erroring on build/compilation due to missing references.
+| | | * 342d281 Added the missing booking interface based on the built component.
+| | | * 4b22bbb Added the default application style for ant design.
+| | | * a3ac0dd Reformatted the booking information component.
+| | | *   4f528cf Merged the latest changes from the development branch.
+| | | |\  
+| |_|_|/  
+|/| | |   
+* | | | 0460429 Frontend Booking Information (#14)
+| |/ /  
+|/| |   
+* | | d0a73c2 remove accidental push
+* | | 2bd49b5 booking info code  and revamp to modern js
+* | | ef91aa4 Infrastructure Environment Configuration (#10)
+* | | 57f6cba Frontend Routing (#9)
+| | * d56b72b Added the ant design package to leverage their rich UI components and layouts.
+| |/  
+|/|   
+| | * 510cc1d (origin/feature/sept-44-infrastructure-environment-config, feature/sept-44-infrastructure-environment-config) Constructed infrastructure documentation to instruct team members and/or project reviewers of the dynamics around Terraform/Terragrunt infrastructure as code methodology for setup, development as well as execution.
+| | * b634f94 Designed the environment configuration component directory structure for managing each applications dynamic configuration definitions independently.
+| | * f38d1a2 Designed the functional component directory structure for managing each applications infrastructure as code definitions independently.
+| | * 85b6dfa Implemented the root configuration file for enabling Terragrunt interoperability over remote envirinment configuration management with component configuration injection.
+| | * 04deb1c Implemented an environment file for the development environment which contains the necessary input arguments for configuring the infrastructure remote state resources with proper naming conventions.
+| |/  
+|/|   
+| | * c76ef10 (origin/feature/sept-41-frontend-routing, feature/sept-41-frontend-routing) Applied linting to the solution after introducing routing amendments.
+| | * 5be4a13 Simplified the route component with inference from reach routing types.
+| | * e4ff45f Added type definitions for reach router.
+| | * e634300 Simplified the dashboard component booking rows rendering through a ternary condition.
+| | * e87656b Added a router inside of the application for navigation through to pages.
+| | * 8179ef1 Implemented the route component rollup inside the generic components rollup.
+| | * 486d021 Added a component rollup for the route.
+| | * cf9ea78 Implemented a route component for use by the reach router component for delegating paths to pages.
+| | * 91d7105 Implemented an overall page rollup so references aren't explicitly assigned to individual pages.
+| | * a940813 Added the component rollup for the dashboard page.
+| | * 738ab57 Implemented an initial dashboard page for utilisation by routing.
+| | * deb9429 Added the component rollup for the home page.
+| | * d48443b Implemented an initial home page for utilisation by routing.
+| | * 8cffbf1 Updated the reference to the application component.
+| | * 84a089c Added rollup to the application component functions and interfaces.
+| | * 7cdafb4 Introduced component rollup for the application.
+| | * eb3395f Migrated the application as a component into the appropriate directory.
+| | *   643c52b Merge branch 'development' into feature/sept-41-frontend-routing
+| | |\  
+| |_|/  
+|/| |   
+* | | 18968e0 (origin/feature/sept-43-infrastructure-cloud-integration, feature/sept-43-infrastructure-cloud-integration) Initial Database (#7)
+* | |   38b77c3 Merge pull request #8 from RMIT-SEPT/feature/sept-50-frontend-modern-hirerarchy-design
+|\ \ \  
+| * | | 6c1b806 (origin/feature/sept-50-frontend-modern-hirerarchy-design, feature/sept-50-frontend-modern-hirerarchy-design) Applied linting to the project files.
+| * | | f149b65 Temporarily reduced the output type when function return types aren't explicitly declared from error to warning.
+| * | | e3eabde Added a component rollup file for accessing individual components globally without hardcoding their references all over the place to assist when the project grows and components move around.
+| * | | cf481a7 Added a dashboard component rollup file to use when accessing components and interfaces.
+| * | | 02d188f Added a booking component rollup file to use when accessing components and interfaces.
+| * | | ca67ff7 Migrated the booking style to their respective component directory for better organisation whilst modifying the naming for conventions and applying project configuration formatting.
+| * | | c6b6078 Migrated the dashboard tests to their respective component directory for better organisation and ownership whilst applying project configuration formatting.
+| * | | c1f7902 Migrated the booking tests to their respective component directory for better organisation and ownership whilst applying project configuration formatting.
+| * | | 6f0311a Migrated the dashboard component to the appropriate component directory using modern react concepts including typescript functional components, hooks and effects for state management whilst simplifying the implementation.
+| * | | 3aba0b2 Migrated the booking component to the appropriate component directory using modern react concepts including typescript functional components, hooks and effects for state management whilst simplifying the implementation.
+| * | | a6ed274 Reformatted the view status interface to apply the specified project configuration.
+| * | | ba2ee48 Reformatted the user interface to apply the specified project configuration.
+| * | | e96d7e3 Updated the typescript configuration to include type roots for appropriate package visibility required to do component rollup.
+|/ / /  
+| | * 05624e7 Added the reach router packages for configuring routing.
+| |/  
+|/|   
+* |   d1368a0 Merge pull request #5 from RMIT-SEPT/feature/sept-21-booking-calendar
+|\ \  
+| * \   35831b7 (origin/feature/sept-21-booking-calendar) Merge branch 'development' into feature/sept-21-booking-calendar
+| |\ \  
+| |/ /  
+|/| |   
+* | |   aa80f56 Merge pull request #6 from RMIT-SEPT/feature/sept-36-frontend-testing
+|\ \ \  
+| * | | 11fef37 (origin/feature/sept-36-frontend-testing, feature/sept-36-frontend-testing) Automatic package updates.
+| * | | 9780c69 Implemented Jest alongside the necessary scripts for running it proactively.
+| * | | f203e14 Amended the main index file to utilise the application component in the root directory.
+| * | | 561dba4 Implemented as basic (not necessarily needed) application (component) for rendering components and views within the frontend.
+|/ / /  
+| * | 635ad3b unit tests
+| * | ebfd1a9 react-day-picker calendar
+| * | 0db9fc1 calendar and example employee profile
+| * | 95616a4 (origin/f/sept-24) unit tests
+| * | af34f5f unit tests
+| * | fc3688f switch view based on button press
+| * | d833317 basic front end + styling configuration
+|/ /  
+* |   fde6ddf Merge pull request #3 from RMIT-SEPT/feature/sept-15-frontend-linting
+|\ \  
+| * | 6ab1ced (origin/feature/sept-15-frontend-linting, feature/sept-15-frontend-linting) Applied the formatting changes made by the linter.
+| * | b60c4ad Upadated packages alongside their bianry hashes.
+| * | 8e88782 Added additional packages required for linting alongside the script(s) necessary for invoking the linter.
+| * | df553b9 Implemented a feature complete linting configuration applied during the linting process which automatically reformats code to follow both community and industry standards + conventions.
+| * | 0139d9b Implemented additional typescript configuration around code paractices enforced by the linter.
+| * | fdba7ba Added the prettier configuration file utilised by the linter to determine the appropriate custom linting rules for javascript code.
+| * | 4113cf9 Added a prettier ignore file for both the linting process and IDE's to recognise which files matching the defined patterns should not be reformatted.
+| * | 6a1f8c4 Added an editor configuration file for IDE's to recognise the basic formatting when developing within the frontend solution.
+| |/  
+| * 7686b3d (tag: 1.0) Frontend Boilerplate (#2)
+* | a09a466 Backend Boilerplate (#1)
+|/  
+* 59a482f Updated Readme
+| * d0efc47 (origin/feature/sept-13-frontend-boilerplate, feature/sept-13-frontend-boilerplate) Created the simplest index implementation for react using typescript.
+| * 59f430e The dependency file for yarn.
+| * da4b4b7 Added essential scripts for hotloading and building the frontend solution.
+| * eb42f26 Added the necessary frontend files which should not be committed into the repository.
+| * b542a29 Added all of the essential packaged for working with typescript and react on the frontend solution.
+| * 52676ed Initialised the public index file for injecting/hotloading react code when compiling the solution.
+| * bbc22e7 Created the webpack configuration file with a custom baseline configuration for the frontend project.
+| * e01be96 Created the typescript configuration at the root frontend directory to indicate a typescript project is hosted here.
+| * a210e48 Initialised the frontend solution.
+|/  
+* 4153aa9 Update README.md
+* f93e300 Update README.md
+* 26b2c52 Removed member who dropped out of the course.
+* ef7c4b3 Update README.md
+* c1da5df Added group membership details for all members.
+* bcea648 Initial commit

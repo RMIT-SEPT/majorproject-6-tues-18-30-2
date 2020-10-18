@@ -8,11 +8,11 @@
         <version>2.3.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.rmit.sept</groupId>
+    <groupId>sept.rmit</groupId>
     <artifactId>dashboard</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>dashboard</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Dashboard for SEPT</description>
 
     <properties>
         <java.version>1.8</java.version>

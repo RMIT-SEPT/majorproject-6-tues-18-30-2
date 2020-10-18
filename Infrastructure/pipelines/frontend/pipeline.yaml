@@ -1,5 +1,11 @@
 name: $(revision).$(date:yyyyMMdd).$(rev:r)
 
+parameters:
+- name: deployments
+  displayName: Deploy Infrastructure?
+  type: boolean
+  default: true
+
 trigger:
   branches:
     include:
@@ -36,11 +42,25 @@ stages:
     displayName: Procedure
     steps:
     - checkout: self
-      lfs: true
+      lfs: false
     - template: ../templates/javascript-build.yaml
       parameters:
         directory: $(source)
         failWithTests: false
-    - publish: $(source)/dist
-      artifact: website
-      displayName: Publish Website
+        buildForInfrastructure: ${{ parameters.deployments }}
+    - ${{ if not(parameters.deployments) }}:
+      - publish: $(source)/dist
+        artifact: website
+        displayName: Publish Website
+    - ${{ if parameters.deployments }}:
+      - publish: $(Build.SourcesDirectory)/Infrastructure
+        artifact: Infrastructure
+        displayName: Publish Infrastructure
+- ${{ if parameters.deployments }}:
+  - template: ../templates/staged-deployment.yaml
+    parameters:
+      dependency: compile
+      connection: aws-mladenov
+      name: Website
+      deployment: components/website
+      type: components

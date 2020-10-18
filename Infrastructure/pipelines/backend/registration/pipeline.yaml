@@ -5,6 +5,10 @@ parameters:
   displayName: Application Port
   type: string
   default: 8081
+- name: skip
+  displayName: Skip Build
+  type: boolean
+  default: false
 
 trigger:
   branches:
@@ -27,9 +31,11 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  app_port: ${{ parameters.port }}
   registryName: SEPT-Registry-Registration
   revision: 1
   source: $(Build.SourcesDirectory)/BackEnd/sept-registration
+  store: authentication-api
 
 stages:
 - stage: compile
@@ -39,25 +45,46 @@ stages:
     displayName: Procedure
     steps:
     - checkout: self
-      lfs: true
-    - template: ../../templates/java-build.yaml
-      parameters:
-        directory: $(source)
-        failWithTests: false
-    - script: |
-        cat <<EOT >> env_file
-        APP_PORT=${{ parameters.port }}
-        JWT_SECRET=$ENCRYPTION_SECRET
-        DATABASE_URL=jdbc:mysql://$DB_ENDPOINT
-        DATABASE_USER=$DB_USER
-        DATABASE_PASSWORD=$DB_PASSWORD
-        DATABASE_DRIVER=com.mysql.cj.jdbc.Driver
-        EOT
-      displayName: Create Environments File
-      workingDirectory: $(source)
-    - template: ../../templates/container-build-push.yaml
-      parameters:
-        directory: $(source)
-        registry: $(registryName)
-        repository: sept/registration
-        tag: $(Build.BuildNumber)
+      lfs: false
+    - ${{ if not(parameters.skip) }}:
+      - template: ../../templates/aws-retrieve-secrets.yaml
+        parameters:
+          connection: aws-mladenov
+          secretStore: $(store)
+          secrets:
+          - database-endpoint:DATABASE_URL
+          - database-username:DATABASE_USER
+          - database-password:DATABASE_PASSWORD
+          - database-driver:DATABASE_DRIVER
+          - jwt:JWT_SECRET
+          showResults: true
+      - template: ../../templates/java-build.yaml
+        parameters:
+          directory: $(source)
+          failWithTests: false
+      - template: ../../templates/container-build-push.yaml
+        parameters:
+          directory: $(source)
+          registry: $(registryName)
+          repository: sept/registration
+          tag: $(Build.BuildNumber)
+          arguments: '--build-arg JAR_FILE=target/*.jar'
+      - task: PowerShell@2
+        displayName: Update Deployment Configuration
+        inputs:
+          targetType: filePath
+          filePath: $(Build.SourcesDirectory)/Infrastructure/scripts/Patch-Configuration.ps1
+          arguments: >
+            -ApplicationInfrastructureName registration
+            -ImageTag $(Build.BuildNumber)
+          pwsh: true
+    - publish: $(Build.SourcesDirectory)/Infrastructure
+      artifact: Infrastructure
+      displayName: Publish Infrastructure
+- template: ../../templates/staged-deployment.yaml
+  parameters:
+    dependency: compile
+    connection: aws-mladenov
+    name: Registration API
+    deployment: components/registration
+    type: components

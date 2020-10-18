@@ -1,5 +1,5 @@
 server:
-  port: ${APP_PORT}
+  port: ${APP_PORT:8082}
 jwt:
   secret: ${JWT_SECRET}
 spring:
@@ -14,4 +14,4 @@ spring:
     url: ${DATABASE_URL}
     username: ${DATABASE_USER}
     password: ${DATABASE_PASSWORD}
-    driver-class-name: ${DATABASE_DRIVER}
+    driver-class-name: ${DATABASE_DRIVER:com.mysql.cj.jdbc.Driver}

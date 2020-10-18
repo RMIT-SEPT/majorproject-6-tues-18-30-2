@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import sept.profile.config.JwtTokenUtil;
-import sept.profile.model.User;
 
 @Component
 @Order(1)
@@ -55,8 +55,12 @@ public class JwtFilter implements Filter {
 			
 		} else {
 			// Error forbidden
-			httpServletResponse.sendError(403);
-			return;
+			System.out.println(httpServletRequest.getMethod());
+			System.out.println(httpServletRequest.getRequestURI());
+			if(!httpServletRequest.getMethod().equals("OPTIONS")) {
+				httpServletResponse.sendError(403);
+				return;
+			}
 		}
 
 		chain.doFilter(request, response);
