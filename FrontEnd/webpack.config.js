@@ -45,9 +45,5 @@ module.exports = env => ({
     new HtmlWebpackPlugin({
       template: './public/index.html'
     })
-<<<<<<< HEAD
-
-=======
->>>>>>> master
   ]
 });

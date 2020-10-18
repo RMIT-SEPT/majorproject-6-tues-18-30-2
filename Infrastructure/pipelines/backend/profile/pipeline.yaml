@@ -45,7 +45,6 @@ stages:
     displayName: Procedure
     steps:
     - checkout: self
-<<<<<<< HEAD
       lfs: false
     - ${{ if not(parameters.skip) }}:
       - template: ../../templates/aws-retrieve-secrets.yaml
@@ -88,15 +87,3 @@ stages:
     name: Profile API
     deployment: components/profile
     type: components
-=======
-      lfs: true
-    - template: ../../templates/java-build.yaml
-      parameters:
-        directory: $(source)
-    - template: ../../templates/container-build-push.yaml
-      parameters:
-        directory: $(source)
-        registry: $(registryName)
-        repository: sept/profile
-        tag: $(Build.BuildNumber)
->>>>>>> master
