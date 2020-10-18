@@ -3,9 +3,15 @@ package sept.profile.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+<<<<<<< HEAD
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+=======
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+>>>>>>> master
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -39,6 +45,7 @@ public class User {
 	@Column(name="phone")
 	private String phone;
 	
+<<<<<<< HEAD
 	@Column(name="organisation")
 	private String organisation;
 	
@@ -54,6 +61,25 @@ public class User {
 	
 	public User() {
 		this.organisation = "";
+=======
+	// @Column(name="organization")
+	@Transient
+	private String organization;
+	
+	// @Column(name="country")
+	@Transient
+	private String country;
+	
+	// @Column(name="department")
+	@Transient
+	private String department;
+	
+	@ManyToOne
+	private Role role;
+	
+	public User() {
+		this.organization = "";
+>>>>>>> master
 		this.country = "";
 		this.department = "";
 	}
@@ -181,7 +207,11 @@ public class User {
 	/**
 	 * @return the role
 	 */
+<<<<<<< HEAD
 	@JsonGetter("role")
+=======
+	@JsonIgnore
+>>>>>>> master
 	public Role getRole() {
 		return role;
 	}
@@ -196,16 +226,27 @@ public class User {
 	/**
 	 * @return the organization
 	 */
+<<<<<<< HEAD
 	@JsonGetter("organisation")
 	public String getOrganisation() {
 		return organisation;
+=======
+	@JsonGetter("organization")
+	public String getOrganization() {
+		return organization;
+>>>>>>> master
 	}
 
 	/**
 	 * @param organization the organization to set
 	 */
+<<<<<<< HEAD
 	public void setOrganisation(String organisation) {
 		this.organisation = organisation;
+=======
+	public void setOrganization(String organization) {
+		this.organization = organization;
+>>>>>>> master
 	}
 
 	/**
